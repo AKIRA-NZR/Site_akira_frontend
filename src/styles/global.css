@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    /* Base Palette OKLCH (VOID Design System V2) */
+    --color-bg-canvas: oklch(11% 0.008 260);          /* Obsidiana Frio: #07080c */
+    --color-bg-surface: oklch(14% 0.008 260);         /* Superfície Cards: #0c0d12 */
+    --color-bg-surface-high: oklch(17% 0.009 260);    /* Superfície Elevada: #14161f */
+    
+    --color-border-tech: oklch(22% 0.01 260);         /* Filetes 1px: #1b1d24 */
+    --color-border-subtle: oklch(18% 0.009 260);      /* Bordas ultra-sutis */
+    
+    --color-text-primary: oklch(95% 0.008 85);        /* Branco-Osso Quente: #f0efe9 */
+    --color-text-secondary: oklch(60% 0.01 260);      /* Cinza Técnico: #8e919a */
+    --color-text-muted: oklch(45% 0.01 260);          /* Metadados desmaiados */
+    
+    --color-accent-signal: oklch(68% 0.18 45);        /* Laranja Sinalizador (2%-5%): #ea6a2a */
+    --color-accent-glow: oklch(68% 0.18 45 / 0.15);   /* Glow de Instrumentação */
+    
+    --color-terminal-bg: oklch(12% 0.008 260);
+    --color-terminal-bar: oklch(15% 0.009 260);
+  }
+
+  * {
+    border-color: var(--color-border-tech);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* Defensive CSS */
+.break-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Bicolor Headline (VOID Standard) */
+.headline-bicolor {
+  display: flex;
+  flex-direction: column;
+}
+
+.headline-bicolor .line-primary {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.headline-bicolor .line-secondary {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Lente Óptica Half-Blur do VOID Blueprint */
+.lens-half-blur {
+  background: linear-gradient(
+    90deg,
+    oklch(11% 0.008 260 / 0.95) 0%,
+    oklch(11% 0.008 260 / 0.85) 50%,
+    oklch(11% 0.008 260 / 0.15) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@media (max-width: 767px) {
+  .lens-half-blur {
+    background: linear-gradient(
+      180deg,
+      oklch(11% 0.008 260 / 0.1) 0%,
+      oklch(11% 0.008 260 / 0.85) 45%,
+      oklch(11% 0.008 260 / 0.98) 100%
+    );
+  }
+}
+
+/* Glassmorphism Técnico em Vidro Fumê */
+.smoked-glass {
+  background: oklch(14% 0.008 260 / 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-tech);
+}
+
+/* Grid de Engenharia 1px de fundo */
+.bg-grid-tech {
+  background-image: 
+    linear-gradient(to right, oklch(22% 0.01 260 / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(22% 0.01 260 / 0.3) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Indicador Ativo de Sinal (2% a 5% de acento) */
+.pulse-signal {
+  position: relative;
+}
+
+.pulse-signal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--color-accent-signal);
+  box-shadow: 0 0 10px var(--color-accent-signal);
+}

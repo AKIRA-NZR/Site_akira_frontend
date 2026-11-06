@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import { profile } from "../shared/config/profile";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${profile.handle} | ${profile.title}`,
+  description = profile.summary,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07080c" />
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={profile.handle} />
+
+    <title>{title}</title>
+
+    <!-- Fontes Técnicas de Alta Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon Minimalista SVG -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307080c'/><circle cx='50' cy='50' r='18' fill='%23ea6a2a'/></svg>"
+    />
+  </head>
+  <body class="bg-[var(--color-bg-canvas)] text-[var(--color-text-primary)] antialiased min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+    <slot />
+  </body>
+</html>

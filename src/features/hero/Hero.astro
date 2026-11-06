@@ -1,0 +1,85 @@
+---
+import { profile } from "../../shared/config/profile";
+import ResponsivePicture from "../../shared/ui/ResponsivePicture.astro";
+---
+
+<section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden border-b border-[var(--color-border-tech)] pt-16">
+  <!-- Fundo Fotográfico Real com Otimização AVIF/WebP -->
+  <div class="absolute inset-0 z-0">
+    <ResponsivePicture
+      srcBase="/images/front/pexels-resourceboy-18541878"
+      alt="Estrutura de engenharia e precisão industrial"
+      fetchpriority="high"
+      loading="eager"
+      class="w-full h-full object-cover object-right opacity-35"
+    />
+  </div>
+
+  <!-- Lente Óptica Half-Blur do VOID Blueprint (Protege a legibilidade do texto com WCAG AAA) -->
+  <div class="absolute inset-0 z-10 lens-half-blur"></div>
+
+  <!-- Camada Sutil de Grid de Engenharia 1px -->
+  <div class="absolute inset-0 z-10 bg-grid-tech opacity-20 pointer-events-none"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+    <div class="max-w-3xl">
+      <!-- Tagline & Indicador de Instrumento -->
+      <div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-xs font-mono mb-8">
+        <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)] shadow-[0_0_8px_var(--color-accent-signal)] animate-pulse"></span>
+        <span class="text-[var(--color-text-secondary)]">ENGENHARIA BACK-END & SISTEMAS DISTRIBUÍDOS</span>
+      </div>
+
+      <!-- Título Bicolor VOID -->
+      <h1 class="headline-bicolor text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+        <span class="line-primary">Arquitetura de Sistemas &</span>
+        <span class="line-secondary text-[var(--color-text-secondary)] font-medium">Engenharia de Alta Performance.</span>
+      </h1>
+
+      <!-- Resumo Editorial -->
+      <p class="text-lg sm:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-10 max-w-2xl font-normal">
+        {profile.summary}
+      </p>
+
+      <!-- Grid de Métricas de Engenharia -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        {profile.metrics.map((metric) => (
+          <div class="p-4 rounded-lg bg-[oklch(14%_0.008_260_/_0.85)] border border-[var(--color-border-tech)] backdrop-blur-sm">
+            <div class="flex items-baseline gap-1.5 mb-1">
+              <span class="text-2xl font-bold font-mono text-[var(--color-text-primary)]">
+                {metric.value}
+              </span>
+              <span class="text-xs font-mono text-[var(--color-accent-signal)] font-semibold">
+                {metric.unit}
+              </span>
+            </div>
+            <div class="text-xs font-medium text-[var(--color-text-secondary)] mb-1">
+              {metric.label}
+            </div>
+            <div class="text-[11px] text-[var(--color-text-muted)] font-mono leading-tight">
+              {metric.detail}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="flex flex-wrap items-center gap-4">
+        <a
+          href="#projetos"
+          class="px-6 py-3 rounded text-sm font-mono font-semibold bg-[var(--color-accent-signal)] text-[oklch(11%_0.008_260)] hover:brightness-110 transition-all flex items-center gap-2 shadow-[0_0_20px_var(--color-accent-glow)]"
+        >
+          <span>VER PROJETOS TÉCNICOS</span>
+          <span>→</span>
+        </a>
+
+        <a
+          href="#stack"
+          class="px-6 py-3 rounded text-sm font-mono font-semibold bg-[oklch(14%_0.008_260)] hover:bg-[oklch(18%_0.01_260)] text-[var(--color-text-primary)] border border-[var(--color-border-tech)] transition-all flex items-center gap-2"
+        >
+          <span>INSPECIONAR ARQUITETURA</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

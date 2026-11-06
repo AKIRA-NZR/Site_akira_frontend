@@ -1,0 +1,83 @@
+---
+import { profile } from "../../shared/config/profile";
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md bg-[oklch(11%_0.008_260_/_0.8)] border-b border-[var(--color-border-tech)]"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Marca Tipográfica Pura -->
+    <a href="#" class="flex items-center gap-2 group">
+      <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)] shadow-[0_0_8px_var(--color-accent-signal)]"></span>
+      <span class="font-['JetBrains_Mono',monospace] font-bold text-lg tracking-wider text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-signal)] transition-colors">
+        {profile.handle.toUpperCase()}
+      </span>
+      <span class="text-[var(--color-text-muted)] text-xs font-mono hidden sm:inline-block">
+        // core.sys
+      </span>
+    </a>
+
+    <!-- Links de Navegação Desktop -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a
+        href="#sobre"
+        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+      >
+        Sobre
+      </a>
+      <a
+        href="#stack"
+        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+      >
+        Stack & Arquitetura
+      </a>
+      <a
+        href="#projetos"
+        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+      >
+        Projetos
+      </a>
+      <a
+        href="#contato"
+        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+      >
+        Contato
+      </a>
+    </nav>
+
+    <!-- Indicador de Status / CTA -->
+    <div class="flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-xs font-mono text-[var(--color-text-secondary)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>SYS_STATUS: READY</span>
+      </div>
+
+      <a
+        href="#contato"
+        class="px-4 py-1.5 text-xs font-mono font-semibold rounded bg-[oklch(17%_0.009_260)] hover:bg-[oklch(22%_0.01_260)] text-[var(--color-text-primary)] border border-[var(--color-border-tech)] hover:border-[var(--color-accent-signal)] transition-all"
+      >
+        INICIAR CONEXÃO
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  let lastScrollY = window.scrollY;
+  const header = document.getElementById("main-header");
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    if (header) {
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Scrollando para baixo: oculta o cabeçalho
+        header.style.transform = "translateY(-100%)";
+      } else {
+        // Scrollando para cima: exibe o cabeçalho
+        header.style.transform = "translateY(0)";
+      }
+    }
+    lastScrollY = currentScrollY;
+  });
+</script>

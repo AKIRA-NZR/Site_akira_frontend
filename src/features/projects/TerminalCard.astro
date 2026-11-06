@@ -1,0 +1,127 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<div class="rounded-xl overflow-hidden bg-[oklch(13%_0.008_260)] border border-[var(--color-border-tech)] flex flex-col justify-between hover:border-[var(--color-border-tech)]/80 transition-all duration-300 shadow-xl group">
+  <!-- Topo do Card: Informações & Badges de Versão -->
+  <div class="p-6 pb-4">
+    <div class="flex items-center justify-between gap-4 mb-3">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)]"></span>
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--color-accent-signal)]">
+          // BACKEND & SISTEMAS
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        {data.githubUrl && (
+          <a
+            href={data.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors flex items-center gap-1"
+          >
+            <span>GitHub</span>
+            <span class="text-xs">↗</span>
+          </a>
+        )}
+        {data.liveUrl && (
+          <a
+            href={data.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors flex items-center gap-1"
+          >
+            <span>Docs</span>
+            <span class="text-xs">↗</span>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <h3 class="text-xl font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-text-primary)]">
+      {data.title}
+    </h3>
+    <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-4">
+      {data.summary}
+    </p>
+
+    <!-- Badges de Tecnologias com Versões Exatas -->
+    <div class="flex flex-wrap gap-2 mb-4">
+      {data.technologies.map((tech) => (
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono bg-[oklch(16%_0.009_260)] text-[var(--color-text-primary)] border border-[var(--color-border-tech)]">
+          <span>{tech.name}</span>
+          {tech.version && (
+            <span class="text-[var(--color-accent-signal)] font-semibold">
+              {tech.version}
+            </span>
+          )}
+        </span>
+      ))}
+    </div>
+
+    <!-- Métricas de Engenharia -->
+    {data.metrics && (
+      <div class="grid grid-cols-3 gap-2 py-3 px-3.5 rounded bg-[oklch(11%_0.008_260)] border border-[var(--color-border-tech)] mb-4 text-center">
+        {data.metrics.throughput && (
+          <div>
+            <div class="text-[10px] font-mono text-[var(--color-text-muted)] uppercase">Vazão</div>
+            <div class="text-xs font-mono font-bold text-[var(--color-text-primary)]">{data.metrics.throughput}</div>
+          </div>
+        )}
+        {data.metrics.latency_p99 && (
+          <div>
+            <div class="text-[10px] font-mono text-[var(--color-text-muted)] uppercase">p99</div>
+            <div class="text-xs font-mono font-bold text-emerald-400">{data.metrics.latency_p99}</div>
+          </div>
+        )}
+        {data.metrics.uptime && (
+          <div>
+            <div class="text-[10px] font-mono text-[var(--color-text-muted)] uppercase">SLA</div>
+            <div class="text-xs font-mono font-bold text-[var(--color-text-primary)]">{data.metrics.uptime}</div>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+
+  <!-- Terminal CLI Interativo Estilizado (Polimorfismo para Backend) -->
+  <div class="border-t border-[var(--color-border-tech)] bg-[oklch(10%_0.008_260)] font-mono text-xs">
+    <!-- Barra Superior do Terminal -->
+    <div class="px-4 py-2 bg-[oklch(12%_0.008_260)] border-b border-[var(--color-border-tech)] flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+        <span class="ml-2 text-[11px] text-[var(--color-text-muted)]">
+          bash — 80x24
+        </span>
+      </div>
+      <span class="text-[10px] text-[var(--color-text-muted)]">
+        x86_64-linux
+      </span>
+    </div>
+
+    <!-- Janela de Comando e Output -->
+    <div class="p-4 space-y-2 overflow-x-auto">
+      {data.cliCommand && (
+        <div class="flex items-start gap-2 text-[var(--color-text-primary)]">
+          <span class="text-[var(--color-accent-signal)] select-none">$</span>
+          <code class="break-all">{data.cliCommand}</code>
+        </div>
+      )}
+      {data.cliOutput && (
+        <div class="text-emerald-400/90 text-[11px] leading-relaxed font-mono pl-4 border-l border-[var(--color-border-tech)] break-all">
+          {data.cliOutput}
+        </div>
+      )}
+    </div>
+  </div>
+</div>

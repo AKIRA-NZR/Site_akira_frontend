@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import ResponsivePicture from "../../shared/ui/ResponsivePicture.astro";
+import TerminalCard from "./TerminalCard.astro";
+import MockupCard from "./MockupCard.astro";
+
+const allProjects = await getCollection("projects");
+const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<section id="projetos" class="relative py-28 border-b border-[var(--color-border-tech)] overflow-hidden">
+  <!-- Imagem Fotográfica de Fundo -->
+  <div class="absolute inset-0 z-0">
+    <ResponsivePicture
+      srcBase="/images/front/pexels-edocoledoco-14340820"
+      alt="Estruturas geométricas de precisão"
+      loading="lazy"
+      class="w-full h-full object-cover object-right opacity-15"
+    />
+  </div>
+
+  <div class="absolute inset-0 z-10 bg-gradient-to-b from-[var(--color-bg-canvas)] via-[oklch(11%_0.008_260_/_0.95)] to-[var(--color-bg-canvas)]"></div>
+
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Cabeçalho da Seção -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="max-w-2xl">
+        <div class="text-xs font-mono text-[var(--color-accent-signal)] tracking-wider uppercase mb-3">
+          // 03. REPOSITÓRIO DE PROJETOS & ENGENHARIA
+        </div>
+        <h2 class="headline-bicolor text-3xl sm:text-5xl font-bold tracking-tight mb-4">
+          <span class="line-primary">Sistemas & Arquitetura</span>
+          <span class="line-secondary text-[var(--color-text-secondary)] font-normal">& Projetos em Produção.</span>
+        </h2>
+        <p class="text-base text-[var(--color-text-secondary)]">
+          Projetos desenhados com tolerância a falhas, concorrência e contratos de interface estritos. Cada card renderiza polimorficamente seu terminal ou interface.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-xs font-mono text-[var(--color-text-secondary)] self-start md:self-auto">
+        <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)]"></span>
+        <span>{projects.length} PROJETOS INDEXADOS</span>
+      </div>
+    </div>
+
+    <!-- Grid Polimórfico de Projetos -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {projects.map((project) => (
+        project.data.type === "backend" ? (
+          <TerminalCard project={project} />
+        ) : (
+          <MockupCard project={project} />
+        )
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  srcBase: string; // ex: "/images/front/pexels-resourceboy-18541878"
+  alt: string;
+  class?: string;
+  fetchpriority?: "high" | "low" | "auto";
+  loading?: "eager" | "lazy";
+  width?: number;
+  height?: number;
+}
+
+const {
+  srcBase,
+  alt,
+  class: className = "w-full h-full object-cover",
+  fetchpriority = "auto",
+  loading = "lazy",
+  width = 1920,
+  height = 1080,
+} = Astro.props;
+
+const mobileAvif = `${srcBase}-mobile.avif`;
+const mobileWebp = `${srcBase}-mobile.webp`;
+const desktopAvif = `${srcBase}.avif`;
+const desktopWebp = `${srcBase}.webp`;
+const fallbackJpg = `${srcBase}.jpg`;
+---
+
+<picture class="contents">
+  <!-- Mobile (< 768px): Peso ultraleve (~30KB) -->
+  <source media="(max-width: 767px)" srcset={mobileAvif} type="image/avif" />
+  <source media="(max-width: 767px)" srcset={mobileWebp} type="image/webp" />
+
+  <!-- Desktop (>= 768px): Alta fidelidade AVIF/WebP -->
+  <source media="(min-width: 768px)" srcset={desktopAvif} type="image/avif" />
+  <source media="(min-width: 768px)" srcset={desktopWebp} type="image/webp" />
+
+  <!-- Fallback JPG -->
+  <img
+    src={fallbackJpg}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+    class={className}
+  />
+</picture>

@@ -1,0 +1,92 @@
+---
+import { profile } from "../../shared/config/profile";
+import ResponsivePicture from "../../shared/ui/ResponsivePicture.astro";
+---
+
+<section id="sobre" class="relative py-28 border-b border-[var(--color-border-tech)] overflow-hidden">
+  <!-- Imagem de Fundo Contextual Fotográfica -->
+  <div class="absolute inset-0 z-0">
+    <ResponsivePicture
+      srcBase="/images/front/pexels-sevenstormphotography-946310"
+      alt="Textura de concreto e precisão geométrica"
+      loading="lazy"
+      class="w-full h-full object-cover object-left opacity-20"
+    />
+  </div>
+
+  <div class="absolute inset-0 z-10 bg-gradient-to-r from-[var(--color-bg-canvas)] via-[oklch(11%_0.008_260_/_0.92)] to-[oklch(11%_0.008_260_/_0.85)]"></div>
+
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <!-- Coluna da Esquerda: Título Editorial & Metadados (4/12) -->
+      <div class="lg:col-span-4 flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-mono text-[var(--color-accent-signal)] tracking-wider uppercase mb-3">
+            // 01. IDENTIDADE & FILOSOFIA
+          </div>
+          <h2 class="headline-bicolor text-3xl sm:text-4xl font-bold tracking-tight mb-6">
+            <span class="line-primary">Sobre Mim</span>
+            <span class="line-secondary text-[var(--color-text-secondary)] font-normal">& Prática de Engenharia.</span>
+          </h2>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-8">
+            Desenvolvendo sistemas onde confiabilidade, isolamento de falhas e desempenho sob carga não são opcionais.
+          </p>
+        </div>
+
+        <!-- Ficha Técnica Rápida -->
+        <div class="p-5 rounded-lg bg-[oklch(14%_0.008_260_/_0.8)] border border-[var(--color-border-tech)] backdrop-blur-sm space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-[var(--color-text-muted)]">Assinatura:</span>
+            <span class="text-[var(--color-text-primary)] font-semibold">{profile.handle}</span>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-[var(--color-text-muted)]">Localização:</span>
+            <span class="text-[var(--color-text-primary)]">{profile.location}</span>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-[var(--color-text-muted)]">Disponibilidade:</span>
+            <span class="text-emerald-400 font-medium">Projetos & Consultoria</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna da Direita: Narrativa & Princípios de Engenharia (8/12) -->
+      <div class="lg:col-span-8 space-y-8">
+        <!-- Parágrafos da Bio -->
+        <div class="space-y-4 text-base text-[var(--color-text-secondary)] leading-relaxed">
+          {profile.fullBio.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+
+        <!-- Princípios Fundamentais de Arquitetura -->
+        <div class="pt-6 border-t border-[var(--color-border-tech)]">
+          <div class="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider mb-6">
+            // PILARES ARQUITETURAIS & DECISÕES DE DESIGN
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {profile.corePrinciples.map((principle, index) => (
+              <div class="p-4 rounded-lg bg-[oklch(13%_0.008_260)] border border-[var(--color-border-tech)] flex flex-col justify-between hover:border-[var(--color-accent-signal)]/40 transition-colors">
+                <div>
+                  <div class="text-xs font-mono text-[var(--color-accent-signal)] mb-2">
+                    0{index + 1}.
+                  </div>
+                  <h3 class="text-sm font-semibold text-[var(--color-text-primary)] mb-2">
+                    {principle.title}
+                  </h3>
+                  <p class="text-xs text-[var(--color-text-secondary)] leading-relaxed mb-4">
+                    {principle.description}
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-[var(--color-border-tech)] font-mono text-[11px] text-[var(--color-text-muted)] break-all">
+                  <code>{principle.code}</code>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

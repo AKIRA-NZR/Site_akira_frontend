@@ -1,0 +1,119 @@
+---
+import ResponsivePicture from "../../shared/ui/ResponsivePicture.astro";
+
+const stackCategories = [
+  {
+    category: "Linguagens & Runtimes",
+    description: "Concorrência, alta vazão e tipagem estrita de ponta a ponta.",
+    technologies: [
+      { name: "Go", version: "v1.23", role: "Microsserviços de baixa latência e pipelines concorrentes", status: "Produção Diária" },
+      { name: "Node.js / TS", version: "v22.4", role: "APIs assíncronas, schemas tipados e automações", status: "Produção Diária" },
+      { name: "Rust", version: "v1.80", role: "Gateways de borda e módulos com consumo zero de GC", status: "Alta Performance" },
+    ],
+  },
+  {
+    category: "Bancos de Dados & Mensageria",
+    description: "Persistência ACID, particionamento e processamento assíncrono.",
+    technologies: [
+      { name: "PostgreSQL", version: "v16.3", role: "Isolamento relacional, índices B-Tree/GIN e particionamento", status: "Primário" },
+      { name: "Redis", version: "v7.2", role: "Cache atômico, rate limiting distribuído e locks com Redlock", status: "In-Memory" },
+      { name: "Apache Kafka", version: "v3.7", role: "Event streaming, filas de alta vazão e tópicos particionados", status: "Mensageria" },
+      { name: "ClickHouse", version: "v24.6", role: "Analytics colunar em tempo real e armazenamento de logs", status: "OLAP" },
+    ],
+  },
+  {
+    category: "Infraestrutura & Plataforma",
+    description: "Ambientes reprodutíveis, conteinerização e edge computing.",
+    technologies: [
+      { name: "Docker", version: "v27.0", role: "Multi-stage builds, imagens distroless e isolamento", status: "Padrão" },
+      { name: "Kubernetes", version: "v1.30", role: "Deploy de pods, auto-scaling horizontal (HPA) e ingress", status: "Orquestração" },
+      { name: "Cloudflare", version: "Edge/Workers", role: "CDN global, terminação TLS e DNS com mitigação DDoS", status: "Edge Core" },
+      { name: "Linux", version: "Debian/Alpine", role: "Tuning de kernel, networking (sysctl) e systemd", status: "Host OS" },
+    ],
+  },
+  {
+    category: "Observabilidade & Protocolos",
+    description: "Inspeção profunda, métricas RED e contratos de rede.",
+    technologies: [
+      { name: "OpenTelemetry", version: "v1.27", role: "Coleta unificada de métricas, logs e tracing distribuído", status: "Tracing" },
+      { name: "Prometheus", version: "v2.53", role: "Séries temporais, scraping de métricas e alertas", status: "Métricas" },
+      { name: "gRPC & Protobuf", version: "v3", role: "Comunicação RPC binária inter-serviços de alta velocidade", status: "Protocolo" },
+    ],
+  },
+];
+---
+
+<section id="stack" class="relative py-28 border-b border-[var(--color-border-tech)] overflow-hidden">
+  <!-- Imagem Fotográfica Contextual de Fundo -->
+  <div class="absolute inset-0 z-0">
+    <ResponsivePicture
+      srcBase="/images/front/pexels-fatih-turan-63325184-16553906"
+      alt="Linhas industriais e simetria de hardware"
+      loading="lazy"
+      class="w-full h-full object-cover object-center opacity-15"
+    />
+  </div>
+
+  <div class="absolute inset-0 z-10 bg-gradient-to-b from-[var(--color-bg-canvas)] via-[oklch(11%_0.008_260_/_0.95)] to-[var(--color-bg-canvas)]"></div>
+
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-16">
+      <div class="text-xs font-mono text-[var(--color-accent-signal)] tracking-wider uppercase mb-3">
+        // 02. INFRAESTRUTURA & MATRIZ TECNOLÓGICA
+      </div>
+      <h2 class="headline-bicolor text-3xl sm:text-5xl font-bold tracking-tight mb-4">
+        <span class="line-primary">Stack de Engenharia</span>
+        <span class="line-secondary text-[var(--color-text-secondary)] font-normal">& Ferramentas de Produção.</span>
+      </h2>
+      <p class="text-base text-[var(--color-text-secondary)]">
+        Seleção criteriosa de tecnologias com contratos de versão explícitos, calibradas para estabilidade, escalabilidade e baixa latência.
+      </p>
+    </div>
+
+    <!-- Matriz Comparativa em Vidro Fumê -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {stackCategories.map((group) => (
+        <div class="p-6 rounded-xl smoked-glass">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-[var(--color-border-tech)]">
+            <h3 class="text-base font-bold text-[var(--color-text-primary)]">
+              {group.category}
+            </h3>
+            <span class="text-xs font-mono text-[var(--color-text-muted)]">
+              {group.technologies.length} ferramentas
+            </span>
+          </div>
+          <p class="text-xs text-[var(--color-text-secondary)] mb-6 font-mono">
+            {group.description}
+          </p>
+
+          <div class="space-y-4">
+            {group.technologies.map((tech) => (
+              <div class="p-3.5 rounded-lg bg-[oklch(11%_0.008_260_/_0.7)] border border-[var(--color-border-tech)] hover:border-[var(--color-border-tech)]/80 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-semibold text-[var(--color-text-primary)]">
+                      {tech.name}
+                    </span>
+                    <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-[oklch(17%_0.009_260)] text-[var(--color-accent-signal)] border border-[var(--color-border-tech)]">
+                      {tech.version}
+                    </span>
+                  </div>
+                  <div class="text-xs text-[var(--color-text-secondary)]">
+                    {tech.role}
+                  </div>
+                </div>
+
+                <div class="shrink-0">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-[11px] font-mono text-[var(--color-text-secondary)]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    {tech.status}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

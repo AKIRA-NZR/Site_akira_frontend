@@ -1,0 +1,127 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<div class="rounded-xl overflow-hidden bg-[oklch(13%_0.008_260)] border border-[var(--color-border-tech)] flex flex-col justify-between hover:border-[var(--color-border-tech)]/80 transition-all duration-300 shadow-xl group">
+  <!-- Topo do Card: Informações & Badges de Versão -->
+  <div class="p-6 pb-4">
+    <div class="flex items-center justify-between gap-4 mb-3">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <span class="text-xs font-mono uppercase tracking-wider text-cyan-400">
+          // INTERFACE & FULLSTACK
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        {data.githubUrl && (
+          <a
+            href={data.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors flex items-center gap-1"
+          >
+            <span>GitHub</span>
+            <span class="text-xs">↗</span>
+          </a>
+        )}
+        {data.liveUrl && (
+          <a
+            href={data.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors flex items-center gap-1"
+          >
+            <span>Live Demo</span>
+            <span class="text-xs">↗</span>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <h3 class="text-xl font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-text-primary)]">
+      {data.title}
+    </h3>
+    <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-4">
+      {data.summary}
+    </p>
+
+    <!-- Badges de Tecnologias com Versões Exatas -->
+    <div class="flex flex-wrap gap-2 mb-4">
+      {data.technologies.map((tech) => (
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono bg-[oklch(16%_0.009_260)] text-[var(--color-text-primary)] border border-[var(--color-border-tech)]">
+          <span>{tech.name}</span>
+          {tech.version && (
+            <span class="text-[var(--color-accent-signal)] font-semibold">
+              {tech.version}
+            </span>
+          )}
+        </span>
+      ))}
+    </div>
+
+    <!-- Métricas de Engenharia -->
+    {data.metrics && (
+      <div class="grid grid-cols-3 gap-2 py-3 px-3.5 rounded bg-[oklch(11%_0.008_260)] border border-[var(--color-border-tech)] mb-4 text-center">
+        {data.metrics.throughput && (
+          <div>
+            <div class="text-[10px] font-mono text-[var(--color-text-muted)] uppercase">Vazão</div>
+            <div class="text-xs font-mono font-bold text-[var(--color-text-primary)]">{data.metrics.throughput}</div>
+          </div>
+        )}
+        {data.metrics.latency_p99 && (
+          <div>
+            <div class="text-[10px] font-mono text-[var(--color-text-muted)] uppercase">p99</div>
+            <div class="text-xs font-mono font-bold text-emerald-400">{data.metrics.latency_p99}</div>
+          </div>
+        )}
+        {data.metrics.uptime && (
+          <div>
+            <div class="text-[10px] font-mono text-[var(--color-text-muted)] uppercase">SLA</div>
+            <div class="text-xs font-mono font-bold text-[var(--color-text-primary)]">{data.metrics.uptime}</div>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+
+  <!-- Mockup de Interface Visual (Polimorfismo para Frontend/Fullstack) -->
+  <div class="border-t border-[var(--color-border-tech)] bg-[oklch(10%_0.008_260)] overflow-hidden">
+    <!-- Barra Superior de Navegador Minimalista -->
+    <div class="px-4 py-2 bg-[oklch(12%_0.008_260)] border-b border-[var(--color-border-tech)] flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-neutral-600 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-neutral-600 inline-block"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-neutral-600 inline-block"></span>
+      </div>
+      <div class="px-3 py-0.5 rounded bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-[10px] font-mono text-[var(--color-text-muted)] truncate max-w-[200px]">
+        https://console.internal.net
+      </div>
+      <span class="text-[10px] text-[var(--color-text-muted)] font-mono">UI</span>
+    </div>
+
+    <!-- Área de Exibição do Mockup -->
+    <div class="p-6 flex items-center justify-center min-h-[140px] bg-gradient-to-br from-[oklch(12%_0.008_260)] to-[oklch(16%_0.009_260)] relative">
+      <div class="w-full max-w-sm p-4 rounded bg-[oklch(11%_0.008_260_/_0.9)] border border-[var(--color-border-tech)] shadow-lg space-y-3">
+        <div class="flex justify-between items-center text-xs font-mono text-[var(--color-text-secondary)]">
+          <span>// LIVE TELEMETRY</span>
+          <span class="text-emerald-400">● 60 FPS</span>
+        </div>
+        <div class="h-2 w-full bg-[oklch(18%_0.009_260)] rounded overflow-hidden">
+          <div class="h-full bg-[var(--color-accent-signal)] w-3/4 rounded"></div>
+        </div>
+        <div class="flex justify-between text-[11px] font-mono text-[var(--color-text-muted)]">
+          <span>Active Connections: 4,821</span>
+          <span>Load: 28%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
