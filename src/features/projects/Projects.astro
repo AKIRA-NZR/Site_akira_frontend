@@ -1,57 +1,227 @@
 ---
-import { getCollection } from "astro:content";
-import ResponsivePicture from "../../shared/ui/ResponsivePicture.astro";
-import TerminalCard from "./TerminalCard.astro";
-import MockupCard from "./MockupCard.astro";
+import { getCollection } from 'astro:content';
+import {
+  PHOTO_CRIMSON_MOON_SET,
+  PHOTO_BERSERK_FORGE_SET,
+  VIDEO_FEATURED_STAGE,
+} from '../../shared/media/frontImages';
+import ResponsivePicture from '../../shared/ui/ResponsivePicture.astro';
+import TerminalCard from './TerminalCard.astro';
+import MockupCard from './MockupCard.astro';
 
-const allProjects = await getCollection("projects");
-const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const allProjects = await getCollection('projects');
+const sorted = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const flagshipProjects = sorted.slice(0, 2);
+const gridProjects = sorted.slice(2);
+const flagshipImages = [PHOTO_CRIMSON_MOON_SET, PHOTO_BERSERK_FORGE_SET];
 ---
 
-<section id="projetos" class="relative py-28 border-b border-[var(--color-border-tech)] overflow-hidden">
-  <!-- Imagem Fotográfica de Fundo -->
-  <div class="absolute inset-0 z-0">
-    <ResponsivePicture
-      srcBase="/images/front/pexels-edocoledoco-14340820"
-      alt="Estruturas geométricas de precisão"
-      loading="lazy"
-      class="w-full h-full object-cover object-right opacity-15"
-    />
+<section
+  id="projetos"
+  data-section-stage="projects"
+  class="mx-auto w-full max-w-6xl px-4 py-20 sm:px-8 sm:py-28 border-t border-outline-variant"
+>
+  <!-- Cabeçalho da Seção -->
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+    <div class="max-w-xl min-w-0">
+      <p class="editorial-kicker mb-3">03 // Sistemas & Arquitetura</p>
+      <h2 class="headline-bicolor text-2xl sm:text-3xl lg:text-4xl min-w-0 break-words">
+        <span class="headline-bicolor-primary">Engenharia aplicada.</span>
+        <span class="headline-bicolor-secondary">Sistemas distribuídos em produção.</span>
+      </h2>
+    </div>
+
+    <p class="text-xs font-mono text-on-surface-variant">
+      {sorted.length} REPOSITÓRIOS INDEXADOS // ZOD SCHEMA
+    </p>
   </div>
 
-  <div class="absolute inset-0 z-10 bg-gradient-to-b from-[var(--color-bg-canvas)] via-[oklch(11%_0.008_260_/_0.95)] to-[var(--color-bg-canvas)]"></div>
+  <!-- Nível 1: Projetos Flagship em Quadros Fotográficos Split Half-Blur (Arquétipo A - Ritmo Alternado) -->
+  <div class="space-y-10 mb-12">
+    {flagshipProjects.map((project, index) => {
+      const { data } = project;
+      const isRightLens = index % 2 === 1;
+      const stageImage = flagshipImages[index % flagshipImages.length];
+      const useVideo = index === 0;
 
-  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Cabeçalho da Seção -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-      <div class="max-w-2xl">
-        <div class="text-xs font-mono text-[var(--color-accent-signal)] tracking-wider uppercase mb-3">
-          // 03. REPOSITÓRIO DE PROJETOS & ENGENHARIA
-        </div>
-        <h2 class="headline-bicolor text-3xl sm:text-5xl font-bold tracking-tight mb-4">
-          <span class="line-primary">Sistemas & Arquitetura</span>
-          <span class="line-secondary text-[var(--color-text-secondary)] font-normal">& Projetos em Produção.</span>
-        </h2>
-        <p class="text-base text-[var(--color-text-secondary)]">
-          Projetos desenhados com tolerância a falhas, concorrência e contratos de interface estritos. Cada card renderiza polimorficamente seu terminal ou interface.
-        </p>
-      </div>
+      return (
+        <article class="split-photo-stage min-h-[460px] sm:min-h-[500px] flex items-end md:items-center p-6 sm:p-10 lg:p-12">
+          {/* Fundo Visual: Vídeo 1405430.mp4 Lazy com Fallback AVIF no 1º Destaque, Arte no 2º */}
+          <ResponsivePicture
+            image={stageImage}
+            alt={data.title}
+            loading="lazy"
+            width={1280}
+            height={720}
+            class="split-photo-sharp object-cover object-center"
+          />
 
-      <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-xs font-mono text-[var(--color-text-secondary)] self-start md:self-auto">
-        <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)]"></span>
-        <span>{projects.length} PROJETOS INDEXADOS</span>
-      </div>
-    </div>
+          {useVideo && (
+            <video
+              data-lazy-stage-video
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster={stageImage.avif}
+              aria-hidden="true"
+              class="split-photo-sharp object-cover object-center"
+            >
+              <source data-src={VIDEO_FEATURED_STAGE} type="video/mp4" />
+            </video>
+          )}
 
-    <!-- Grid Polimórfico de Projetos -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {projects.map((project) => (
-        project.data.type === "backend" ? (
-          <TerminalCard project={project} />
-        ) : (
-          <MockupCard project={project} />
-        )
-      ))}
-    </div>
+          {/* Lente Óptica Direcional Alternada (Esquerda 90° / Direita 270°) */}
+          <div class={isRightLens ? 'split-lens-right' : 'split-lens-left'} aria-hidden="true"></div>
+
+          {/* Coluna de Conteúdo Técnico Protegida pela Lente */}
+          <div
+            class:list={[
+              'relative z-10 w-full md:max-w-[54%] lg:max-w-[50%] min-w-0 space-y-5',
+              isRightLens ? 'md:ml-auto' : '',
+            ]}
+          >
+            <div class="flex items-center justify-between gap-4">
+              <span class="editorial-kicker">
+                0{index + 1} // DESTAQUE ARQUITETURAL
+              </span>
+              {useVideo && (
+                <span class="font-mono text-[10px] text-on-surface border border-outline-variant bg-background/70 px-2 py-0.5 rounded">
+                  LIVE STAGE
+                </span>
+              )}
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-semibold text-on-surface tracking-tight min-w-0 break-words">
+              {data.title}
+            </h3>
+
+            <p class="text-sm text-on-surface-variant leading-relaxed min-w-0 break-words">
+              {data.summary}
+            </p>
+
+            {/* Versões Exatas das Tecnologias */}
+            <div class="flex flex-wrap gap-2">
+              {data.technologies.map((tech) => (
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono bg-background/80 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  <span>{tech.name}</span>
+                  {tech.version && (
+                    <span class="text-on-surface-variant">{tech.version}</span>
+                  )}
+                </span>
+              ))}
+            </div>
+
+            {/* Comando CLI Resumido */}
+            {data.cliCommand && (
+              <div class="p-3.5 rounded bg-background/85 border border-outline-variant font-mono text-xs overflow-x-auto backdrop-blur-sm">
+                <div class="flex items-start gap-2 text-on-surface">
+                  <span class="text-on-surface-variant select-none">$</span>
+                  <code class="break-all">{data.cliCommand}</code>
+                </div>
+                {data.cliOutput && (
+                  <div class="mt-2 pt-2 border-t border-outline-variant text-[11px] text-on-surface-variant break-all">
+                    {data.cliOutput}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Métricas + Links */}
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-6">
+              {data.metrics && (
+                <div class="flex items-center gap-6 font-mono text-xs">
+                  {data.metrics.throughput && (
+                    <div>
+                      <span class="text-on-surface-variant block text-[10px]">VAZÃO</span>
+                      <span class="text-on-surface font-semibold">{data.metrics.throughput}</span>
+                    </div>
+                  )}
+                  {data.metrics.latency_p99 && (
+                    <div>
+                      <span class="text-on-surface-variant block text-[10px]">LATÊNCIA P99</span>
+                      <span class="text-on-surface font-semibold">{data.metrics.latency_p99}</span>
+                    </div>
+                  )}
+                  {data.metrics.uptime && (
+                    <div>
+                      <span class="text-on-surface-variant block text-[10px]">SLA</span>
+                      <span class="text-on-surface font-semibold">{data.metrics.uptime}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div class="flex items-center gap-5">
+                {data.githubUrl && (
+                  <a
+                    href={data.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="editorial-link"
+                  >
+                    <span>Repositório</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
+                {data.liveUrl && (
+                  <a
+                    href={data.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="editorial-link"
+                  >
+                    <span>Documentação</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+
+  <!-- Nível 2: Grid Polimórfico de Sistemas (Arquétipo D - Elevação Monotônica + Terminais CLI) -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {gridProjects.map((project, idx) =>
+      project.data.type === 'backend' ? (
+        <TerminalCard project={project} elevation={idx % 2 === 0 ? '3' : '4'} />
+      ) : (
+        <MockupCard project={project} elevation="4" />
+      )
+    )}
   </div>
 </section>
+
+<script is:inline>
+  (() => {
+    const videos = document.querySelectorAll('[data-lazy-stage-video]');
+    if (!videos.length) return;
+
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (!(video instanceof HTMLVideoElement)) return;
+
+          if (entry.isIntersecting) {
+            const source = video.querySelector('source[data-src]');
+            if (source && !source.getAttribute('src')) {
+              source.setAttribute('src', source.getAttribute('data-src') || '');
+              video.load();
+            }
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: '150px 0px', threshold: 0.05 }
+    );
+
+    videos.forEach((v) => videoObserver.observe(v));
+  })();
+</script>

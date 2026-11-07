@@ -1,6 +1,8 @@
 ---
-import "../styles/global.css";
-import { profile } from "../shared/config/profile";
+import '../styles/global.css';
+import { profile } from '../shared/config/profile';
+import { PHOTO_CHROME_SURFER_SET } from '../shared/media/frontImages';
+import CorporateBackdrop from '../shared/effects/CorporateBackdrop.astro';
 
 interface Props {
   title?: string;
@@ -8,21 +10,23 @@ interface Props {
 }
 
 const {
-  title = `${profile.handle} | ${profile.title}`,
+  title = profile.handle,
   description = profile.summary,
 } = Astro.props;
+
+const fontStylesheetUrl =
+  'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
 ---
 
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR" class="dark" data-active-stage="hero">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07080c" />
     <meta name="description" content={description} />
-    <meta name="author" content={profile.name} />
+    <meta name="author" content={profile.handle} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -30,22 +34,46 @@ const {
 
     <title>{title}</title>
 
-    <!-- Fontes Técnicas de Alta Performance -->
+    <!-- Preload Seletivo Apenas da Imagem Hero LCP em AVIF (Mobile + Desktop) -->
+    <link
+      rel="preload"
+      as="image"
+      href={PHOTO_CHROME_SURFER_SET.mobileAvif}
+      type="image/avif"
+      media="(max-width: 767px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={PHOTO_CHROME_SURFER_SET.avif}
+      type="image/avif"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    />
+
+    <!-- Fontes Não-Bloqueantes (Zero Render-Blocking + Geist Fallback CLS 0.000) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href={fontStylesheetUrl}
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link rel="stylesheet" href={fontStylesheetUrl} />
+    </noscript>
 
-    <!-- Favicon Minimalista SVG -->
+    <!-- Favicon Tipográfico Monocromático -->
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307080c'/><circle cx='50' cy='50' r='18' fill='%23ea6a2a'/></svg>"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2307080c'/><text x='50' y='68' font-family='sans-serif' font-size='56' font-weight='700' fill='%23f0efe9' text-anchor='middle'>A</text></svg>"
     />
   </head>
-  <body class="bg-[var(--color-bg-canvas)] text-[var(--color-text-primary)] antialiased min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+  <body class="min-h-screen flex flex-col antialiased selection:bg-on-surface selection:text-background">
+    <CorporateBackdrop />
     <slot />
   </body>
 </html>

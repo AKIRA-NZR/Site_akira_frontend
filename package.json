@@ -1,12 +1,13 @@
 {
   "name": "akira-portfolio",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Portfólio de Engenharia & Arquitetura de Software — Akira (VOID Blueprint)",
+  "description": "Portfólio de Engenharia & Arquitetura de Software — Akira (VOID Blueprint V2)",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "sync:images": "node scripts/sync-front-images.mjs",
+    "dev": "node scripts/sync-front-images.mjs && astro dev",
+    "build": "node scripts/sync-front-images.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

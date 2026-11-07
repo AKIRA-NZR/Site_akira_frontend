@@ -1,49 +1,61 @@
 ---
+import type { ResponsiveImageSet } from '../media/frontImages';
+import { withBase } from '../routing/paths';
+
 interface Props {
-  srcBase: string; // ex: "/images/front/pexels-resourceboy-18541878"
+  image: ResponsiveImageSet | string;
   alt: string;
   class?: string;
-  fetchpriority?: "high" | "low" | "auto";
-  loading?: "eager" | "lazy";
+  fetchpriority?: 'high' | 'low' | 'auto';
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'sync' | 'auto';
   width?: number;
   height?: number;
+  breakpoints?: {
+    mobileMax?: number;
+  };
 }
 
 const {
-  srcBase,
+  image,
   alt,
-  class: className = "w-full h-full object-cover",
-  fetchpriority = "auto",
-  loading = "lazy",
-  width = 1920,
-  height = 1080,
+  class: className = 'split-photo-sharp object-center',
+  fetchpriority = 'auto',
+  loading = 'eager',
+  decoding = 'async',
+  width = 1280,
+  height = 720,
+  breakpoints = { mobileMax: 767 },
 } = Astro.props;
 
-const mobileAvif = `${srcBase}-mobile.avif`;
-const mobileWebp = `${srcBase}-mobile.webp`;
-const desktopAvif = `${srcBase}.avif`;
-const desktopWebp = `${srcBase}.webp`;
-const fallbackJpg = `${srcBase}.jpg`;
+const src = typeof image === 'string' ? withBase(image) : image.src;
+const avif = typeof image === 'string' ? withBase(src.replace(/\.[a-z0-9]+$/i, '.avif')) : image.avif;
+const webp = typeof image === 'string' ? withBase(src.replace(/\.[a-z0-9]+$/i, '.webp')) : image.webp;
+const mobileAvif = typeof image === 'string' ? withBase(src.replace(/\.[a-z0-9]+$/i, '-mobile.avif')) : image.mobileAvif;
+const mobileWebp = typeof image === 'string' ? withBase(src.replace(/\.[a-z0-9]+$/i, '-mobile.webp')) : image.mobileWebp;
+
+const mobileMediaQuery = `(max-width: ${breakpoints.mobileMax ?? 767}px)`;
+const desktopMediaQuery = `(min-width: ${(breakpoints.mobileMax ?? 767) + 1}px)`;
 ---
 
 <picture class="contents">
-  <!-- Mobile (< 768px): Peso ultraleve (~30KB) -->
-  <source media="(max-width: 767px)" srcset={mobileAvif} type="image/avif" />
-  <source media="(max-width: 767px)" srcset={mobileWebp} type="image/webp" />
+  <!-- Mobile (< 768px): Peso ultraleve (2.5KB a 42KB) -->
+  <source media={mobileMediaQuery} srcset={mobileAvif} type="image/avif" />
+  <source media={mobileMediaQuery} srcset={mobileWebp} type="image/webp" />
 
-  <!-- Desktop (>= 768px): Alta fidelidade AVIF/WebP -->
-  <source media="(min-width: 768px)" srcset={desktopAvif} type="image/avif" />
-  <source media="(min-width: 768px)" srcset={desktopWebp} type="image/webp" />
+  <!-- Desktop (>= 768px): Alta resolução 1280px -->
+  <source media={desktopMediaQuery} srcset={avif} type="image/avif" />
+  <source media={desktopMediaQuery} srcset={webp} type="image/webp" />
 
-  <!-- Fallback JPG -->
+  <!-- Fallback Universal Img -->
   <img
-    src={fallbackJpg}
+    src={src}
     alt={alt}
     width={width}
     height={height}
-    loading={loading}
     fetchpriority={fetchpriority}
-    decoding="async"
+    loading={loading}
+    decoding={decoding}
     class={className}
   />
 </picture>

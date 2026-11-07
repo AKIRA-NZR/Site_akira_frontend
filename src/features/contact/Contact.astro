@@ -1,122 +1,96 @@
 ---
-import { profile } from "../../shared/config/profile";
+import { profile } from '../../shared/config/profile';
+import { PHOTO_STARRY_COSMOS_SET } from '../../shared/media/frontImages';
+import ResponsivePicture from '../../shared/ui/ResponsivePicture.astro';
 ---
 
-<section id="contato" class="relative py-28 border-b border-[var(--color-border-tech)] overflow-hidden">
-  <!-- Fundo Fotográfico Estrelado & Cosmos Profundo -->
-  <div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
-  
-  <!-- Campo Estrelado Subtil com Pontos de Luz (Constelação Técnica) -->
-  <div class="absolute inset-0 z-0 opacity-40 pointer-events-none" style="background-image: radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)), radial-gradient(1px 1px at 75px 80px, #ffffff, rgba(0,0,0,0)), radial-gradient(1.5px 1.5px at 140px 120px, #ea6a2a, rgba(0,0,0,0)), radial-gradient(1px 1px at 220px 160px, #ffffff, rgba(0,0,0,0)), radial-gradient(1px 1px at 310px 240px, #ffffff, rgba(0,0,0,0)), radial-gradient(1.5px 1.5px at 450px 70px, #ffffff, rgba(0,0,0,0)); background-size: 550px 550px;"></div>
-
-  <div class="absolute inset-0 z-10 bg-gradient-to-t from-[var(--color-bg-canvas)] via-[oklch(11%_0.008_260_/_0.85)] to-[var(--color-bg-canvas)]"></div>
-
-  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-xs font-mono text-[var(--color-accent-signal)] mb-4">
-        <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)] animate-ping"></span>
-        <span>// 04. CANAL DE COMUNICAÇÃO DIRETO</span>
-      </div>
-      <h2 class="headline-bicolor text-3xl sm:text-5xl font-bold tracking-tight mb-4 items-center">
-        <span class="line-primary">Iniciar Conexão</span>
-        <span class="line-secondary text-[var(--color-text-secondary)] font-normal">& Canais de Engenharia.</span>
-      </h2>
-      <p class="text-base text-[var(--color-text-secondary)] max-w-xl mx-auto">
-        Aberto a discussões técnicas, projetos de alta escala, consultoria em arquitetura de microsserviços ou oportunidades estratégicas.
-      </p>
+<section
+  id="contato"
+  data-section-stage="contact"
+  class="mx-auto w-full max-w-6xl px-4 py-20 sm:px-8 sm:py-28 border-t border-outline-variant"
+>
+  <!-- Palco Estrelado com Arte 491593.jpg e Quadro Centralizado em Vidro Fumê -->
+  <div class="relative rounded-xl border border-outline-variant overflow-hidden min-h-[460px] flex items-center justify-center p-6 sm:p-12 lg:p-16">
+    <!-- Fundo Fotográfico: 491593.jpg (Céu Estrelado P&B Minimalista) -->
+    <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
+      <ResponsivePicture
+        image={PHOTO_STARRY_COSMOS_SET}
+        alt="Céu estrelado minimalista em preto e branco"
+        loading="lazy"
+        width={1280}
+        height={720}
+        class="h-full w-full object-cover object-left-bottom opacity-85"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-background/50 via-background/65 to-background/80"></div>
     </div>
 
-    <!-- Container em Vidro Fumê com Estilo Cosmos Noturno -->
-    <div class="max-w-4xl mx-auto rounded-2xl smoked-glass p-8 sm:p-12 relative overflow-hidden">
-      <!-- Glow sutil de fundo do card -->
-      <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[var(--color-accent-signal)]/10 blur-3xl pointer-events-none"></div>
+    <!-- Quadro Centralizado em Vidro Fumê Translúcido -->
+    <div class="smoked-comparison-surface relative z-10 w-full max-w-2xl rounded-xl p-8 sm:p-12 text-center">
+      <p class="editorial-kicker mb-3">04 // Canal Direto</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <!-- Lado Esquerdo: Redes e Formas de Contato -->
-        <div class="space-y-4">
-          <div class="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-            // ENDPOINTS DISPONÍVEIS
-          </div>
+      <h2 class="headline-bicolor text-2xl sm:text-4xl mb-4 min-w-0 break-words">
+        <span class="headline-bicolor-primary">Iniciar conexão.</span>
+        <span class="headline-bicolor-secondary">Arquitetura e sistemas críticos.</span>
+      </h2>
 
-          {profile.socials.map((social) => (
-            <a
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-between p-4 rounded-lg bg-[oklch(11%_0.008_260_/_0.8)] border border-[var(--color-border-tech)] hover:border-[var(--color-accent-signal)]/60 hover:bg-[oklch(14%_0.008_260)] transition-all group"
-            >
-              <div class="flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)] opacity-70 group-hover:opacity-100 transition-opacity"></span>
-                <span class="text-sm font-semibold text-[var(--color-text-primary)]">
-                  {social.label}
-                </span>
-              </div>
-              <span class="text-xs font-mono text-[var(--color-text-secondary)] group-hover:text-[var(--color-accent-signal)] transition-colors">
-                {social.username} ↗
-              </span>
-            </a>
-          ))}
+      <p class="text-sm text-on-surface-variant max-w-md mx-auto mb-8 leading-relaxed min-w-0 break-words">
+        Disponível para projetos de engenharia back-end, desenho de sistemas distribuídos e consultoria técnica.
+      </p>
+
+      <!-- E-mail em Destaque + Botão de Cópia com 1 Clique em Inversão Pura -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+        <div class="w-full sm:w-auto px-5 py-2.5 rounded-full border border-outline-variant bg-background/80 font-mono text-xs sm:text-sm text-on-surface break-all">
+          akira.eng@proton.me
         </div>
 
-        <!-- Lado Direito: Terminal de Handshake & Copiar E-mail -->
-        <div class="p-6 rounded-xl bg-[oklch(10%_0.008_260)] border border-[var(--color-border-tech)] font-mono text-xs space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-[var(--color-border-tech)] text-[11px] text-[var(--color-text-muted)]">
-            <span>SESSION: SECURE_CHANNEL</span>
-            <span class="text-emerald-400">● ENCRYPTED</span>
-          </div>
+        <button
+          type="button"
+          id="copyEmailBtn"
+          data-email="akira.eng@proton.me"
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-on-surface bg-on-surface px-6 py-2.5 text-xs sm:text-sm font-semibold text-background cursor-pointer transition-opacity duration-200 hover:opacity-90"
+        >
+          <span id="copyEmailLabel">Copiar E-mail</span>
+        </button>
+      </div>
 
-          <div class="space-y-2 text-[var(--color-text-secondary)]">
-            <div class="flex justify-between">
-              <span class="text-[var(--color-text-muted)]">Protocol:</span>
-              <span class="text-[var(--color-text-primary)]">SSH-2.0 / TLS 1.3</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-[var(--color-text-muted)]">Recipient:</span>
-              <span class="text-[var(--color-text-primary)]">{profile.handle}</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-[var(--color-text-muted)]">Response SLA:</span>
-              <span class="text-[var(--color-accent-signal)] font-semibold">&lt; 24h</span>
-            </div>
-          </div>
-
-          <div class="pt-3 border-t border-[var(--color-border-tech)]">
-            <div class="text-[11px] text-[var(--color-text-muted)] mb-2">
-              Clique abaixo para copiar o endereço direto:
-            </div>
-            <button
-              id="copy-email-btn"
-              data-email="akira.eng@proton.me"
-              class="w-full py-2.5 px-4 rounded bg-[oklch(16%_0.009_260)] hover:bg-[oklch(20%_0.01_260)] text-[var(--color-text-primary)] border border-[var(--color-border-tech)] hover:border-[var(--color-accent-signal)] transition-all flex items-center justify-center gap-2 cursor-pointer font-bold"
-            >
-              <span id="copy-email-text">akira.eng@proton.me</span>
-              <span id="copy-status" class="text-xs text-[var(--color-accent-signal)]">[copiar]</span>
-            </button>
-          </div>
-        </div>
+      <!-- Links Diretos com Sublinhado Editorial Deslocado (underline-offset-8) -->
+      <div class="pt-6 border-t border-outline-variant flex flex-wrap items-center justify-center gap-8">
+        {profile.socials.map((social) => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="editorial-link group"
+          >
+            <span>{social.label}</span>
+            <span class="font-mono text-xs text-on-surface-variant group-hover:text-on-surface transition-colors">
+              ({social.username})
+            </span>
+            <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">↗</span>
+          </a>
+        ))}
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  const copyBtn = document.getElementById("copy-email-btn");
-  const copyStatus = document.getElementById("copy-status");
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('copyEmailBtn');
+    const label = document.getElementById('copyEmailLabel');
+    if (!btn || !label) return;
 
-  if (copyBtn && copyStatus) {
-    copyBtn.addEventListener("click", async () => {
-      const email = copyBtn.getAttribute("data-email") || "akira.eng@proton.me";
+    btn.addEventListener('click', async () => {
+      const email = btn.getAttribute('data-email') || 'akira.eng@proton.me';
       try {
         await navigator.clipboard.writeText(email);
-        copyStatus.textContent = "[copiado com sucesso!]";
-        copyStatus.style.color = "#34d399";
+        label.textContent = 'E-mail Copiado ✓';
         setTimeout(() => {
-          copyStatus.textContent = "[copiar]";
-          copyStatus.style.color = "var(--color-accent-signal)";
-        }, 3000);
-      } catch (err) {
-        console.error("Falha ao copiar:", err);
+          label.textContent = 'Copiar E-mail';
+        }, 2600);
+      } catch {
+        window.location.href = `mailto:${email}`;
       }
     });
-  }
+  })();
 </script>

@@ -1,0 +1,198 @@
+---
+/**
+ * CorporateBackdrop V2 — Átrio Óptico em 3 Camadas com Transição Contextual por Seção
+ * Alimentado pelas artes de C:\Users\dkaua\Pictures\Portfolio otimizadas via Sharp AVIF/WebP.
+ * Usa exclusivamente as variantes mobile compactas (~2.5KB a 42KB) pois possui filtro óptico.
+ */
+import {
+  PHOTO_CHROME_SURFER_SET,
+  PHOTO_HALFTONE_DARK_SET,
+  PHOTO_AKIRA_BIKE_SET,
+  PHOTO_MOEBIUS_TRUSS_SET,
+  PHOTO_CRIMSON_MOON_SET,
+  PHOTO_BERSERK_FORGE_SET,
+  PHOTO_STARRY_COSMOS_SET,
+} from '../media/frontImages';
+
+const stages = [
+  {
+    id: 'hero',
+    bokeh: PHOTO_CHROME_SURFER_SET,
+    structural: PHOTO_CHROME_SURFER_SET,
+    activeByDefault: true,
+  },
+  {
+    id: 'about',
+    bokeh: PHOTO_AKIRA_BIKE_SET,
+    structural: PHOTO_HALFTONE_DARK_SET,
+    activeByDefault: false,
+  },
+  {
+    id: 'stack',
+    bokeh: PHOTO_MOEBIUS_TRUSS_SET,
+    structural: PHOTO_MOEBIUS_TRUSS_SET,
+    activeByDefault: false,
+  },
+  {
+    id: 'projects',
+    bokeh: PHOTO_BERSERK_FORGE_SET,
+    structural: PHOTO_CRIMSON_MOON_SET,
+    activeByDefault: false,
+  },
+  {
+    id: 'contact',
+    bokeh: PHOTO_STARRY_COSMOS_SET,
+    structural: PHOTO_STARRY_COSMOS_SET,
+    activeByDefault: false,
+  },
+] as const;
+---
+
+<div
+  id="corporate-backdrop"
+  class="pointer-events-none fixed inset-0 -z-10 select-none overflow-hidden"
+  aria-hidden="true"
+>
+  {stages.map((stage) => (
+    <div
+      data-backdrop-stage={stage.id}
+      class:list={[
+        'atrium-stage absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        stage.activeByDefault ? 'opacity-100' : 'opacity-0',
+      ]}
+    >
+      <!-- Camada 1: Difusão Óptica Central (Bokeh suave — variante ultraleve 768px) -->
+      <picture class="atrium-layer-bokeh absolute inset-0 h-full w-full">
+        <source srcset={stage.bokeh.mobileAvif} type="image/avif" />
+        <source srcset={stage.bokeh.mobileWebp} type="image/webp" />
+        <img
+          src={stage.bokeh.src}
+          alt=""
+          width="768"
+          height="432"
+          loading="lazy"
+          fetchpriority="low"
+          decoding="async"
+          class="atrium-image-bokeh h-full w-full object-cover object-center"
+        />
+      </picture>
+
+      <!-- Camada 2: Moldura Estrutural Periférica (Máscara elíptica radial + blur 5px) -->
+      <picture class="atrium-layer-structural absolute inset-0 h-full w-full">
+        <source srcset={stage.structural.mobileAvif} type="image/avif" />
+        <source srcset={stage.structural.mobileWebp} type="image/webp" />
+        <img
+          src={stage.structural.src}
+          alt=""
+          width="768"
+          height="432"
+          loading="lazy"
+          fetchpriority="low"
+          decoding="async"
+          class="atrium-image h-full w-full object-cover object-center"
+        />
+      </picture>
+    </div>
+  ))}
+
+  <!-- Camada 3: Scrim de Leitura em Obsidiana Frio (Garante contraste WCAG 2.2 AAA no centro) -->
+  <div class="atrium-vignette absolute inset-0"></div>
+</div>
+
+<script is:inline>
+  (() => {
+    const initBackdropSync = () => {
+      const sections = document.querySelectorAll('[data-section-stage]');
+      const backdropStages = document.querySelectorAll('[data-backdrop-stage]');
+      if (!sections.length || !backdropStages.length) return;
+
+      const setStage = (stageId) => {
+        if (!stageId) return;
+        document.documentElement.setAttribute('data-active-stage', stageId);
+        backdropStages.forEach((el) => {
+          const isMatch = el.getAttribute('data-backdrop-stage') === stageId;
+          el.classList.toggle('opacity-100', isMatch);
+          el.classList.toggle('opacity-0', !isMatch);
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const stageId = entry.target.getAttribute('data-section-stage');
+              setStage(stageId);
+            }
+          });
+        },
+        {
+          rootMargin: '-35% 0px -45% 0px',
+          threshold: 0,
+        }
+      );
+
+      sections.forEach((sec) => observer.observe(sec));
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBackdropSync, { once: true });
+    } else {
+      initBackdropSync();
+    }
+  })();
+</script>
+
+<style>
+  #corporate-backdrop {
+    contain: layout paint size;
+    opacity: 0.56;
+    mix-blend-mode: normal;
+  }
+
+  .atrium-image-bokeh {
+    filter: blur(22px) saturate(0.78) contrast(1.06);
+    transform: scale(1.06);
+  }
+
+  .atrium-layer-structural {
+    mask-image: radial-gradient(
+      ellipse 56% 54% at 50% 48%,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.54) 58%,
+      rgba(0, 0, 0, 0.94) 95%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 56% 54% at 50% 48%,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.54) 58%,
+      rgba(0, 0, 0, 0.94) 95%
+    );
+  }
+
+  .atrium-image {
+    filter: blur(5px) saturate(0.82) contrast(1.08);
+    transform: scale(1.02);
+  }
+
+  .atrium-vignette {
+    background:
+      radial-gradient(
+        ellipse 62% 58% at 50% 46%,
+        color-mix(in oklch, var(--color-background) 88%, transparent) 0%,
+        color-mix(in oklch, var(--color-background) 72%, transparent) 64%,
+        color-mix(in oklch, var(--color-background) 48%, transparent) 100%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--color-background) 40%, transparent) 0%,
+        color-mix(in oklch, var(--color-background) 76%, transparent) 52%,
+        color-mix(in oklch, var(--color-background) 93%, transparent) 100%
+      );
+  }
+
+  @media (forced-colors: active) {
+    #corporate-backdrop {
+      display: none;
+    }
+  }
+</style>

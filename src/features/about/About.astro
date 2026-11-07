@@ -1,92 +1,163 @@
 ---
-import { profile } from "../../shared/config/profile";
-import ResponsivePicture from "../../shared/ui/ResponsivePicture.astro";
+import { profile } from '../../shared/config/profile';
+import ResponsivePicture from '../../shared/ui/ResponsivePicture.astro';
 ---
 
-<section id="sobre" class="relative py-28 border-b border-[var(--color-border-tech)] overflow-hidden">
-  <!-- Imagem de Fundo Contextual Fotográfica -->
-  <div class="absolute inset-0 z-0">
-    <ResponsivePicture
-      srcBase="/images/front/pexels-sevenstormphotography-946310"
-      alt="Textura de concreto e precisão geométrica"
-      loading="lazy"
-      class="w-full h-full object-cover object-left opacity-20"
-    />
-  </div>
+<section
+  id="sobre"
+  data-section-stage="about"
+  class="mx-auto w-full max-w-6xl px-4 py-20 sm:px-8 sm:py-28 border-t border-outline-variant"
+>
+  <!-- Arquétipo B: Seção Assimétrica Editorial 4/12 + 8/12 -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16 items-start relative">
+    <!-- Coluna Esquerda Estática (4/12) -->
+    <div class="lg:col-span-4 min-w-0">
+      <p class="editorial-kicker mb-3">01 // Engenharia & Filosofia</p>
 
-  <div class="absolute inset-0 z-10 bg-gradient-to-r from-[var(--color-bg-canvas)] via-[oklch(11%_0.008_260_/_0.92)] to-[oklch(11%_0.008_260_/_0.85)]"></div>
+      <h2 class="headline-bicolor text-2xl sm:text-3xl lg:text-4xl mb-5 min-w-0 break-words">
+        <span class="headline-bicolor-primary">Precisão estrutural.</span>
+        <span class="headline-bicolor-secondary">Sistemas sem ruído.</span>
+      </h2>
 
-  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-      <!-- Coluna da Esquerda: Título Editorial & Metadados (4/12) -->
-      <div class="lg:col-span-4 flex flex-col justify-between">
-        <div>
-          <div class="text-xs font-mono text-[var(--color-accent-signal)] tracking-wider uppercase mb-3">
-            // 01. IDENTIDADE & FILOSOFIA
-          </div>
-          <h2 class="headline-bicolor text-3xl sm:text-4xl font-bold tracking-tight mb-6">
-            <span class="line-primary">Sobre Mim</span>
-            <span class="line-secondary text-[var(--color-text-secondary)] font-normal">& Prática de Engenharia.</span>
-          </h2>
-          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-8">
-            Desenvolvendo sistemas onde confiabilidade, isolamento de falhas e desempenho sob carga não são opcionais.
-          </p>
+      <p class="text-sm text-on-surface-variant leading-relaxed mb-8 min-w-0 break-words">
+        {profile.bioContext}
+      </p>
+
+      <!-- Metadados Operacionais em Filetes 1px -->
+      <dl class="divide-y divide-outline-variant border-y border-outline-variant text-xs font-mono">
+        <div class="py-3 flex items-center justify-between gap-4">
+          <dt class="text-on-surface-variant">ENGENHEIRO</dt>
+          <dd class="text-on-surface font-semibold">{profile.handle}</dd>
         </div>
-
-        <!-- Ficha Técnica Rápida -->
-        <div class="p-5 rounded-lg bg-[oklch(14%_0.008_260_/_0.8)] border border-[var(--color-border-tech)] backdrop-blur-sm space-y-4">
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-[var(--color-text-muted)]">Assinatura:</span>
-            <span class="text-[var(--color-text-primary)] font-semibold">{profile.handle}</span>
-          </div>
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-[var(--color-text-muted)]">Localização:</span>
-            <span class="text-[var(--color-text-primary)]">{profile.location}</span>
-          </div>
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-[var(--color-text-muted)]">Disponibilidade:</span>
-            <span class="text-emerald-400 font-medium">Projetos & Consultoria</span>
-          </div>
+        <div class="py-3 flex items-center justify-between gap-4">
+          <dt class="text-on-surface-variant">OPERAÇÃO</dt>
+          <dd class="text-on-surface">{profile.location}</dd>
         </div>
-      </div>
-
-      <!-- Coluna da Direita: Narrativa & Princípios de Engenharia (8/12) -->
-      <div class="lg:col-span-8 space-y-8">
-        <!-- Parágrafos da Bio -->
-        <div class="space-y-4 text-base text-[var(--color-text-secondary)] leading-relaxed">
-          {profile.fullBio.map((paragraph) => (
-            <p>{paragraph}</p>
-          ))}
+        <div class="py-3 flex items-center justify-between gap-4">
+          <dt class="text-on-surface-variant">STATUS</dt>
+          <dd class="text-on-surface">{profile.status}</dd>
         </div>
+      </dl>
 
-        <!-- Princípios Fundamentais de Arquitetura -->
-        <div class="pt-6 border-t border-[var(--color-border-tech)]">
-          <div class="text-xs font-mono text-[var(--color-text-muted)] uppercase tracking-wider mb-6">
-            // PILARES ARQUITETURAIS & DECISÕES DE DESIGN
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {profile.corePrinciples.map((principle, index) => (
-              <div class="p-4 rounded-lg bg-[oklch(13%_0.008_260)] border border-[var(--color-border-tech)] flex flex-col justify-between hover:border-[var(--color-accent-signal)]/40 transition-colors">
-                <div>
-                  <div class="text-xs font-mono text-[var(--color-accent-signal)] mb-2">
-                    0{index + 1}.
-                  </div>
-                  <h3 class="text-sm font-semibold text-[var(--color-text-primary)] mb-2">
-                    {principle.title}
-                  </h3>
-                  <p class="text-xs text-[var(--color-text-secondary)] leading-relaxed mb-4">
-                    {principle.description}
-                  </p>
-                </div>
-                <div class="pt-3 border-t border-[var(--color-border-tech)] font-mono text-[11px] text-[var(--color-text-muted)] break-all">
-                  <code>{principle.code}</code>
-                </div>
+      <!-- Container Flutuante Periférico Sem Cantos Arredondados (rounded-none) sobre a Grade Suíça -->
+      <div
+        id="swissPreviewContainer"
+        aria-hidden="true"
+        class="hidden lg:block mt-8 pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      >
+        <div class="rounded-none border border-outline bg-surface-container-lowest p-2 shadow-2xl">
+          <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background">
+            {profile.corePrinciples.map((item, idx) => (
+              <div
+                data-swiss-preview-slide={idx}
+                class:list={[
+                  'absolute inset-0 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                  idx === 0 ? 'opacity-100' : 'opacity-0',
+                ]}
+              >
+                <ResponsivePicture
+                  image={item.previewImage}
+                  alt={item.title}
+                  loading="lazy"
+                  width={640}
+                  height={400}
+                  class="h-full w-full object-cover object-center"
+                />
               </div>
             ))}
+          </div>
+          <div class="mt-2 flex items-center justify-between border-t border-outline-variant pt-2 font-mono text-[10px] text-on-surface-variant">
+            <span id="swissPreviewCaption">{profile.corePrinciples[0].previewCaption}</span>
+            <span class="text-on-surface">1:1 RAW</span>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Coluna Direita (8/12): Lista de Filetes Técnicos 1px com Seletor de Foco Contextual -->
+    <div class="lg:col-span-8 min-w-0">
+      <div
+        id="swissFocusList"
+        class="swiss-focus-list divide-y divide-outline-variant border-y border-outline-variant"
+      >
+        {profile.corePrinciples.map((item, idx) => (
+          <article
+            data-swiss-row={idx}
+            data-caption={item.previewCaption}
+            tabindex="0"
+            class="swiss-focus-row group py-7 sm:py-8 cursor-default focus-visible:outline-none"
+          >
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+              <div class="flex items-baseline gap-4 min-w-0">
+                <span class="font-mono text-xs text-on-surface-variant group-hover:text-on-surface transition-colors">
+                  {item.index}
+                </span>
+                <h3 class="text-lg sm:text-xl font-semibold text-on-surface tracking-tight min-w-0 break-words">
+                  {item.title}
+                </h3>
+              </div>
+
+              <span class="font-mono text-xs text-on-surface-variant group-hover:text-on-surface transition-colors shrink-0">
+                {item.subtitle}
+              </span>
+            </div>
+
+            <div class="sm:pl-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <p class="text-sm text-on-surface-variant group-hover:text-on-surface/90 transition-colors max-w-xl leading-relaxed min-w-0 break-words">
+                {item.description}
+              </p>
+
+              <code class="font-mono text-[11px] text-on-surface-variant group-hover:text-on-surface group-hover:border-outline border border-outline-variant bg-surface-container px-2.5 py-1 rounded-none shrink-0 transition-colors">
+                {item.spec}
+              </code>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
+
+<script is:inline>
+  (() => {
+    const list = document.getElementById('swissFocusList');
+    const previewContainer = document.getElementById('swissPreviewContainer');
+    const captionEl = document.getElementById('swissPreviewCaption');
+    if (!list || !previewContainer) return;
+
+    const rows = list.querySelectorAll('[data-swiss-row]');
+    const slides = previewContainer.querySelectorAll('[data-swiss-preview-slide]');
+
+    const activateSlide = (idx, caption) => {
+      previewContainer.classList.remove('opacity-0', 'translate-y-2');
+      previewContainer.classList.add('opacity-100', 'translate-y-0');
+      slides.forEach((slide) => {
+        const isCurrent = slide.getAttribute('data-swiss-preview-slide') === String(idx);
+        slide.classList.toggle('opacity-100', isCurrent);
+        slide.classList.toggle('opacity-0', !isCurrent);
+      });
+      if (captionEl && caption) {
+        captionEl.textContent = caption;
+      }
+    };
+
+    const deactivatePreview = () => {
+      previewContainer.classList.add('opacity-0', 'translate-y-2');
+      previewContainer.classList.remove('opacity-100', 'translate-y-0');
+    };
+
+    rows.forEach((row) => {
+      const idx = row.getAttribute('data-swiss-row');
+      const caption = row.getAttribute('data-caption');
+      row.addEventListener('mouseenter', () => activateSlide(idx, caption));
+      row.addEventListener('focus', () => activateSlide(idx, caption));
+    });
+
+    list.addEventListener('mouseleave', deactivatePreview);
+    list.addEventListener('focusout', (e) => {
+      if (!list.contains(e.relatedTarget)) {
+        deactivatePreview();
+      }
+    });
+  })();
+</script>

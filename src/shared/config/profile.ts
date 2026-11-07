@@ -1,15 +1,31 @@
+import {
+  PHOTO_AKIRA_BIKE_SET,
+  PHOTO_CRIMSON_MOON_SET,
+  PHOTO_CRIMSON_ONI_SET,
+  PHOTO_MOEBIUS_TRUSS_SET,
+  type ResponsiveImageSet,
+} from '../media/frontImages';
+
 export interface SocialLink {
   label: string;
   url: string;
   username: string;
-  icon: 'github' | 'linkedin' | 'email' | 'twitter' | 'terminal';
 }
 
 export interface MetricHighlight {
   value: string;
   unit: string;
   label: string;
-  detail: string;
+}
+
+export interface CorePrinciple {
+  index: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  spec: string;
+  previewImage: ResponsiveImageSet;
+  previewCaption: string;
 }
 
 export interface ProfileData {
@@ -20,84 +36,97 @@ export interface ProfileData {
   location: string;
   status: string;
   summary: string;
-  fullBio: string[];
+  bioContext: string;
   metrics: MetricHighlight[];
   socials: SocialLink[];
-  corePrinciples: {
-    title: string;
-    description: string;
-    code: string;
-  }[];
+  corePrinciples: CorePrinciple[];
 }
 
 export const profile: ProfileData = {
-  handle: "Akira",
-  name: "Akira",
-  title: "Engenheiro de Software & Arquiteto Back-end",
-  specialty: "Sistemas Distribuídos, Microsserviços & Alta Performance",
-  location: "Brasil / Remoto Global",
-  status: "Disponível para Projetos Críticos & Arquitetura",
-  summary: "Especialista em projetar APIs resilientes, microsserviços desacoplados e infraestruturas com latência previsível e alta vazão.",
-  fullBio: [
-    "Engenheiro de software com foco absoluto em engenharia de sistemas robustos, bancos de dados de alta concorrência e arquitetura orientada a eventos.",
-    "Acredito que simplicidade e observabilidade superam complexidade artificial. Desenvolvo contratos de API rigorosos, pipelines de mensageria com garantia de entrega e sistemas tolerantes a falhas.",
-    "Experiência com linguagens de alta concorrência (Go, Node/TypeScript, Rust), bancos relacionais (PostgreSQL) e NoSQL distribuídos (Redis, MongoDB), além de conteinerização com Docker e orquestração moderna."
-  ],
+  handle: 'Akira',
+  name: 'Akira',
+  title: 'Engenheiro de Software & Arquiteto Back-end',
+  specialty: 'Sistemas Distribuídos, Concorrência & Alta Vazão',
+  location: 'Brasil // Operação Remota',
+  status: 'Disponível para Arquitetura & Sistemas Críticos',
+  summary:
+    'Projeto APIs resilientes, motores de mensageria assíncrona e bancos de dados distribuídos com latência p99 previsível sob alta carga.',
+  bioContext:
+    'Engenharia orientada a contratos estritos, isolamento de falhas e observabilidade de ponta a ponta sem complexidade acidental.',
   metrics: [
     {
-      value: "99.99%",
-      unit: "SLA",
-      label: "Disponibilidade de Sistemas",
-      detail: "Arquiteturas com failover automático e circuit breakers"
+      value: '99.99%',
+      unit: 'SLA',
+      label: 'Disponibilidade em Produção',
     },
     {
-      value: "< 12ms",
-      unit: "p99",
-      label: "Latência em Produção",
-      detail: "Otimização de queries, pooling de conexões e cacheamento"
+      value: '< 12ms',
+      unit: 'p99',
+      label: 'Latência sob Carga',
     },
     {
-      value: "100%",
-      unit: "Type-Safe",
-      label: "Contratos de Engenharia",
-      detail: "Schemas Zod, validação estrita e observabilidade OpenTelemetry"
-    }
+      value: '140k+',
+      unit: 'msg/s',
+      label: 'Vazão Assíncrona',
+    },
   ],
   socials: [
     {
-      label: "GitHub",
-      url: "https://github.com",
-      username: "@akira-dev",
-      icon: "github"
+      label: 'GitHub',
+      url: 'https://github.com',
+      username: 'github.com/akira',
     },
     {
-      label: "LinkedIn",
-      url: "https://linkedin.com",
-      username: "in/akira-backend",
-      icon: "linkedin"
+      label: 'LinkedIn',
+      url: 'https://linkedin.com',
+      username: 'linkedin.com/in/akira',
     },
     {
-      label: "Email",
-      url: "mailto:akira.eng@proton.me",
-      username: "akira.eng@proton.me",
-      icon: "email"
-    }
+      label: 'E-mail',
+      url: 'mailto:akira.eng@proton.me',
+      username: 'akira.eng@proton.me',
+    },
   ],
   corePrinciples: [
     {
-      title: "Consistência & Tolerância a Falhas",
-      description: "Implementação de padrões de idempotência, sagas distribuídas e filas de mensagens resilientes.",
-      code: "pattern: Saga / Outbox | guarantee: At-Least-Once"
+      index: '01',
+      title: 'Concorrência & I/O Não-Bloqueante',
+      subtitle: 'Go · Rust · Event Loops',
+      description:
+        'Pipelines assíncronos com controle estrito de backpressure, zero contenção de locks e alocação previsível em memória.',
+      spec: 'runtime: Go 1.23 / Tokio | scheduler: work-stealing',
+      previewImage: PHOTO_AKIRA_BIKE_SET,
+      previewCaption: 'FIG 01 // EXECUÇÃO CONCORRENTE DE ALTA VELOCIDADE',
     },
     {
-      title: "Modelagem Relacional Rigorosa",
-      description: "Bancos normalizados, isolamento ACID, índices balanceados e consultas com custo e plano de execução auditados.",
-      code: "db: PostgreSQL 16 | explain: analyze | index: B-Tree"
+      index: '02',
+      title: 'Consistência & Tolerância a Falhas',
+      subtitle: 'Raft · Outbox Pattern · Idempotência',
+      description:
+        'Garantia de entrega at-least-once, chaves de idempotência UUIDv7 e isolamento transacional em operações financeiras críticas.',
+      spec: 'consensus: Raft | isolation: SERIALIZABLE',
+      previewImage: PHOTO_CRIMSON_MOON_SET,
+      previewCaption: 'FIG 02 // ISOLAMENTO E CONSENSO DISTRIBUÍDO',
     },
     {
-      title: "Observabilidade & Métricas em Tempo Real",
-      description: "Tracing distribuído ponta a ponta, métricas de taxa de erro, tráfego, saturação e alertas proativos.",
-      code: "stack: Prometheus + Grafana + OpenTelemetry"
-    }
-  ]
+      index: '03',
+      title: 'Modelagem Relacional & Particionamento',
+      subtitle: 'PostgreSQL · Redis · ClickHouse',
+      description:
+        'Esquemas normalizados, índices compostos auditados via plano de execução e cache distribuído com invalidação atômica.',
+      spec: 'storage: PG 16 + Redis 7.2 | index: B-Tree / GIN',
+      previewImage: PHOTO_MOEBIUS_TRUSS_SET,
+      previewCaption: 'FIG 03 // TOPOLOGIA DE DADOS E PARTICIONAMENTO',
+    },
+    {
+      index: '04',
+      title: 'Telemetria & Observabilidade RED',
+      subtitle: 'OpenTelemetry · Prometheus · Tracing',
+      description:
+        'Rastreamento distribuído W3C ponta a ponta correlacionando taxa de requisições, erros e histogramas de duração.',
+      spec: 'telemetry: OTel v1.27 | metrics: p50 / p95 / p99',
+      previewImage: PHOTO_CRIMSON_ONI_SET,
+      previewCaption: 'FIG 04 // INSPEÇÃO DE TRACES EM TEMPO REAL',
+    },
+  ],
 };

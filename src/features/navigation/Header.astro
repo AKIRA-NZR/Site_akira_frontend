@@ -1,83 +1,145 @@
 ---
-import { profile } from "../../shared/config/profile";
+import { profile } from '../../shared/config/profile';
+import { withBase } from '../../shared/routing/paths';
+
+const navItems = [
+  { label: 'Sobre', href: '#sobre' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Projetos', href: '#projetos' },
+  { label: 'Contato', href: '#contato' },
+] as const;
 ---
 
 <header
-  id="main-header"
-  class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md bg-[oklch(11%_0.008_260_/_0.8)] border-b border-[var(--color-border-tech)]"
+  id="mainNav"
+  class="fixed top-5 inset-x-4 sm:inset-x-8 z-50 mx-auto max-w-6xl pointer-events-none"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <!-- Marca Tipográfica Pura -->
-    <a href="#" class="flex items-center gap-2 group">
-      <span class="w-2 h-2 rounded-full bg-[var(--color-accent-signal)] shadow-[0_0_8px_var(--color-accent-signal)]"></span>
-      <span class="font-['JetBrains_Mono',monospace] font-bold text-lg tracking-wider text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-signal)] transition-colors">
-        {profile.handle.toUpperCase()}
-      </span>
-      <span class="text-[var(--color-text-muted)] text-xs font-mono hidden sm:inline-block">
-        // core.sys
-      </span>
+  <div
+    id="mainNavBar"
+    class="navigation-glass pointer-events-auto flex items-center justify-between gap-4 rounded-full px-5 py-2.5 sm:px-7 will-change-transform"
+  >
+    <!-- Marca Tipográfica Pura (VOID Blueprint V2 — Sem ícones artificiais) -->
+    <a
+      href={withBase('/')}
+      class="inline-flex items-center font-display text-base sm:text-lg font-semibold tracking-tight text-on-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-surface"
+    >
+      {profile.handle}
     </a>
 
-    <!-- Links de Navegação Desktop -->
-    <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-      <a
-        href="#sobre"
-        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
-      >
-        Sobre
-      </a>
-      <a
-        href="#stack"
-        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
-      >
-        Stack & Arquitetura
-      </a>
-      <a
-        href="#projetos"
-        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
-      >
-        Projetos
-      </a>
-      <a
-        href="#contato"
-        class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
-      >
-        Contato
-      </a>
+    <!-- Links Centrais Diretos -->
+    <nav aria-label="Navegação principal" class="hidden md:flex items-center gap-8">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-surface"
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
 
-    <!-- Indicador de Status / CTA -->
-    <div class="flex items-center gap-4">
-      <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-[oklch(14%_0.008_260)] border border-[var(--color-border-tech)] text-xs font-mono text-[var(--color-text-secondary)]">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>SYS_STATUS: READY</span>
-      </div>
-
+    <!-- Ação Monocromática em Inversão Pura + Gatilho Mobile de 2 Traços Paralelos -->
+    <div class="flex items-center gap-3">
       <a
         href="#contato"
-        class="px-4 py-1.5 text-xs font-mono font-semibold rounded bg-[oklch(17%_0.009_260)] hover:bg-[oklch(22%_0.01_260)] text-[var(--color-text-primary)] border border-[var(--color-border-tech)] hover:border-[var(--color-accent-signal)] transition-all"
+        class="hidden sm:inline-flex items-center justify-center rounded-full border border-on-surface bg-on-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-background transition-opacity duration-200 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-surface"
       >
-        INICIAR CONEXÃO
+        Contato Direto
       </a>
+
+      <!-- Menu Mobile Minimalista: Apenas 2 Traços Horizontais Paralelos -->
+      <button
+        type="button"
+        id="navDrawerToggle"
+        aria-label="Abrir navegação"
+        aria-expanded="false"
+        aria-controls="navDrawerPanel"
+        class="inline-flex md:hidden h-8 w-8 items-center justify-center text-on-surface hover:opacity-80 cursor-pointer transition-opacity focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-surface"
+      >
+        <svg
+          class="h-5 w-6 text-on-surface"
+          viewBox="0 0 24 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="square"
+          aria-hidden="true"
+        >
+          <line x1="2" y1="5.5" x2="22" y2="5.5" />
+          <line x1="2" y1="12.5" x2="22" y2="12.5" />
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Drawer Mobile em Vidro Fumê -->
+  <div
+    id="navDrawerPanel"
+    hidden
+    class="navigation-glass pointer-events-auto mt-2 rounded-2xl p-5 md:hidden"
+  >
+    <nav aria-label="Navegação mobile" class="flex flex-col divide-y divide-outline-variant">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          data-mobile-nav-link
+          class="py-3 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+      <div class="pt-4">
+        <a
+          href="#contato"
+          data-mobile-nav-link
+          class="inline-flex w-full items-center justify-center rounded-full border border-on-surface bg-on-surface px-4 py-2 text-xs font-semibold text-background"
+        >
+          Contato Direto
+        </a>
+      </div>
+    </nav>
   </div>
 </header>
 
-<script>
-  let lastScrollY = window.scrollY;
-  const header = document.getElementById("main-header");
+<script is:inline>
+  (() => {
+    const navBar = document.getElementById('mainNavBar');
+    const toggleBtn = document.getElementById('navDrawerToggle');
+    const drawerPanel = document.getElementById('navDrawerPanel');
+    let lastScrollY = window.scrollY;
 
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-    if (header) {
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        // Scrollando para baixo: oculta o cabeçalho
-        header.style.transform = "translateY(-100%)";
-      } else {
-        // Scrollando para cima: exibe o cabeçalho
-        header.style.transform = "translateY(0)";
-      }
+    window.addEventListener(
+      'scroll',
+      () => {
+        const currentY = window.scrollY;
+        if (!navBar) return;
+        if (currentY > lastScrollY && currentY > 96) {
+          navBar.classList.add('-translate-y-24', 'opacity-0', 'pointer-events-none');
+          if (drawerPanel && !drawerPanel.hidden) {
+            drawerPanel.hidden = true;
+            toggleBtn?.setAttribute('aria-expanded', 'false');
+          }
+        } else {
+          navBar.classList.remove('-translate-y-24', 'opacity-0', 'pointer-events-none');
+        }
+        lastScrollY = currentY;
+      },
+      { passive: true }
+    );
+
+    if (toggleBtn && drawerPanel) {
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+        drawerPanel.hidden = isExpanded;
+      });
+
+      drawerPanel.querySelectorAll('[data-mobile-nav-link]').forEach((link) => {
+        link.addEventListener('click', () => {
+          drawerPanel.hidden = true;
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
     }
-    lastScrollY = currentScrollY;
-  });
+  })();
 </script>

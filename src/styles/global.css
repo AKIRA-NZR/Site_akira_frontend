@@ -1,125 +1,396 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    color-scheme: dark;
+/* Fallback métrico de fontes para garantir CLS = 0.000 antes do swap de fontes externas */
+@font-face {
+  font-family: "Geist Fallback";
+  src: local("Segoe UI"), local("SF Pro Display"), local("Arial"), local("Helvetica Neue");
+  size-adjust: 100.2%;
+  ascent-override: 96%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
 
-    /* Base Palette OKLCH (VOID Design System V2) */
-    --color-bg-canvas: oklch(11% 0.008 260);          /* Obsidiana Frio: #07080c */
-    --color-bg-surface: oklch(14% 0.008 260);         /* Superfície Cards: #0c0d12 */
-    --color-bg-surface-high: oklch(17% 0.009 260);    /* Superfície Elevada: #14161f */
-    
-    --color-border-tech: oklch(22% 0.01 260);         /* Filetes 1px: #1b1d24 */
-    --color-border-subtle: oklch(18% 0.009 260);      /* Bordas ultra-sutis */
-    
-    --color-text-primary: oklch(95% 0.008 85);        /* Branco-Osso Quente: #f0efe9 */
-    --color-text-secondary: oklch(60% 0.01 260);      /* Cinza Técnico: #8e919a */
-    --color-text-muted: oklch(45% 0.01 260);          /* Metadados desmaiados */
-    
-    --color-accent-signal: oklch(68% 0.18 45);        /* Laranja Sinalizador (2%-5%): #ea6a2a */
-    --color-accent-glow: oklch(68% 0.18 45 / 0.15);   /* Glow de Instrumentação */
-    
-    --color-terminal-bg: oklch(12% 0.008 260);
-    --color-terminal-bar: oklch(15% 0.009 260);
-  }
+@theme inline {
+  --color-background: var(--theme-background);
+  --color-on-background: var(--theme-on-background);
+  --color-surface: var(--theme-surface);
+  --color-on-surface: var(--theme-on-surface);
+  --color-surface-variant: var(--theme-surface-variant);
+  --color-on-surface-variant: var(--theme-on-surface-variant);
 
-  * {
-    border-color: var(--color-border-tech);
-  }
+  --color-surface-container-lowest: var(--theme-surface-container-lowest);
+  --color-surface-container-low: var(--theme-surface-container-low);
+  --color-surface-container: var(--theme-surface-container);
+  --color-surface-container-high: var(--theme-surface-container-high);
+  --color-surface-container-highest: var(--theme-surface-container-highest);
 
+  --color-outline: var(--theme-outline);
+  --color-outline-variant: var(--theme-outline-variant);
+  --color-shadow: var(--theme-shadow);
+  --color-glass-specular: var(--theme-glass-specular);
+
+  --duration-ui: 240ms;
+  --duration-ui-slow: 420ms;
+  --ease-ui: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-primary: "Plus Jakarta Sans", "Geist Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Geist Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ============================================================================
+ * BASE DARK MODE — Engenharia Perceptual Monocromática (Obsidiana Frio & Branco-Osso)
+ * ============================================================================ */
+:root,
+html.dark {
+  color-scheme: dark;
+
+  --theme-background: oklch(11% 0.008 260);
+  --theme-on-background: oklch(95% 0.008 85);
+  --theme-surface: oklch(11% 0.008 260);
+  --theme-on-surface: oklch(95% 0.008 85);
+
+  --theme-surface-variant: oklch(16% 0.009 260);
+  --theme-on-surface-variant: oklch(60% 0.01 260);
+
+  /* Escala Monotônica de 5 Níveis de Superfície */
+  --theme-surface-container-lowest: oklch(9.5% 0.008 260);
+  --theme-surface-container-low: oklch(12.5% 0.008 260);
+  --theme-surface-container: oklch(14% 0.008 260);
+  --theme-surface-container-high: oklch(16.5% 0.009 260);
+  --theme-surface-container-highest: oklch(19.5% 0.01 260);
+
+  /* Filetes e Bordas Técnicas (1px) */
+  --theme-outline: oklch(38% 0.01 260);
+  --theme-outline-variant: oklch(22% 0.01 260);
+  --theme-shadow: oklch(0% 0 0);
+  --theme-glass-specular: oklch(95% 0.008 85);
+
+  /* Tokens Contextuais Adaptativos por Seção (Sincronizados com a Imagem de Fundo) */
+  --stage-hue: 260;
+  --stage-chroma: 0.008;
+}
+
+/* ============================================================================
+ * ADAPTAÇÃO CROMÁTICA CONTEXTUAL OKLCH POR SEÇÃO (Sincronizada com as Artes)
+ * ============================================================================ */
+html[data-active-stage="hero"],
+[data-section-stage="hero"] {
+  /* 1401469.png — Silver Surfer Cromado no Vácuo */
+  --theme-surface-container: oklch(13.5% 0.006 260);
+  --theme-outline-variant: oklch(23% 0.008 260);
+  --theme-outline: oklch(42% 0.01 260);
+}
+
+html[data-active-stage="about"],
+[data-section-stage="about"] {
+  /* 902085.png Halftone + 1396090.jpg Akira — Matiz Carmesim Mineral Sutil */
+  --theme-surface-container: oklch(13.5% 0.012 24);
+  --theme-surface-container-high: oklch(16% 0.015 24);
+  --theme-outline-variant: oklch(23% 0.018 24);
+  --theme-outline: oklch(44% 0.045 24);
+}
+
+html[data-active-stage="stack"],
+[data-section-stage="stack"] {
+  /* 607758.jpg Moebius — Matiz Ardósia Ciano Estrutural */
+  --theme-surface-container: oklch(14% 0.016 225);
+  --theme-surface-container-high: oklch(16.5% 0.018 225);
+  --theme-outline-variant: oklch(24% 0.022 225);
+  --theme-outline: oklch(44% 0.038 225);
+}
+
+html[data-active-stage="projects"],
+[data-section-stage="projects"] {
+  /* 1331354.jpeg Lua Vermelha & wallhaven Berserk — Matiz Forja Âmbar/Rubi */
+  --theme-surface-container: oklch(13.8% 0.014 32);
+  --theme-surface-container-high: oklch(16.5% 0.018 32);
+  --theme-outline-variant: oklch(23.5% 0.02 32);
+  --theme-outline: oklch(45% 0.048 32);
+}
+
+html[data-active-stage="contact"],
+[data-section-stage="contact"] {
+  /* 491593.jpg Céu Estrelado P&B — Vácuo Estelar Acromático Puro */
+  --theme-surface-container: oklch(12% 0 0);
+  --theme-surface-container-high: oklch(15% 0 0);
+  --theme-outline-variant: oklch(23% 0 0);
+  --theme-outline: oklch(46% 0 0);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  overflow-x: clip;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: smooth;
-    background-color: var(--color-bg-canvas);
-    color: var(--color-text-primary);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  }
-
-  body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    background-color: var(--color-bg-canvas);
-    color: var(--color-text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    scroll-behavior: auto;
   }
 }
 
-/* Defensive CSS */
-.break-anywhere {
-  overflow-wrap: anywhere;
-  word-break: break-word;
+body {
+  overflow-x: clip;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-primary);
+  transition:
+    background-color 480ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Bicolor Headline (VOID Standard) */
+/* ============================================================================
+ * Tipografia Editorial & Bicolor (VOID Blueprint V2)
+ * ============================================================================ */
 .headline-bicolor {
-  display: flex;
-  flex-direction: column;
-}
-
-.headline-bicolor .line-primary {
-  color: var(--color-text-primary);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 600;
   letter-spacing: -0.03em;
+  line-height: 1.08;
 }
 
-.headline-bicolor .line-secondary {
-  color: var(--color-text-secondary);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+.headline-bicolor-primary {
+  display: block;
+  color: var(--color-on-surface);
 }
 
-/* Lente Óptica Half-Blur do VOID Blueprint */
-.lens-half-blur {
+.headline-bicolor-secondary {
+  display: block;
+  color: var(--color-on-surface-variant);
+}
+
+.editorial-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+}
+
+.editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-on-surface);
+  text-decoration: underline;
+  text-decoration-color: var(--color-outline);
+  text-underline-offset: 8px;
+  transition:
+    text-decoration-color var(--duration-ui) var(--ease-ui),
+    color var(--duration-ui) var(--ease-ui);
+}
+
+.editorial-link:hover {
+  text-decoration-color: var(--color-on-surface);
+}
+
+/* ============================================================================
+ * Navegação Liquid Glass Flutuante (Header.astro)
+ * ============================================================================ */
+.navigation-glass {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid color-mix(in oklch, var(--color-outline) 42%, transparent);
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklch, var(--color-surface-container-high) 62%, transparent) 0%,
+    color-mix(in oklch, var(--color-background) 76%, transparent) 55%,
+    color-mix(in oklch, var(--color-surface-container-high) 62%, transparent) 100%
+  );
+  box-shadow:
+    0 16px 36px -12px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px color-mix(in oklch, var(--color-glass-specular) 14%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  transition:
+    border-color 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 220ms ease;
+}
+
+.navigation-glass::before {
+  position: absolute;
+  inset: 0 12% auto;
+  z-index: -1;
+  height: 1px;
   background: linear-gradient(
     90deg,
-    oklch(11% 0.008 260 / 0.95) 0%,
-    oklch(11% 0.008 260 / 0.85) 50%,
-    oklch(11% 0.008 260 / 0.15) 100%
+    transparent 0%,
+    color-mix(in oklch, var(--color-glass-specular) 28%, transparent) 50%,
+    transparent 100%
   );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  content: "";
+  pointer-events: none;
+}
+
+.navigation-glass::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    color-mix(in oklch, var(--color-glass-specular) 7%, transparent) 0%,
+    transparent 70%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+/* ============================================================================
+ * Arquétipo A: Quadro Fotográfico Split Half-Blur (.split-photo-stage / .split-photo-hero)
+ * ============================================================================ */
+.split-photo-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container);
+  transition: border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-photo-stage:hover {
+  border-color: var(--color-outline);
+}
+
+.split-photo-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-background);
+}
+
+.split-photo-sharp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-lens-left,
+.split-lens-right {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
 }
 
 @media (max-width: 767px) {
-  .lens-half-blur {
+  .split-lens-left,
+  .split-lens-right {
     background: linear-gradient(
       180deg,
-      oklch(11% 0.008 260 / 0.1) 0%,
-      oklch(11% 0.008 260 / 0.85) 45%,
-      oklch(11% 0.008 260 / 0.98) 100%
+      transparent 0%,
+      color-mix(in oklch, var(--color-background) 62%, transparent) 32%,
+      color-mix(in oklch, var(--color-background) 90%, transparent) 64%,
+      color-mix(in oklch, var(--color-background) 96%, transparent) 100%
     );
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, rgba(0, 0, 0, 1) 54%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, rgba(0, 0, 0, 1) 54%);
   }
 }
 
-/* Glassmorphism Técnico em Vidro Fumê */
-.smoked-glass {
-  background: oklch(14% 0.008 260 / 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border-tech);
+@media (min-width: 768px) {
+  .split-lens-left {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--color-background) 93%, transparent) 0%,
+      color-mix(in oklch, var(--color-background) 84%, transparent) 45%,
+      color-mix(in oklch, var(--color-background) 36%, transparent) 68%,
+      transparent 88%
+    );
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+    -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+  }
+
+  .split-lens-right {
+    background: linear-gradient(
+      270deg,
+      color-mix(in oklch, var(--color-background) 93%, transparent) 0%,
+      color-mix(in oklch, var(--color-background) 84%, transparent) 45%,
+      color-mix(in oklch, var(--color-background) 36%, transparent) 68%,
+      transparent 88%
+    );
+    mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+    -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+  }
 }
 
-/* Grid de Engenharia 1px de fundo */
-.bg-grid-tech {
-  background-image: 
-    linear-gradient(to right, oklch(22% 0.01 260 / 0.3) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(22% 0.01 260 / 0.3) 1px, transparent 1px);
-  background-size: 32px 32px;
+/* ============================================================================
+ * Arquétipo B: Lista Suíça com Foco Contextual (opacity: 0.25) & Preview Flutuante
+ * ============================================================================ */
+.swiss-focus-list .swiss-focus-row {
+  transition:
+    opacity 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    padding-left 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Indicador Ativo de Sinal (2% a 5% de acento) */
-.pulse-signal {
+.swiss-focus-list:hover .swiss-focus-row:not(:hover) {
+  opacity: 0.25;
+}
+
+.swiss-focus-list .swiss-focus-row:hover {
+  opacity: 1;
+}
+
+/* ============================================================================
+ * Arquétipo C & D: Superfície em Vidro Fumê & Cards de Elevação Monotônica 1..5
+ * ============================================================================ */
+.smoked-comparison-surface {
+  background-color: color-mix(in oklch, var(--color-surface-container) 72%, transparent);
+  border: 1px solid var(--color-outline-variant);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  transition:
+    background-color 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-card {
   position: relative;
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-ui) var(--ease-ui),
+    background-color var(--duration-ui) var(--ease-ui);
 }
 
-.pulse-signal::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background-color: var(--color-accent-signal);
-  box-shadow: 0 0 10px var(--color-accent-signal);
+.spotlight-card:hover {
+  border-color: var(--color-outline);
+}
+
+.spotlight-card[data-elevation="1"] {
+  background-color: var(--color-surface-container-lowest);
+}
+.spotlight-card[data-elevation="2"] {
+  background-color: var(--color-surface-container-low);
+}
+.spotlight-card[data-elevation="3"] {
+  background-color: var(--color-surface-container);
+}
+.spotlight-card[data-elevation="4"] {
+  background-color: var(--color-surface-container-high);
+}
+.spotlight-card[data-elevation="5"] {
+  background-color: color-mix(in oklch, var(--color-surface-container) 80%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
