@@ -1,0 +1,72 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { profile } from '../shared/config/profile';
+---
+
+<SiteLayout title="AKIRA // CONTATO" stage="607758" currentPage="contato">
+  <section class="max-w-xl mx-auto w-full">
+    <div class="stage-glass-panel p-8 sm:p-12 space-y-8 text-center">
+      <div class="space-y-2">
+        <p class="font-mono text-xs text-on-surface-variant tracking-widest">
+          04 // CONEXÃO
+        </p>
+        <h1 class="headline-bicolor text-3xl sm:text-5xl">
+          <span class="headline-bicolor-primary">CANAL</span>
+          <span class="headline-bicolor-secondary">DIRETO.</span>
+        </h1>
+      </div>
+
+      <!-- E-mail Copiável em 1 Clique -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div class="w-full sm:w-auto px-5 py-2.5 border border-outline-variant bg-surface-container-lowest font-mono text-xs text-on-surface break-all">
+          AKIRA.ENG@PROTON.ME
+        </div>
+
+        <button
+          type="button"
+          id="copyEmailBtn"
+          data-email="akira.eng@proton.me"
+          class="w-full sm:w-auto px-6 py-2.5 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity"
+        >
+          <span id="copyEmailLabel">COPIAR</span>
+        </button>
+      </div>
+
+      <!-- Links Diretos -->
+      <div class="pt-6 border-t border-outline-variant flex flex-wrap items-center justify-center gap-8">
+        {profile.socials.map((s) => (
+          <a
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="editorial-link"
+          >
+            <span>{s.label}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('copyEmailBtn');
+    const label = document.getElementById('copyEmailLabel');
+    if (!btn || !label) return;
+
+    btn.addEventListener('click', async () => {
+      const email = btn.getAttribute('data-email') || 'akira.eng@proton.me';
+      try {
+        await navigator.clipboard.writeText(email);
+        label.textContent = 'COPIADO ✓';
+        setTimeout(() => {
+          label.textContent = 'COPIAR';
+        }, 2200);
+      } catch {
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  })();
+</script>

@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { withBase } from '../shared/routing/paths';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<SiteLayout title="AKIRA // PROJETOS" stage="1396090" currentPage="projetos">
+  <section class="space-y-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-xs text-on-surface-variant tracking-widest mb-2">
+          03 // REPOSITÓRIOS
+        </p>
+        <h1 class="headline-bicolor text-3xl sm:text-5xl">
+          <span class="headline-bicolor-primary">PROJETOS</span>
+          <span class="headline-bicolor-secondary">EM PRODUÇÃO.</span>
+        </h1>
+      </div>
+
+      <a href={withBase('/contato')} class="editorial-link">
+        <span>04 CONTATO</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- Grid Polimórfico Enxuto (Adaptado ao Tema Claro/Prata 1396090 do Akira) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {projects.map((project, idx) => {
+        const { data } = project;
+        return (
+          <article class="stage-glass-panel p-6 flex flex-col justify-between gap-5">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-3 font-mono text-xs">
+                <span class="text-on-surface-variant">0{idx + 1} // {data.type}</span>
+                {data.githubUrl && (
+                  <a
+                    href={data.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="editorial-link"
+                  >
+                    <span>GITHUB</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+
+              <h2 class="text-xl font-bold text-on-surface tracking-tight">
+                {data.title}
+              </h2>
+
+              <p class="font-mono text-xs text-on-surface-variant">
+                {data.summary}
+              </p>
+
+              <!-- Tags com Versões Exatas -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {data.technologies.map((tech) => (
+                  <span class="px-2 py-0.5 text-[11px] font-mono border border-outline-variant bg-surface-container-lowest text-on-surface">
+                    {tech.name} {tech.version}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Rodapé Polimórfico: Comando CLI ou Métricas Diretas -->
+            <div class="space-y-3 pt-3 border-t border-outline-variant font-mono text-xs">
+              {data.metrics && (
+                <div class="grid grid-cols-3 gap-2 text-[11px]">
+                  <div>
+                    <span class="text-on-surface-variant block text-[9px]">VAZÃO</span>
+                    <span class="font-semibold text-on-surface">{data.metrics.throughput}</span>
+                  </div>
+                  <div>
+                    <span class="text-on-surface-variant block text-[9px]">P99</span>
+                    <span class="font-semibold text-on-surface">{data.metrics.latency_p99}</span>
+                  </div>
+                  <div>
+                    <span class="text-on-surface-variant block text-[9px]">SLA</span>
+                    <span class="font-semibold text-on-surface">{data.metrics.uptime}</span>
+                  </div>
+                </div>
+              )}
+
+              {data.cliCommand && (
+                <div class="px-3 py-2 bg-surface-container-lowest border border-outline-variant text-[11px] text-on-surface truncate">
+                  <span class="text-on-surface-variant mr-1.5">$</span>
+                  <code>{data.cliCommand}</code>
+                </div>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</SiteLayout>

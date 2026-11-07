@@ -22,111 +22,68 @@ export interface CorePrinciple {
   index: string;
   title: string;
   subtitle: string;
-  description: string;
   spec: string;
   previewImage: ResponsiveImageSet;
   previewCaption: string;
 }
 
-export interface ProfileData {
-  handle: string;
-  name: string;
-  title: string;
-  specialty: string;
-  location: string;
-  status: string;
-  summary: string;
-  bioContext: string;
-  metrics: MetricHighlight[];
-  socials: SocialLink[];
-  corePrinciples: CorePrinciple[];
-}
-
-export const profile: ProfileData = {
-  handle: 'Akira',
-  name: 'Akira',
-  title: 'Engenheiro de Software & Arquiteto Back-end',
-  specialty: 'Sistemas Distribuídos, Concorrência & Alta Vazão',
-  location: 'Brasil // Operação Remota',
-  status: 'Disponível para Arquitetura & Sistemas Críticos',
-  summary:
-    'Projeto APIs resilientes, motores de mensageria assíncrona e bancos de dados distribuídos com latência p99 previsível sob alta carga.',
-  bioContext:
-    'Engenharia orientada a contratos estritos, isolamento de falhas e observabilidade de ponta a ponta sem complexidade acidental.',
+export const profile = {
+  handle: 'AKIRA',
+  title: 'ARQUITETURA & BACK-END',
+  specialty: 'SISTEMAS DISTRIBUÍDOS',
+  summary: 'APIS RESILIENTES, CONCORRÊNCIA E BAIXA LATÊNCIA.',
   metrics: [
-    {
-      value: '99.99%',
-      unit: 'SLA',
-      label: 'Disponibilidade em Produção',
-    },
-    {
-      value: '< 12ms',
-      unit: 'p99',
-      label: 'Latência sob Carga',
-    },
-    {
-      value: '140k+',
-      unit: 'msg/s',
-      label: 'Vazão Assíncrona',
-    },
-  ],
+    { value: '99.99%', unit: 'SLA', label: 'UPTIME' },
+    { value: '< 12MS', unit: 'P99', label: 'LATÊNCIA' },
+    { value: '140K', unit: 'MSG/S', label: 'VAZÃO' },
+  ] satisfies MetricHighlight[],
   socials: [
-    {
-      label: 'GitHub',
-      url: 'https://github.com',
-      username: 'github.com/akira',
-    },
-    {
-      label: 'LinkedIn',
-      url: 'https://linkedin.com',
-      username: 'linkedin.com/in/akira',
-    },
-    {
-      label: 'E-mail',
-      url: 'mailto:akira.eng@proton.me',
-      username: 'akira.eng@proton.me',
-    },
-  ],
+    { label: 'GITHUB', url: 'https://github.com', username: '@AKIRA' },
+    { label: 'LINKEDIN', url: 'https://linkedin.com', username: 'IN/AKIRA' },
+    { label: 'EMAIL', url: 'mailto:akira.eng@proton.me', username: 'AKIRA.ENG@PROTON.ME' },
+  ] satisfies SocialLink[],
   corePrinciples: [
     {
       index: '01',
-      title: 'Concorrência & I/O Não-Bloqueante',
-      subtitle: 'Go · Rust · Event Loops',
-      description:
-        'Pipelines assíncronos com controle estrito de backpressure, zero contenção de locks e alocação previsível em memória.',
-      spec: 'runtime: Go 1.23 / Tokio | scheduler: work-stealing',
+      title: 'CONCORRÊNCIA & I/O',
+      subtitle: 'GO · RUST · TOKIO',
+      spec: 'ZERO LOCK CONTENTION',
       previewImage: PHOTO_AKIRA_BIKE_SET,
-      previewCaption: 'FIG 01 // EXECUÇÃO CONCORRENTE DE ALTA VELOCIDADE',
+      previewCaption: 'FIG 01 // CONCORRÊNCIA',
     },
     {
       index: '02',
-      title: 'Consistência & Tolerância a Falhas',
-      subtitle: 'Raft · Outbox Pattern · Idempotência',
-      description:
-        'Garantia de entrega at-least-once, chaves de idempotência UUIDv7 e isolamento transacional em operações financeiras críticas.',
-      spec: 'consensus: Raft | isolation: SERIALIZABLE',
+      title: 'CONSENSO & TOLERÂNCIA',
+      subtitle: 'RAFT · IDEMPOTÊNCIA',
+      spec: 'AT-LEAST-ONCE DELIVERY',
       previewImage: PHOTO_CRIMSON_MOON_SET,
-      previewCaption: 'FIG 02 // ISOLAMENTO E CONSENSO DISTRIBUÍDO',
+      previewCaption: 'FIG 02 // CONSENSO',
     },
     {
       index: '03',
-      title: 'Modelagem Relacional & Particionamento',
-      subtitle: 'PostgreSQL · Redis · ClickHouse',
-      description:
-        'Esquemas normalizados, índices compostos auditados via plano de execução e cache distribuído com invalidação atômica.',
-      spec: 'storage: PG 16 + Redis 7.2 | index: B-Tree / GIN',
+      title: 'MODELAGEM & DADOS',
+      subtitle: 'POSTGRESQL · REDIS',
+      spec: 'ACID SERIALIZABLE',
       previewImage: PHOTO_MOEBIUS_TRUSS_SET,
-      previewCaption: 'FIG 03 // TOPOLOGIA DE DADOS E PARTICIONAMENTO',
+      previewCaption: 'FIG 03 // TOPOLOGIA',
     },
     {
       index: '04',
-      title: 'Telemetria & Observabilidade RED',
-      subtitle: 'OpenTelemetry · Prometheus · Tracing',
-      description:
-        'Rastreamento distribuído W3C ponta a ponta correlacionando taxa de requisições, erros e histogramas de duração.',
-      spec: 'telemetry: OTel v1.27 | metrics: p50 / p95 / p99',
+      title: 'TELEMETRIA & TRACING',
+      subtitle: 'OTEL · PROMETHEUS',
+      spec: 'W3C TRACE CONTEXT',
       previewImage: PHOTO_CRIMSON_ONI_SET,
-      previewCaption: 'FIG 04 // INSPEÇÃO DE TRACES EM TEMPO REAL',
+      previewCaption: 'FIG 04 // TELEMETRIA',
     },
+  ] satisfies CorePrinciple[],
+  stack: [
+    { name: 'GO', version: '1.23' },
+    { name: 'RUST', version: '1.80' },
+    { name: 'NODE / TS', version: '22.4' },
+    { name: 'POSTGRESQL', version: '16.3' },
+    { name: 'REDIS', version: '7.2' },
+    { name: 'KAFKA', version: '3.7' },
+    { name: 'DOCKER', version: '27.0' },
+    { name: 'KUBERNETES', version: '1.30' },
   ],
 };

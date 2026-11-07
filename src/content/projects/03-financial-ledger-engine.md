@@ -1,25 +1,21 @@
 ---
-title: "Double-Entry Financial Ledger"
+title: "FINANCIAL LEDGER ENGINE"
 type: "backend"
-summary: "Motor contábil imutável com isolamento serializable no PostgreSQL, idempotência estrita via chaves UUID v7 e reconciliação em tempo real."
+summary: "MOTOR CONTÁBIL ACID COM IDEMPOTÊNCIA."
 featured: true
 order: 3
 technologies:
-  - name: "TypeScript"
+  - name: "TYPESCRIPT"
     version: "5.5"
-  - name: "Node.js"
+  - name: "NODE.JS"
     version: "22.4"
-  - name: "PostgreSQL"
+  - name: "POSTGRESQL"
     version: "16.3"
-  - name: "Zod"
-    version: "3.23"
 metrics:
-  throughput: "12k tx/s"
-  latency_p99: "4.2ms"
+  throughput: "12K TX/S"
+  latency_p99: "4.2MS"
   uptime: "99.999%"
 githubUrl: "https://github.com"
-cliCommand: "npm run start:worker -- --queue=settlement --audit-log=enabled"
-cliOutput: "[LEDGER] 0 balance drift detected | Audit lock verified | ACID level: SERIALIZABLE | 12,400 tx/s"
+cliCommand: "npm run worker -- --isolation=serializable"
+cliOutput: "[OK] 0 DRIFT | ACID SERIALIZABLE | 12,400 TX/S"
 ---
-
-Sistema contábil com partidas dobradas garantindo integridade matemática em transações financeiras de alta complexidade.

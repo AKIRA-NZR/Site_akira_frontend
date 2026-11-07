@@ -1,23 +1,50 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import Header from '../features/navigation/Header.astro';
-import Hero from '../features/hero/Hero.astro';
-import About from '../features/about/About.astro';
-import Stack from '../features/stack/Stack.astro';
-import Projects from '../features/projects/Projects.astro';
-import Contact from '../features/contact/Contact.astro';
-import Footer from '../features/navigation/Footer.astro';
 import { profile } from '../shared/config/profile';
+import { withBase } from '../shared/routing/paths';
 ---
 
-<SiteLayout title={profile.handle} description={profile.summary}>
-  <Header />
-  <main class="flex-grow">
-    <Hero />
-    <About />
-    <Stack />
-    <Projects />
-    <Contact />
-  </main>
-  <Footer />
+<SiteLayout title="AKIRA" stage="video" currentPage="inicio">
+  <section class="max-w-3xl space-y-10">
+    <div class="space-y-4">
+      <p class="font-mono text-xs text-on-surface-variant tracking-widest">
+        01 // {profile.specialty}
+      </p>
+
+      <h1 class="headline-bicolor text-4xl sm:text-6xl lg:text-7xl">
+        <span class="headline-bicolor-primary">ARQUITETURA</span>
+        <span class="headline-bicolor-secondary">BAIXA LATÊNCIA.</span>
+      </h1>
+
+      <p class="font-mono text-xs sm:text-sm text-on-surface-variant max-w-md pt-2">
+        {profile.summary}
+      </p>
+    </div>
+
+    <!-- Métricas Ultracompactas -->
+    <div class="grid grid-cols-3 gap-6 max-w-md border-y border-outline-variant py-5 font-mono">
+      {profile.metrics.map((m) => (
+        <div>
+          <div class="text-xl sm:text-2xl font-bold text-on-surface">{m.value}</div>
+          <div class="text-[10px] text-on-surface-variant mt-0.5">{m.label} // {m.unit}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Navegação Direta para as Próximas Páginas -->
+    <div class="flex flex-wrap items-center gap-8 pt-2">
+      <a href={withBase('/sobre')} class="editorial-link">
+        <span>02 SOBRE & STACK</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <a href={withBase('/projetos')} class="editorial-link">
+        <span>03 PROJETOS</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <a href={withBase('/contato')} class="editorial-link">
+        <span>04 CONTATO</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
 </SiteLayout>

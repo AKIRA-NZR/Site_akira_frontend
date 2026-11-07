@@ -1,26 +1,21 @@
 ---
-title: "Distributed Event Bus & Queue"
+title: "DISTRIBUTED EVENT BUS"
 type: "backend"
-summary: "Motor de mensageria assíncrona distribuído com garantia de entrega at-least-once, particionamento ordenado e persistência com protocolo Raft."
+summary: "MENSAGERIA ASSÍNCRONA COM CONSENSO RAFT."
 featured: true
 order: 1
 technologies:
-  - name: "Go"
+  - name: "GO"
     version: "1.23"
-  - name: "Kafka"
+  - name: "KAFKA"
     version: "3.7"
-  - name: "Redis"
+  - name: "REDIS"
     version: "7.2"
-  - name: "Docker"
-    version: "27.0"
 metrics:
-  throughput: "140k msg/s"
-  latency_p99: "1.8ms"
+  throughput: "140K MSG/S"
+  latency_p99: "1.8MS"
   uptime: "99.99%"
 githubUrl: "https://github.com"
-liveUrl: "https://github.com"
-cliCommand: "go run cmd/node/main.go --cluster-id=prod-core --shards=8 --ack=leader"
-cliOutput: "[INFO] Cluster node joined raft group 'core-01' | 8 shards active | 140,240 msg/s | p99: 1.84ms"
+cliCommand: "go run cmd/node/main.go --shards=8 --raft"
+cliOutput: "[OK] 8 SHARDS ACTIVE | 140,240 MSG/S | P99: 1.84MS"
 ---
-
-Motor de mensageria assíncrona projetado para suportar picos de tráfego extremos com latência submilisegundo e réplicas particionadas.
