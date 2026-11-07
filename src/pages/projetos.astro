@@ -1,8 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { PHOTO_AKIRA_BIKE_SET } from '../shared/media/frontImages';
-import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
 import { withBase } from '../shared/routing/paths';
 
 const allProjects = await getCollection('projects');
@@ -10,38 +8,26 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 ---
 
 <SiteLayout title="AKIRA // PROJETOS" stage="1396090" currentPage="projetos">
-  <div class="space-y-8">
-    <!-- Quadro Split Half-Blur com a Arte 1396090 (AKIRA) sobre o Átrio Desfocado 1396090 -->
-    <section class="split-photo-stage min-h-[280px] sm:min-h-[320px] flex items-end md:items-center p-6 sm:p-10">
-      <ResponsivePicture
-        image={PHOTO_AKIRA_BIKE_SET}
-        alt="1396090 AKIRA STAGE"
-        fetchpriority="high"
-        loading="eager"
-        width={1280}
-        height={720}
-        class="split-photo-sharp object-cover object-center"
-      />
-      <div class="split-lens-left" aria-hidden="true"></div>
-
-      <div class="relative z-10 max-w-md space-y-3">
+  <!-- Conteúdo Direto sobre o Átrio 1396090 (AKIRA) em Tela Cheia (Sem Card de Banner) -->
+  <div class="space-y-10">
+    <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div class="space-y-3">
         <p class="font-mono text-xs text-on-surface-variant tracking-widest">
           03 // REPOSITÓRIOS
         </p>
-        <h1 class="headline-bicolor text-3xl sm:text-5xl">
+        <h1 class="headline-bicolor text-4xl sm:text-6xl">
           <span class="headline-bicolor-primary">PROJETOS</span>
           <span class="headline-bicolor-secondary">EM PRODUÇÃO.</span>
         </h1>
-        <div class="pt-2">
-          <a href={withBase('/contato')} class="editorial-link">
-            <span>04 CONTATO</span>
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
       </div>
-    </section>
 
-    <!-- Grid Polimórfico Enxuto sobre o Átrio Desfocado 1396090 -->
+      <a href={withBase('/contato')} class="editorial-link">
+        <span>04 CONTATO</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </header>
+
+    <!-- Grid Enxuto sobre o Átrio Desfocado 1396090 -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {projects.map((project, idx) => {
         const { data } = project;

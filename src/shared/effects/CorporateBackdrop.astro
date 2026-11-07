@@ -1,9 +1,16 @@
 ---
 /**
- * CorporateBackdrop V2 — Átrio Desfocado em 3 Camadas Ópticas Dinâmico por Página
+ * CorporateBackdrop V2 — Átrio Desfocado em Tela Cheia (Full-Viewport 3 Camadas Ópticas)
  *
- * Camada 1: Difusão Óptica Central (Bokeh — blur(22px) saturate(0.78) contrast(1.06) scale(1.06))
- * Camada 2: Moldura Estrutural Periférica (blur(5px) + máscara elíptica radial)
+ * Preenche TODO o background da página (fixed inset-0), mudando dinamicamente
+ * conforme a página ativa:
+ * - Início (/): Vídeo 1405430.mp4
+ * - Sobre (/sobre): Imagem 902085
+ * - Projetos (/projetos): Imagem 1396090
+ * - Contato (/contato): Imagem 607758
+ *
+ * Camada 1: Difusão Óptica Central (Bokeh — blur(22px) saturate(0.88) contrast(1.06))
+ * Camada 2: Moldura Estrutural Periférica (blur(4px) + máscara elíptica radial que mantém o centro limpo e as bordas vivas)
  * Camada 3: Scrim de Leitura (.atrium-vignette — color-mix dinâmico com --color-background da página)
  */
 import {
@@ -33,28 +40,43 @@ const activeSet = stageImageMap[stage];
 <div
   id="corporate-backdrop"
   data-atrium-stage={stage}
-  class="pointer-events-none fixed inset-0 -z-10 select-none overflow-hidden"
+  class="pointer-events-none fixed inset-0 z-0 select-none overflow-hidden"
   aria-hidden="true"
 >
-  <!-- Camada 1: Difusão Óptica Central (Bokeh suave 22px da imagem/vídeo da página) -->
+  <!-- Camada 1: Difusão Óptica Central em Tela Cheia (Bokeh 22px da imagem/vídeo da página) -->
   <div class="atrium-layer-bokeh absolute inset-0 h-full w-full">
-    <picture class="contents">
-      <source srcset={activeSet.mobileAvif} type="image/avif" />
-      <source srcset={activeSet.mobileWebp} type="image/webp" />
-      <img
-        src={activeSet.src}
-        alt=""
-        width="768"
-        height="432"
-        loading="eager"
-        fetchpriority="low"
-        decoding="async"
+    {stage === 'video' ? (
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        poster={activeSet.avif}
         class="atrium-image-bokeh h-full w-full object-cover object-center"
-      />
-    </picture>
+      >
+        <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
+      </video>
+    ) : (
+      <picture class="contents">
+        <source media="(max-width: 767px)" srcset={activeSet.mobileAvif} type="image/avif" />
+        <source media="(max-width: 767px)" srcset={activeSet.mobileWebp} type="image/webp" />
+        <source srcset={activeSet.avif} type="image/avif" />
+        <source srcset={activeSet.webp} type="image/webp" />
+        <img
+          src={activeSet.src}
+          alt=""
+          width="1280"
+          height="720"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="atrium-image-bokeh h-full w-full object-cover object-center"
+        />
+      </picture>
+    )}
   </div>
 
-  <!-- Camada 2: Moldura Estrutural Periférica (blur 5px + máscara radial elíptica) -->
+  <!-- Camada 2: Moldura Estrutural Periférica em Tela Cheia (blur 4px + máscara radial elíptica) -->
   <div class="atrium-layer-structural absolute inset-0 h-full w-full">
     {stage === 'video' ? (
       <video
@@ -62,22 +84,24 @@ const activeSet = stageImageMap[stage];
         muted
         loop
         playsinline
-        poster={activeSet.mobileAvif}
+        poster={activeSet.avif}
         class="atrium-image h-full w-full object-cover object-center"
       >
         <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
       </video>
     ) : (
       <picture class="contents">
-        <source srcset={activeSet.mobileAvif} type="image/avif" />
-        <source srcset={activeSet.mobileWebp} type="image/webp" />
+        <source media="(max-width: 767px)" srcset={activeSet.mobileAvif} type="image/avif" />
+        <source media="(max-width: 767px)" srcset={activeSet.mobileWebp} type="image/webp" />
+        <source srcset={activeSet.avif} type="image/avif" />
+        <source srcset={activeSet.webp} type="image/webp" />
         <img
           src={activeSet.src}
           alt=""
-          width="768"
-          height="432"
+          width="1280"
+          height="720"
           loading="eager"
-          fetchpriority="low"
+          fetchpriority="high"
           decoding="async"
           class="atrium-image h-full w-full object-cover object-center"
         />
@@ -92,52 +116,48 @@ const activeSet = stageImageMap[stage];
 <style>
   #corporate-backdrop {
     contain: layout paint size;
-    opacity: 0.72;
+    opacity: 0.92;
     mix-blend-mode: normal;
   }
 
-  #corporate-backdrop[data-atrium-stage="1396090"] {
-    opacity: 0.65;
-  }
-
   .atrium-image-bokeh {
-    filter: blur(22px) saturate(0.85) contrast(1.06);
+    filter: blur(22px) saturate(0.92) contrast(1.06);
     transform: scale(1.06);
   }
 
   .atrium-layer-structural {
     mask-image: radial-gradient(
-      ellipse 56% 54% at 50% 48%,
-      rgba(0, 0, 0, 0.14) 0%,
-      rgba(0, 0, 0, 0.54) 58%,
-      rgba(0, 0, 0, 0.94) 95%
+      ellipse 56% 52% at 38% 50%,
+      rgba(0, 0, 0, 0.16) 0%,
+      rgba(0, 0, 0, 0.58) 54%,
+      rgba(0, 0, 0, 0.98) 92%
     );
     -webkit-mask-image: radial-gradient(
-      ellipse 56% 54% at 50% 48%,
-      rgba(0, 0, 0, 0.14) 0%,
-      rgba(0, 0, 0, 0.54) 58%,
-      rgba(0, 0, 0, 0.94) 95%
+      ellipse 56% 52% at 38% 50%,
+      rgba(0, 0, 0, 0.16) 0%,
+      rgba(0, 0, 0, 0.58) 54%,
+      rgba(0, 0, 0, 0.98) 92%
     );
   }
 
   .atrium-image {
-    filter: blur(5px) saturate(0.88) contrast(1.08);
+    filter: blur(3.5px) saturate(0.95) contrast(1.06);
     transform: scale(1.02);
   }
 
   .atrium-vignette {
     background:
       radial-gradient(
-        ellipse 62% 58% at 50% 46%,
-        color-mix(in oklch, var(--color-background) 86%, transparent) 0%,
-        color-mix(in oklch, var(--color-background) 70%, transparent) 64%,
-        color-mix(in oklch, var(--color-background) 44%, transparent) 100%
+        ellipse 60% 56% at 36% 50%,
+        color-mix(in oklch, var(--color-background) 82%, transparent) 0%,
+        color-mix(in oklch, var(--color-background) 56%, transparent) 60%,
+        color-mix(in oklch, var(--color-background) 24%, transparent) 100%
       ),
       linear-gradient(
-        180deg,
-        color-mix(in oklch, var(--color-background) 38%, transparent) 0%,
-        color-mix(in oklch, var(--color-background) 74%, transparent) 52%,
-        color-mix(in oklch, var(--color-background) 92%, transparent) 100%
+        90deg,
+        color-mix(in oklch, var(--color-background) 84%, transparent) 0%,
+        color-mix(in oklch, var(--color-background) 52%, transparent) 48%,
+        color-mix(in oklch, var(--color-background) 18%, transparent) 100%
       );
   }
 

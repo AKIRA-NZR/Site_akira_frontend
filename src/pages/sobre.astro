@@ -1,44 +1,30 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { profile } from '../shared/config/profile';
-import { PHOTO_HALFTONE_DARK_SET } from '../shared/media/frontImages';
 import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
 import { withBase } from '../shared/routing/paths';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
-  <div class="space-y-8">
-    <!-- Quadro Split Half-Blur com a Imagem 902085 sobre o Átrio Desfocado 902085 -->
-    <section class="split-photo-stage min-h-[300px] sm:min-h-[340px] flex items-end md:items-center p-6 sm:p-10">
-      <ResponsivePicture
-        image={PHOTO_HALFTONE_DARK_SET}
-        alt="902085 STAGE"
-        fetchpriority="high"
-        loading="eager"
-        width={1280}
-        height={720}
-        class="split-photo-sharp object-cover object-center"
-      />
-      <div class="split-lens-left" aria-hidden="true"></div>
+  <!-- Conteúdo Direto sobre o Átrio 902085 em Tela Cheia (Sem Card de Banner) -->
+  <div class="space-y-10">
+    <header class="max-w-xl space-y-4">
+      <p class="font-mono text-xs text-on-surface-variant tracking-widest">
+        02 // ENGENHARIA
+      </p>
+      <h1 class="headline-bicolor text-4xl sm:text-6xl">
+        <span class="headline-bicolor-primary">PILARES</span>
+        <span class="headline-bicolor-secondary">& NÚCLEO.</span>
+      </h1>
 
-      <div class="relative z-10 max-w-md space-y-4">
-        <p class="font-mono text-xs text-on-surface-variant tracking-widest">
-          02 // ENGENHARIA
-        </p>
-        <h1 class="headline-bicolor text-3xl sm:text-5xl">
-          <span class="headline-bicolor-primary">PILARES</span>
-          <span class="headline-bicolor-secondary">& NÚCLEO.</span>
-        </h1>
-
-        <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
-          {profile.stack.map((tech) => (
-            <span class="px-2.5 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface">
-              {tech.name} <span class="text-on-surface-variant">{tech.version}</span>
-            </span>
-          ))}
-        </div>
+      <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+        {profile.stack.map((tech) => (
+          <span class="px-2.5 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface">
+            {tech.name} <span class="text-on-surface-variant">{tech.version}</span>
+          </span>
+        ))}
       </div>
-    </section>
+    </header>
 
     <!-- Grid 4/12 (Preview Flutuante rounded-none) + 8/12 (Lista Suíça divide-y com opacity: 0.25) -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -80,7 +66,7 @@ import { withBase } from '../shared/routing/paths';
       <div class="lg:col-span-8 min-w-0">
         <div
           id="swissFocusList"
-          class="swiss-focus-list divide-y divide-outline-variant border-y border-outline-variant stage-glass-panel px-6"
+          class="swiss-focus-list divide-y divide-outline-variant border-y border-outline-variant"
         >
           {profile.corePrinciples.map((item, idx) => (
             <article
