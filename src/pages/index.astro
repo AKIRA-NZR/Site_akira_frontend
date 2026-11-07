@@ -1,50 +1,79 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { profile } from '../shared/config/profile';
+import {
+  PHOTO_CHROME_SURFER_SET,
+  VIDEO_FEATURED_STAGE,
+} from '../shared/media/frontImages';
+import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
 import { withBase } from '../shared/routing/paths';
 ---
 
 <SiteLayout title="AKIRA" stage="video" currentPage="inicio">
-  <section class="max-w-3xl space-y-10">
-    <div class="space-y-4">
+  <!-- Quadro Split Half-Blur com Vídeo 1405430.mp4 sobre o Átrio Desfocado -->
+  <section class="split-photo-hero min-h-[480px] sm:min-h-[540px] flex flex-col justify-between p-6 sm:p-10 lg:p-14">
+    <ResponsivePicture
+      image={PHOTO_CHROME_SURFER_SET}
+      alt="AKIRA STAGE"
+      fetchpriority="high"
+      loading="eager"
+      width={1280}
+      height={720}
+      class="split-photo-sharp object-cover object-center"
+    />
+
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster={PHOTO_CHROME_SURFER_SET.avif}
+      class="split-photo-sharp object-cover object-center"
+    >
+      <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
+    </video>
+
+    <!-- Lente Óptica Half-Blur Direcional 90° -->
+    <div class="split-lens-left" aria-hidden="true"></div>
+
+    <div class="relative z-10 my-auto max-w-lg space-y-6">
       <p class="font-mono text-xs text-on-surface-variant tracking-widest">
         01 // {profile.specialty}
       </p>
 
-      <h1 class="headline-bicolor text-4xl sm:text-6xl lg:text-7xl">
+      <h1 class="headline-bicolor text-4xl sm:text-6xl">
         <span class="headline-bicolor-primary">ARQUITETURA</span>
         <span class="headline-bicolor-secondary">BAIXA LATÊNCIA.</span>
       </h1>
 
-      <p class="font-mono text-xs sm:text-sm text-on-surface-variant max-w-md pt-2">
+      <p class="font-mono text-xs text-on-surface-variant max-w-sm">
         {profile.summary}
       </p>
+
+      <div class="flex flex-wrap items-center gap-8 pt-2">
+        <a href={withBase('/sobre')} class="editorial-link">
+          <span>02 SOBRE</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href={withBase('/projetos')} class="editorial-link">
+          <span>03 PROJETOS</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href={withBase('/contato')} class="editorial-link">
+          <span>04 CONTATO</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
 
     <!-- Métricas Ultracompactas -->
-    <div class="grid grid-cols-3 gap-6 max-w-md border-y border-outline-variant py-5 font-mono">
+    <div class="relative z-10 mt-10 pt-5 border-t border-outline-variant grid grid-cols-3 gap-6 max-w-md font-mono">
       {profile.metrics.map((m) => (
         <div>
-          <div class="text-xl sm:text-2xl font-bold text-on-surface">{m.value}</div>
+          <div class="text-lg sm:text-2xl font-bold text-on-surface">{m.value}</div>
           <div class="text-[10px] text-on-surface-variant mt-0.5">{m.label} // {m.unit}</div>
         </div>
       ))}
-    </div>
-
-    <!-- Navegação Direta para as Próximas Páginas -->
-    <div class="flex flex-wrap items-center gap-8 pt-2">
-      <a href={withBase('/sobre')} class="editorial-link">
-        <span>02 SOBRE & STACK</span>
-        <span aria-hidden="true">→</span>
-      </a>
-      <a href={withBase('/projetos')} class="editorial-link">
-        <span>03 PROJETOS</span>
-        <span aria-hidden="true">→</span>
-      </a>
-      <a href={withBase('/contato')} class="editorial-link">
-        <span>04 CONTATO</span>
-        <span aria-hidden="true">→</span>
-      </a>
     </div>
   </section>
 </SiteLayout>

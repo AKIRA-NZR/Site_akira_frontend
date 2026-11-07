@@ -1,111 +1,124 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { profile } from '../shared/config/profile';
+import { PHOTO_HALFTONE_DARK_SET } from '../shared/media/frontImages';
 import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
 import { withBase } from '../shared/routing/paths';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
-  <section class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-    <!-- Coluna 4/12: Título + Stack Enxuta + Preview Flutuante Sem Cantos Arredondados -->
-    <div class="lg:col-span-4 space-y-8 min-w-0">
-      <div>
-        <p class="font-mono text-xs text-on-surface-variant tracking-widest mb-2">
+  <div class="space-y-8">
+    <!-- Quadro Split Half-Blur com a Imagem 902085 sobre o Átrio Desfocado 902085 -->
+    <section class="split-photo-stage min-h-[300px] sm:min-h-[340px] flex items-end md:items-center p-6 sm:p-10">
+      <ResponsivePicture
+        image={PHOTO_HALFTONE_DARK_SET}
+        alt="902085 STAGE"
+        fetchpriority="high"
+        loading="eager"
+        width={1280}
+        height={720}
+        class="split-photo-sharp object-cover object-center"
+      />
+      <div class="split-lens-left" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-md space-y-4">
+        <p class="font-mono text-xs text-on-surface-variant tracking-widest">
           02 // ENGENHARIA
         </p>
         <h1 class="headline-bicolor text-3xl sm:text-5xl">
           <span class="headline-bicolor-primary">PILARES</span>
           <span class="headline-bicolor-secondary">& NÚCLEO.</span>
         </h1>
-      </div>
 
-      <!-- Stack Core em Vidro Fumê Ultracompacto (Zero Comparações) -->
-      <div class="stage-glass-panel p-4 grid grid-cols-2 gap-2 font-mono text-xs">
-        {profile.stack.map((tech) => (
-          <div class="flex items-center justify-between px-2.5 py-1.5 border border-outline-variant bg-surface-container-lowest">
-            <span class="font-semibold text-on-surface">{tech.name}</span>
-            <span class="text-on-surface-variant text-[10px]">{tech.version}</span>
-          </div>
-        ))}
+        <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+          {profile.stack.map((tech) => (
+            <span class="px-2.5 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface">
+              {tech.name} <span class="text-on-surface-variant">{tech.version}</span>
+            </span>
+          ))}
+        </div>
       </div>
+    </section>
 
-      <!-- Container Flutuante Periférico Sem Cantos Arredondados (rounded-none) -->
-      <div
-        id="swissPreviewContainer"
-        aria-hidden="true"
-        class="hidden lg:block pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-      >
-        <div class="rounded-none border border-outline bg-surface-container-lowest p-2">
-          <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background">
-            {profile.corePrinciples.map((item, idx) => (
-              <div
-                data-swiss-preview-slide={idx}
-                class:list={[
-                  'absolute inset-0 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
-                  idx === 0 ? 'opacity-100' : 'opacity-0',
-                ]}
-              >
-                <ResponsivePicture
-                  image={item.previewImage}
-                  alt={item.title}
-                  loading="lazy"
-                  width={640}
-                  height={400}
-                  class="h-full w-full object-cover object-center"
-                />
-              </div>
-            ))}
-          </div>
-          <div class="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
-            <span id="swissPreviewCaption">{profile.corePrinciples[0].previewCaption}</span>
-            <span class="text-on-surface">RAW</span>
+    <!-- Grid 4/12 (Preview Flutuante rounded-none) + 8/12 (Lista Suíça divide-y com opacity: 0.25) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4 min-w-0">
+        <div
+          id="swissPreviewContainer"
+          aria-hidden="true"
+          class="hidden lg:block pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        >
+          <div class="rounded-none border border-outline bg-surface-container-lowest p-2">
+            <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background">
+              {profile.corePrinciples.map((item, idx) => (
+                <div
+                  data-swiss-preview-slide={idx}
+                  class:list={[
+                    'absolute inset-0 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                    idx === 0 ? 'opacity-100' : 'opacity-0',
+                  ]}
+                >
+                  <ResponsivePicture
+                    image={item.previewImage}
+                    alt={item.title}
+                    loading="lazy"
+                    width={640}
+                    height={400}
+                    class="h-full w-full object-cover object-center"
+                  />
+                </div>
+              ))}
+            </div>
+            <div class="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
+              <span id="swissPreviewCaption">{profile.corePrinciples[0].previewCaption}</span>
+              <span class="text-on-surface">RAW</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Coluna 8/12: Lista de Filetes 1px (divide-y) com Foco Contextual (opacity: 0.25) -->
-    <div class="lg:col-span-8 min-w-0">
-      <div
-        id="swissFocusList"
-        class="swiss-focus-list divide-y divide-outline-variant border-y border-outline-variant stage-glass-panel px-6"
-      >
-        {profile.corePrinciples.map((item, idx) => (
-          <article
-            data-swiss-row={idx}
-            data-caption={item.previewCaption}
-            tabindex="0"
-            class="swiss-focus-row group py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-default focus-visible:outline-none"
-          >
-            <div class="flex items-baseline gap-4 min-w-0">
-              <span class="font-mono text-xs text-on-surface-variant group-hover:text-on-surface">
-                {item.index}
-              </span>
-              <div>
-                <h2 class="text-lg sm:text-xl font-bold text-on-surface tracking-tight">
-                  {item.title}
-                </h2>
-                <p class="font-mono text-xs text-on-surface-variant mt-0.5">
-                  {item.subtitle}
-                </p>
+      <div class="lg:col-span-8 min-w-0">
+        <div
+          id="swissFocusList"
+          class="swiss-focus-list divide-y divide-outline-variant border-y border-outline-variant stage-glass-panel px-6"
+        >
+          {profile.corePrinciples.map((item, idx) => (
+            <article
+              data-swiss-row={idx}
+              data-caption={item.previewCaption}
+              tabindex="0"
+              class="swiss-focus-row group py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-default focus-visible:outline-none"
+            >
+              <div class="flex items-baseline gap-4 min-w-0">
+                <span class="font-mono text-xs text-on-surface-variant group-hover:text-on-surface">
+                  {item.index}
+                </span>
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-on-surface tracking-tight">
+                    {item.title}
+                  </h2>
+                  <p class="font-mono text-[11px] text-on-surface-variant mt-0.5">
+                    {item.subtitle}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <code class="font-mono text-[11px] text-on-surface border border-outline-variant group-hover:border-outline bg-surface-container-lowest px-3 py-1 rounded-none shrink-0">
-              {item.spec}
-            </code>
-          </article>
-        ))}
-      </div>
+              <code class="font-mono text-[11px] text-on-surface border border-outline-variant group-hover:border-outline bg-surface-container-lowest px-3 py-1 rounded-none shrink-0">
+                {item.spec}
+              </code>
+            </article>
+          ))}
+        </div>
 
-      <div class="mt-8 flex justify-end">
-        <a href={withBase('/projetos')} class="editorial-link">
-          <span>03 VER PROJETOS</span>
-          <span aria-hidden="true">→</span>
-        </a>
+        <div class="mt-6 flex justify-end">
+          <a href={withBase('/projetos')} class="editorial-link">
+            <span>03 PROJETOS</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </SiteLayout>
 
 <script is:inline>

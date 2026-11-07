@@ -6,9 +6,8 @@ import {
   PHOTO_HALFTONE_DARK_SET,
   PHOTO_AKIRA_BIKE_SET,
   PHOTO_MOEBIUS_TRUSS_SET,
-  VIDEO_FEATURED_STAGE,
 } from '../shared/media/frontImages';
-import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
+import CorporateBackdrop from '../shared/effects/CorporateBackdrop.astro';
 import { withBase } from '../shared/routing/paths';
 
 interface Props {
@@ -92,50 +91,10 @@ const fontStylesheetUrl =
     />
   </head>
   <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-on-surface selection:text-background relative">
-    <!-- Background Fullscreen Dinâmico da Página Atual -->
-    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none" aria-hidden="true">
-      {stage === 'video' ? (
-        <>
-          <ResponsivePicture
-            image={PHOTO_CHROME_SURFER_SET}
-            alt=""
-            fetchpriority="high"
-            loading="eager"
-            width={1280}
-            height={720}
-            class="h-full w-full object-cover object-center"
-          />
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-            poster={PHOTO_CHROME_SURFER_SET.avif}
-            class="absolute inset-0 h-full w-full object-cover object-center"
-          >
-            <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
-          </video>
-        </>
-      ) : (
-        <ResponsivePicture
-          image={activeImage}
-          alt=""
-          fetchpriority="high"
-          loading="eager"
-          width={1280}
-          height={720}
-          class:list={[
-            'h-full w-full object-cover',
-            stage === '1396090' ? 'object-center opacity-90' : 'object-center opacity-85',
-          ]}
-        />
-      )}
+    <!-- Átrio Desfocado em 3 Camadas Ópticas (Bokeh 22px + Moldura Periférica 5px + Scrim Vignette) -->
+    <CorporateBackdrop stage={stage} />
 
-      <!-- Scrim Óptico Calibrado para o Tema da Imagem -->
-      <div class="absolute inset-0" style="background: var(--stage-scrim);"></div>
-    </div>
-
-    <!-- Topo Editorial Sem Navbar (Apenas Assinatura Designer AKIRA + Índice de Páginas) -->
+    <!-- Topo Editorial Sem Navbar (Assinatura Designer AKIRA + Índice de Páginas) -->
     <div class="mx-auto w-full max-w-6xl px-5 pt-8 sm:px-10 sm:pt-12 flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
       <a
         href={withBase('/')}
@@ -168,14 +127,14 @@ const fontStylesheetUrl =
     </div>
 
     <!-- Conteúdo da Página -->
-    <main class="mx-auto w-full max-w-6xl px-5 py-10 sm:px-10 sm:py-14 flex-grow flex flex-col justify-center">
+    <main class="mx-auto w-full max-w-6xl px-5 py-8 sm:px-10 sm:py-10 flex-grow flex flex-col justify-center">
       <slot />
     </main>
 
     <!-- Rodapé Ultramínimo Padronizado em Maiúsculo -->
     <footer class="mx-auto w-full max-w-6xl px-5 pb-8 sm:px-10 sm:pb-10 flex items-center justify-between gap-4 border-t border-outline-variant pt-5 font-mono text-[11px] text-on-surface-variant">
       <span>AKIRA // ARQUITETURA DE SISTEMAS</span>
-      <span>STAGE // {stage.toUpperCase()}</span>
+      <span>ATRIUM // {stage.toUpperCase()}</span>
     </footer>
   </body>
 </html>

@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { PHOTO_AKIRA_BIKE_SET } from '../shared/media/frontImages';
+import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
 import { withBase } from '../shared/routing/paths';
 
 const allProjects = await getCollection('projects');
@@ -8,30 +10,43 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 ---
 
 <SiteLayout title="AKIRA // PROJETOS" stage="1396090" currentPage="projetos">
-  <section class="space-y-8">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-      <div>
-        <p class="font-mono text-xs text-on-surface-variant tracking-widest mb-2">
+  <div class="space-y-8">
+    <!-- Quadro Split Half-Blur com a Arte 1396090 (AKIRA) sobre o Átrio Desfocado 1396090 -->
+    <section class="split-photo-stage min-h-[280px] sm:min-h-[320px] flex items-end md:items-center p-6 sm:p-10">
+      <ResponsivePicture
+        image={PHOTO_AKIRA_BIKE_SET}
+        alt="1396090 AKIRA STAGE"
+        fetchpriority="high"
+        loading="eager"
+        width={1280}
+        height={720}
+        class="split-photo-sharp object-cover object-center"
+      />
+      <div class="split-lens-left" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-md space-y-3">
+        <p class="font-mono text-xs text-on-surface-variant tracking-widest">
           03 // REPOSITÓRIOS
         </p>
         <h1 class="headline-bicolor text-3xl sm:text-5xl">
           <span class="headline-bicolor-primary">PROJETOS</span>
           <span class="headline-bicolor-secondary">EM PRODUÇÃO.</span>
         </h1>
+        <div class="pt-2">
+          <a href={withBase('/contato')} class="editorial-link">
+            <span>04 CONTATO</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
+    </section>
 
-      <a href={withBase('/contato')} class="editorial-link">
-        <span>04 CONTATO</span>
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-
-    <!-- Grid Polimórfico Enxuto (Adaptado ao Tema Claro/Prata 1396090 do Akira) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Grid Polimórfico Enxuto sobre o Átrio Desfocado 1396090 -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {projects.map((project, idx) => {
         const { data } = project;
         return (
-          <article class="stage-glass-panel p-6 flex flex-col justify-between gap-5">
+          <article class="stage-glass-panel rounded-lg p-6 flex flex-col justify-between gap-4">
             <div class="space-y-3">
               <div class="flex items-center justify-between gap-3 font-mono text-xs">
                 <span class="text-on-surface-variant">0{idx + 1} // {data.type}</span>
@@ -48,7 +63,7 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
                 )}
               </div>
 
-              <h2 class="text-xl font-bold text-on-surface tracking-tight">
+              <h2 class="text-lg sm:text-xl font-bold text-on-surface tracking-tight">
                 {data.title}
               </h2>
 
@@ -56,7 +71,6 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
                 {data.summary}
               </p>
 
-              <!-- Tags com Versões Exatas -->
               <div class="flex flex-wrap gap-1.5 pt-1">
                 {data.technologies.map((tech) => (
                   <span class="px-2 py-0.5 text-[11px] font-mono border border-outline-variant bg-surface-container-lowest text-on-surface">
@@ -66,7 +80,6 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
               </div>
             </div>
 
-            <!-- Rodapé Polimórfico: Comando CLI ou Métricas Diretas -->
             <div class="space-y-3 pt-3 border-t border-outline-variant font-mono text-xs">
               {data.metrics && (
                 <div class="grid grid-cols-3 gap-2 text-[11px]">
@@ -95,6 +108,6 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
           </article>
         );
       })}
-    </div>
-  </section>
+    </section>
+  </div>
 </SiteLayout>

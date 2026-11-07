@@ -37,115 +37,92 @@
 }
 
 /* ============================================================================
- * TEMAS DINÂMICOS POR PÁGINA / IMAGEM DE FUNDO (OKLCH)
+ * TEMAS DINÂMICOS POR PÁGINA & ÁTRIO DESFOCADO (OKLCH)
  * ============================================================================ */
 
 /* 1. TELA INICIAL (/) — Vídeo 1405430.mp4 (Obsidiana Abissal & Cromo Líquido) */
 :root,
 html[data-theme-stage="video"] {
   color-scheme: dark;
-  --theme-background: oklch(8% 0.005 260);
+  --theme-background: oklch(9% 0.006 260);
   --theme-on-background: oklch(96% 0.005 260);
-  --theme-surface: oklch(11% 0.006 260);
+  --theme-surface: oklch(12% 0.006 260);
   --theme-on-surface: oklch(96% 0.005 260);
-  --theme-surface-variant: oklch(15% 0.008 260);
-  --theme-on-surface-variant: oklch(68% 0.01 260);
+  --theme-surface-variant: oklch(16% 0.008 260);
+  --theme-on-surface-variant: oklch(66% 0.01 260);
 
-  --theme-surface-container-lowest: oklch(9% 0.005 260 / 0.72);
-  --theme-surface-container-low: oklch(12% 0.006 260 / 0.72);
-  --theme-surface-container: oklch(14% 0.008 260 / 0.74);
-  --theme-surface-container-high: oklch(17% 0.01 260 / 0.78);
-  --theme-surface-container-highest: oklch(20% 0.012 260 / 0.82);
+  --theme-surface-container-lowest: oklch(9.5% 0.006 260 / 0.8);
+  --theme-surface-container-low: oklch(12.5% 0.006 260 / 0.8);
+  --theme-surface-container: oklch(14% 0.008 260 / 0.78);
+  --theme-surface-container-high: oklch(17% 0.01 260 / 0.82);
+  --theme-surface-container-highest: oklch(20% 0.012 260 / 0.86);
 
-  --theme-outline-variant: oklch(28% 0.01 260 / 0.65);
-  --theme-outline: oklch(62% 0.015 260);
+  --theme-outline-variant: oklch(25% 0.01 260);
+  --theme-outline: oklch(58% 0.015 260);
   --theme-accent-stage: oklch(92% 0.01 260);
-  --stage-scrim: linear-gradient(
-    180deg,
-    oklch(8% 0.005 260 / 0.55) 0%,
-    oklch(8% 0.005 260 / 0.35) 50%,
-    oklch(8% 0.005 260 / 0.82) 100%
-  );
 }
 
 /* 2. PÁGINA SOBRE (/sobre) — Imagem 902085 (Breu Absoluto & Halftone Carmesim) */
 html[data-theme-stage="902085"] {
   color-scheme: dark;
-  --theme-background: oklch(6% 0.008 22);
+  --theme-background: oklch(8% 0.012 22);
   --theme-on-background: oklch(95% 0.008 85);
-  --theme-surface: oklch(10% 0.018 22);
+  --theme-surface: oklch(11% 0.02 22);
   --theme-on-surface: oklch(95% 0.008 85);
-  --theme-surface-variant: oklch(15% 0.025 22);
-  --theme-on-surface-variant: oklch(68% 0.035 22);
+  --theme-surface-variant: oklch(16% 0.028 22);
+  --theme-on-surface-variant: oklch(66% 0.038 22);
 
-  --theme-surface-container-lowest: oklch(8% 0.015 22 / 0.76);
-  --theme-surface-container-low: oklch(11% 0.02 22 / 0.76);
-  --theme-surface-container: oklch(13% 0.026 22 / 0.78);
-  --theme-surface-container-high: oklch(16% 0.032 22 / 0.82);
-  --theme-surface-container-highest: oklch(19% 0.04 22 / 0.86);
+  --theme-surface-container-lowest: oklch(9% 0.016 22 / 0.82);
+  --theme-surface-container-low: oklch(12% 0.022 22 / 0.8);
+  --theme-surface-container: oklch(14% 0.028 22 / 0.78);
+  --theme-surface-container-high: oklch(17% 0.034 22 / 0.84);
+  --theme-surface-container-highest: oklch(20% 0.04 22 / 0.88);
 
-  --theme-outline-variant: oklch(26% 0.045 22 / 0.7);
+  --theme-outline-variant: oklch(26% 0.048 22);
   --theme-outline: oklch(56% 0.16 24);
   --theme-accent-stage: oklch(60% 0.19 24);
-  --stage-scrim: radial-gradient(
-    ellipse 70% 65% at 50% 50%,
-    oklch(6% 0.008 22 / 0.45) 0%,
-    oklch(6% 0.008 22 / 0.82) 100%
-  );
 }
 
 /* 3. PÁGINA PROJETOS (/projetos) — Imagem 1396090 (AKIRA: Prata Alabastro, Grafite & Vermelho Kaneda) */
 html[data-theme-stage="1396090"] {
   color-scheme: light;
-  --theme-background: oklch(86% 0.006 265);
+  --theme-background: oklch(91% 0.006 265);
   --theme-on-background: oklch(13% 0.015 260);
-  --theme-surface: oklch(91% 0.006 265);
+  --theme-surface: oklch(94% 0.005 265);
   --theme-on-surface: oklch(13% 0.015 260);
-  --theme-surface-variant: oklch(83% 0.008 265);
-  --theme-on-surface-variant: oklch(34% 0.02 260);
+  --theme-surface-variant: oklch(86% 0.008 265);
+  --theme-on-surface-variant: oklch(36% 0.02 260);
 
-  --theme-surface-container-lowest: oklch(95% 0.004 265 / 0.82);
-  --theme-surface-container-low: oklch(92% 0.006 265 / 0.78);
-  --theme-surface-container: oklch(90% 0.008 265 / 0.76);
-  --theme-surface-container-high: oklch(87% 0.01 265 / 0.82);
-  --theme-surface-container-highest: oklch(84% 0.012 265 / 0.88);
+  --theme-surface-container-lowest: oklch(97% 0.004 265 / 0.86);
+  --theme-surface-container-low: oklch(94% 0.006 265 / 0.82);
+  --theme-surface-container: oklch(92% 0.008 265 / 0.78);
+  --theme-surface-container-high: oklch(89% 0.01 265 / 0.84);
+  --theme-surface-container-highest: oklch(86% 0.012 265 / 0.88);
 
-  --theme-outline-variant: oklch(72% 0.012 260 / 0.75);
+  --theme-outline-variant: oklch(76% 0.012 260);
   --theme-outline: oklch(50% 0.19 26);
   --theme-accent-stage: oklch(50% 0.19 26);
-  --stage-scrim: linear-gradient(
-    180deg,
-    oklch(88% 0.006 265 / 0.35) 0%,
-    oklch(88% 0.006 265 / 0.55) 50%,
-    oklch(88% 0.006 265 / 0.78) 100%
-  );
 }
 
 /* 4. PÁGINA CONTATO (/contato) — Imagem 607758 (Moebius: Azul Ciano Estrutural & Canyon Âmbar) */
 html[data-theme-stage="607758"] {
   color-scheme: dark;
-  --theme-background: oklch(11% 0.026 230);
+  --theme-background: oklch(11% 0.028 230);
   --theme-on-background: oklch(96% 0.012 85);
-  --theme-surface: oklch(13% 0.03 230);
+  --theme-surface: oklch(14% 0.032 230);
   --theme-on-surface: oklch(96% 0.012 85);
-  --theme-surface-variant: oklch(17% 0.035 230);
-  --theme-on-surface-variant: oklch(76% 0.04 220);
+  --theme-surface-variant: oklch(18% 0.038 230);
+  --theme-on-surface-variant: oklch(72% 0.042 220);
 
-  --theme-surface-container-lowest: oklch(10% 0.025 230 / 0.78);
-  --theme-surface-container-low: oklch(13% 0.03 230 / 0.78);
-  --theme-surface-container: oklch(15% 0.035 230 / 0.76);
-  --theme-surface-container-high: oklch(18% 0.04 230 / 0.82);
-  --theme-surface-container-highest: oklch(21% 0.045 230 / 0.88);
+  --theme-surface-container-lowest: oklch(10% 0.026 230 / 0.82);
+  --theme-surface-container-low: oklch(13% 0.032 230 / 0.8);
+  --theme-surface-container: oklch(15% 0.036 230 / 0.78);
+  --theme-surface-container-high: oklch(18% 0.042 230 / 0.84);
+  --theme-surface-container-highest: oklch(21% 0.046 230 / 0.88);
 
-  --theme-outline-variant: oklch(34% 0.06 225 / 0.65);
-  --theme-outline: oklch(72% 0.13 215);
+  --theme-outline-variant: oklch(30% 0.055 225);
+  --theme-outline: oklch(70% 0.13 215);
   --theme-accent-stage: oklch(74% 0.15 65);
-  --stage-scrim: linear-gradient(
-    180deg,
-    oklch(10% 0.025 230 / 0.52) 0%,
-    oklch(10% 0.025 230 / 0.62) 55%,
-    oklch(10% 0.025 230 / 0.84) 100%
-  );
 }
 
 /* ============================================================================
@@ -222,12 +199,89 @@ body {
   text-decoration-color: var(--color-outline);
 }
 
-/* Superfície em Vidro Fumê Adaptativo à Imagem de Fundo */
+/* ============================================================================
+ * Quadro Fotográfico Split Half-Blur (.split-photo-stage / .split-photo-hero)
+ * ============================================================================ */
+.split-photo-stage,
+.split-photo-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container);
+  transition: border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-photo-stage:hover,
+.split-photo-hero:hover {
+  border-color: var(--color-outline);
+}
+
+.split-photo-sharp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+.split-lens-left,
+.split-lens-right {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+}
+
+@media (max-width: 767px) {
+  .split-lens-left,
+  .split-lens-right {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in oklch, var(--color-background) 62%, transparent) 32%,
+      color-mix(in oklch, var(--color-background) 90%, transparent) 64%,
+      color-mix(in oklch, var(--color-background) 96%, transparent) 100%
+    );
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, rgba(0, 0, 0, 1) 54%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 28%, rgba(0, 0, 0, 1) 54%);
+  }
+}
+
+@media (min-width: 768px) {
+  .split-lens-left {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--color-background) 92%, transparent) 0%,
+      color-mix(in oklch, var(--color-background) 82%, transparent) 45%,
+      color-mix(in oklch, var(--color-background) 34%, transparent) 68%,
+      transparent 88%
+    );
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+    -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+  }
+
+  .split-lens-right {
+    background: linear-gradient(
+      270deg,
+      color-mix(in oklch, var(--color-background) 92%, transparent) 0%,
+      color-mix(in oklch, var(--color-background) 82%, transparent) 45%,
+      color-mix(in oklch, var(--color-background) 34%, transparent) 68%,
+      transparent 88%
+    );
+    mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+    -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.94) 46%, rgba(0, 0, 0, 0.28) 70%, transparent 88%);
+  }
+}
+
+/* Superfície em Vidro Fumê Adaptativo ao Átrio */
 .stage-glass-panel {
   background-color: var(--color-surface-container);
   border: 1px solid var(--color-outline-variant);
-  backdrop-filter: blur(22px) saturate(135%);
-  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  backdrop-filter: blur(24px) saturate(135%);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
   transition:
     border-color var(--duration-ui) var(--ease-ui),
     background-color var(--duration-ui) var(--ease-ui);
