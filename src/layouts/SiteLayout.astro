@@ -44,7 +44,7 @@ const fontStylesheetUrl =
 ---
 
 <!doctype html>
-<html lang="pt-BR" data-theme-stage={stage}>
+<html lang="pt-BR" data-theme-stage={stage} data-sw-url={withBase('/sw.js')}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -328,6 +328,14 @@ const fontStylesheetUrl =
           if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
             closeMobileMenu();
           }
+        });
+      }
+
+      // 4. Registro do Service Worker para Cache Imutável e Navegação Instantânea Offline
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          const swUrl = document.documentElement.getAttribute('data-sw-url') || './sw.js';
+          navigator.serviceWorker.register(swUrl).catch(() => {});
         });
       }
     </script>
