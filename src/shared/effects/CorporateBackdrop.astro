@@ -155,16 +155,32 @@ const activeSet = stageImageMap[stage];
   @media (min-width: 768px) {
     .atrium-layer-soft-focus {
       mask-image: radial-gradient(
-        ellipse 46% 52% at 24% 50%,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(0, 0, 0, 0.35) 55%,
-        transparent 85%
+        ellipse 42% 48% at 20% 45%,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.28) 55%,
+        transparent 82%
       );
       -webkit-mask-image: radial-gradient(
-        ellipse 46% 52% at 24% 50%,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(0, 0, 0, 0.35) 55%,
-        transparent 85%
+        ellipse 42% 48% at 20% 45%,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.28) 55%,
+        transparent 82%
+      );
+    }
+
+    /* Na tela inicial (video), foco restrito ao canto superior esquerdo para dar total destaque à imagem/vídeo */
+    #corporate-backdrop[data-atrium-stage="video"] .atrium-layer-soft-focus {
+      mask-image: radial-gradient(
+        ellipse 32% 36% at 14% 26%,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.2) 55%,
+        transparent 80%
+      );
+      -webkit-mask-image: radial-gradient(
+        ellipse 32% 36% at 14% 26%,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.2) 55%,
+        transparent 80%
       );
     }
 
@@ -173,20 +189,34 @@ const activeSet = stageImageMap[stage];
         /* Proteção suave do cabeçalho */
         linear-gradient(
           180deg,
-          color-mix(in oklch, var(--color-background) 65%, transparent) 0%,
-          transparent 130px
+          color-mix(in oklch, var(--color-background) 60%, transparent) 0%,
+          transparent 120px
         ),
-        /* Foco de leitura à esquerda */
+        /* Foco de leitura discreto à esquerda */
         radial-gradient(
-          ellipse 48% 55% at 24% 50%,
-          color-mix(in oklch, var(--color-background) 64%, transparent) 0%,
-          color-mix(in oklch, var(--color-background) 30%, transparent) 58%,
-          transparent 90%
+          ellipse 44% 50% at 20% 45%,
+          color-mix(in oklch, var(--color-background) 52%, transparent) 0%,
+          color-mix(in oklch, var(--color-background) 22%, transparent) 55%,
+          transparent 85%
         ),
         linear-gradient(
           90deg,
-          color-mix(in oklch, var(--color-background) 56%, transparent) 0%,
-          color-mix(in oklch, var(--color-background) 20%, transparent) 42%,
+          color-mix(in oklch, var(--color-background) 46%, transparent) 0%,
+          color-mix(in oklch, var(--color-background) 14%, transparent) 38%,
+          transparent 68%
+        );
+    }
+
+    #corporate-backdrop[data-atrium-stage="video"] .atrium-vignette {
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in oklch, var(--color-background) 55%, transparent) 0%,
+          transparent 110px
+        ),
+        radial-gradient(
+          ellipse 34% 40% at 14% 26%,
+          color-mix(in oklch, var(--color-background) 48%, transparent) 0%,
           transparent 75%
         );
     }

@@ -95,8 +95,8 @@ const fontStylesheetUrl =
     <!-- Átrio em Tela Cheia com Alta Visibilidade -->
     <CorporateBackdrop stage={stage} />
 
-    <!-- Topo Editorial de Canto a Canto (Equilíbrio e Escala Refinada) -->
-    <header class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-7 sm:px-12 sm:pt-10 lg:px-16 flex items-center justify-between gap-6 shrink-0">
+    <!-- Topo Editorial de Canto a Canto (Mais Próximo das Bordas e Bem Espaçado) -->
+    <header class="relative z-10 w-full max-w-[1680px] mx-auto px-6 pt-6 sm:px-10 sm:pt-9 lg:px-14 flex items-center justify-between gap-6 shrink-0">
       <!-- Marca Discreta no Canto Superior Esquerdo -->
       <a
         href={withBase('/')}
@@ -108,7 +108,7 @@ const fontStylesheetUrl =
       <!-- Menu Minimalista no Canto Superior Direito com Alta Visibilidade -->
       <nav
         aria-label="PÁGINAS"
-        class="flex items-center gap-4 sm:gap-8 lg:gap-10 font-display text-[10px] sm:text-xs"
+        class="flex items-center gap-5 sm:gap-8 lg:gap-11 font-display text-[10px] sm:text-xs"
       >
         {pages.map((p) => {
           const isActive = p.id === currentPage;
@@ -130,20 +130,22 @@ const fontStylesheetUrl =
       </nav>
     </header>
 
-    <!-- Conteúdo Central: Estabilidade Vertical Absoluta (Sem Saltos Entre Páginas) -->
+    <!-- Conteúdo Central com Espaçamento Refinado e Ancoragem por Contexto -->
     <main
       class:list={[
-        'relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex-grow flex flex-col min-w-0',
-        currentPage === 'inicio' || currentPage === 'contato'
-          ? 'justify-center items-start py-12'
-          : 'justify-start pt-8 sm:pt-12 lg:pt-14 pb-14',
+        'relative z-10 w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-14 flex-grow flex flex-col min-w-0',
+        currentPage === 'inicio'
+          ? 'justify-start items-start pt-8 sm:pt-12 lg:pt-14 pb-12'
+          : currentPage === 'contato'
+            ? 'justify-center items-start py-14 sm:py-20'
+            : 'justify-start pt-10 sm:pt-14 lg:pt-16 pb-16 sm:pb-24',
       ]}
     >
       <slot />
     </main>
 
     <!-- Rodapé Minimalista com Alta Visibilidade -->
-    <footer class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 sm:px-12 sm:pb-10 lg:px-16 border-t border-outline-variant/40 pt-5 shrink-0">
+    <footer class="relative z-10 w-full max-w-[1680px] mx-auto px-6 pb-7 sm:px-10 sm:pb-9 lg:px-14 border-t border-outline-variant/35 pt-5 shrink-0">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[10px] sm:text-[11px] text-on-surface-variant">
         <!-- Identificação Pura -->
         <div class="flex items-center gap-3">
