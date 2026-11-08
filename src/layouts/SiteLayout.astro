@@ -129,17 +129,17 @@ const fontStylesheetUrl =
         })}
       </nav>
 
-      <!-- Botão Menu Mobile Editorial (Telas Pequenas < sm) -->
+      <!-- Botão Menu Mobile Editorial (Apenas 2 Barrinhas Conforme Imagem de Referência — Sem Card e Sem Texto) -->
       <button
         type="button"
         id="mobileMenuToggle"
         aria-expanded="false"
         aria-controls="mobileMenuDrawer"
-        aria-label="ABRIR MENU"
-        class="sm:hidden flex items-center gap-2 px-3 py-1.5 border border-outline-variant/60 bg-surface/50 backdrop-blur-md font-mono text-[10px] font-semibold tracking-[0.2em] text-on-surface hover:border-outline transition-colors cursor-pointer"
+        aria-label="MENU DE NAVEGAÇÃO"
+        class="sm:hidden flex flex-col justify-center items-end gap-1.5 p-2 bg-transparent border-0 cursor-pointer group focus-visible:outline-none"
       >
-        <span>MENU</span>
-        <span class="text-xs" aria-hidden="true">☰</span>
+        <span class="block w-6 h-[1.5px] bg-on-surface transition-all duration-300 group-hover:opacity-75"></span>
+        <span class="block w-6 h-[1.5px] bg-on-surface transition-all duration-300 group-hover:opacity-75"></span>
       </button>
     </header>
 
@@ -160,14 +160,13 @@ const fontStylesheetUrl =
           type="button"
           id="mobileMenuClose"
           aria-label="FECHAR MENU"
-          class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant/60 bg-surface/40 font-mono text-[10px] font-semibold tracking-[0.2em] text-on-surface hover:border-outline transition-colors cursor-pointer"
+          class="p-2 bg-transparent border-0 text-on-surface hover:text-accent-stage transition-colors cursor-pointer text-xl leading-none flex items-center justify-center focus-visible:outline-none"
         >
-          <span>FECHAR</span>
-          <span class="text-xs" aria-hidden="true">✕</span>
+          <span aria-hidden="true">✕</span>
         </button>
       </div>
 
-      <!-- Links Principais com Tipografia Editorial Ampla e Alta Visibilidade -->
+      <!-- Links Principais com Tipografia Editorial Ampla e Alta Visibilidade (Sem 'ATIVO') -->
       <nav class="flex flex-col gap-5 py-6 my-auto" aria-label="NAVEGAÇÃO MOBILE">
         {pages.map((p) => {
           const isActive = p.id === currentPage;
@@ -176,16 +175,13 @@ const fontStylesheetUrl =
               href={p.href}
               aria-current={isActive ? 'page' : undefined}
               class:list={[
-                'mobile-nav-link font-display text-2xl font-bold tracking-[0.16em] transition-all py-2 border-b flex items-center justify-between',
+                'mobile-nav-link font-display text-2xl font-bold tracking-[0.16em] transition-all py-2.5 border-b flex items-center justify-between',
                 isActive
-                  ? 'text-accent-stage border-outline pl-2 font-black'
-                  : 'text-on-surface/85 border-outline-variant/20 hover:text-on-surface hover:pl-2',
+                  ? 'text-on-surface border-outline pl-2 font-black'
+                  : 'text-on-surface/50 border-outline-variant/20 hover:text-on-surface hover:pl-2',
               ]}
             >
               <span>{p.label}</span>
-              {isActive && (
-                <span class="font-mono text-[10px] text-accent-stage tracking-widest font-semibold">● ATIVO</span>
-              )}
             </a>
           );
         })}
