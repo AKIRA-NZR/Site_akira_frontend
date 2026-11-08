@@ -46,61 +46,61 @@
 html[data-theme-stage="video"] {
   color-scheme: dark;
   --theme-background: oklch(9% 0.006 260);
-  --theme-on-background: oklch(96% 0.005 260);
+  --theme-on-background: oklch(97% 0.005 260);
   --theme-surface: oklch(12% 0.006 260);
-  --theme-on-surface: oklch(96% 0.005 260);
+  --theme-on-surface: oklch(97% 0.005 260);
   --theme-surface-variant: oklch(16% 0.008 260);
-  --theme-on-surface-variant: oklch(72% 0.01 260);
+  --theme-on-surface-variant: oklch(76% 0.01 260);
 
-  --theme-surface-container-lowest: oklch(9.5% 0.006 260 / 0.72);
-  --theme-surface-container-low: oklch(12.5% 0.006 260 / 0.72);
-  --theme-surface-container: oklch(14% 0.008 260 / 0.68);
-  --theme-surface-container-high: oklch(17% 0.01 260 / 0.76);
-  --theme-surface-container-highest: oklch(20% 0.012 260 / 0.82);
+  --theme-surface-container-lowest: oklch(9.5% 0.006 260 / 0.76);
+  --theme-surface-container-low: oklch(12.5% 0.006 260 / 0.76);
+  --theme-surface-container: oklch(14% 0.008 260 / 0.72);
+  --theme-surface-container-high: oklch(17% 0.01 260 / 0.8);
+  --theme-surface-container-highest: oklch(20% 0.012 260 / 0.86);
 
-  --theme-outline-variant: oklch(26% 0.01 260);
-  --theme-outline: oklch(60% 0.015 260);
-  --theme-accent-stage: oklch(92% 0.01 260);
+  --theme-outline-variant: oklch(30% 0.01 260);
+  --theme-outline: oklch(68% 0.015 260);
+  --theme-accent-stage: oklch(94% 0.01 260);
 }
 
 /* 2. PÁGINA SOBRE (/sobre) — Imagem 902085 (Breu Absoluto & Halftone Carmesim) */
 html[data-theme-stage="902085"] {
   color-scheme: dark;
   --theme-background: oklch(8% 0.012 22);
-  --theme-on-background: oklch(95% 0.008 85);
+  --theme-on-background: oklch(96% 0.008 85);
   --theme-surface: oklch(11% 0.02 22);
-  --theme-on-surface: oklch(95% 0.008 85);
+  --theme-on-surface: oklch(96% 0.008 85);
   --theme-surface-variant: oklch(16% 0.028 22);
-  --theme-on-surface-variant: oklch(72% 0.038 22);
+  --theme-on-surface-variant: oklch(76% 0.038 22);
 
-  --theme-surface-container-lowest: oklch(9% 0.016 22 / 0.74);
-  --theme-surface-container-low: oklch(12% 0.022 22 / 0.72);
-  --theme-surface-container: oklch(14% 0.028 22 / 0.68);
-  --theme-surface-container-high: oklch(17% 0.034 22 / 0.76);
-  --theme-surface-container-highest: oklch(20% 0.04 22 / 0.82);
+  --theme-surface-container-lowest: oklch(9% 0.016 22 / 0.76);
+  --theme-surface-container-low: oklch(12% 0.022 22 / 0.74);
+  --theme-surface-container: oklch(14% 0.028 22 / 0.72);
+  --theme-surface-container-high: oklch(17% 0.034 22 / 0.8);
+  --theme-surface-container-highest: oklch(20% 0.04 22 / 0.86);
 
-  --theme-outline-variant: oklch(28% 0.048 22);
-  --theme-outline: oklch(56% 0.16 24);
-  --theme-accent-stage: oklch(60% 0.19 24);
+  --theme-outline-variant: oklch(32% 0.048 22);
+  --theme-outline: oklch(62% 0.16 24);
+  --theme-accent-stage: oklch(65% 0.19 24);
 }
 
 /* 3. PÁGINA PROJETOS (/projetos) — Imagem 1396090 (AKIRA: Prata Alabastro, Grafite & Vermelho Kaneda) */
 html[data-theme-stage="1396090"] {
   color-scheme: light;
   --theme-background: oklch(91% 0.006 265);
-  --theme-on-background: oklch(13% 0.015 260);
+  --theme-on-background: oklch(11% 0.015 260);
   --theme-surface: oklch(94% 0.005 265);
-  --theme-on-surface: oklch(13% 0.015 260);
+  --theme-on-surface: oklch(11% 0.015 260);
   --theme-surface-variant: oklch(86% 0.008 265);
-  --theme-on-surface-variant: oklch(34% 0.02 260);
+  --theme-on-surface-variant: oklch(30% 0.02 260);
 
-  --theme-surface-container-lowest: oklch(97% 0.004 265 / 0.76);
-  --theme-surface-container-low: oklch(94% 0.006 265 / 0.72);
-  --theme-surface-container: oklch(92% 0.008 265 / 0.68);
-  --theme-surface-container-high: oklch(89% 0.01 265 / 0.76);
-  --theme-surface-container-highest: oklch(86% 0.012 265 / 0.82);
+  --theme-surface-container-lowest: oklch(97% 0.004 265 / 0.82);
+  --theme-surface-container-low: oklch(94% 0.006 265 / 0.78);
+  --theme-surface-container: oklch(92% 0.008 265 / 0.74);
+  --theme-surface-container-high: oklch(89% 0.01 265 / 0.82);
+  --theme-surface-container-highest: oklch(86% 0.012 265 / 0.88);
 
-  --theme-outline-variant: oklch(74% 0.012 260);
+  --theme-outline-variant: oklch(72% 0.012 260);
   --theme-outline: oklch(50% 0.19 26);
   --theme-accent-stage: oklch(50% 0.19 26);
 }
@@ -109,21 +109,21 @@ html[data-theme-stage="1396090"] {
 html[data-theme-stage="607758"] {
   color-scheme: dark;
   --theme-background: oklch(11% 0.028 230);
-  --theme-on-background: oklch(96% 0.012 85);
+  --theme-on-background: oklch(98% 0.008 85);
   --theme-surface: oklch(14% 0.032 230);
-  --theme-on-surface: oklch(96% 0.012 85);
+  --theme-on-surface: oklch(98% 0.008 85);
   --theme-surface-variant: oklch(18% 0.038 230);
-  --theme-on-surface-variant: oklch(74% 0.042 220);
+  --theme-on-surface-variant: oklch(82% 0.032 220);
 
-  --theme-surface-container-lowest: oklch(10% 0.026 230 / 0.74);
-  --theme-surface-container-low: oklch(13% 0.032 230 / 0.8);
-  --theme-surface-container: oklch(15% 0.036 230 / 0.68);
-  --theme-surface-container-high: oklch(18% 0.042 230 / 0.76);
-  --theme-surface-container-highest: oklch(21% 0.046 230 / 0.82);
+  --theme-surface-container-lowest: oklch(10% 0.026 230 / 0.8);
+  --theme-surface-container-low: oklch(13% 0.032 230 / 0.76);
+  --theme-surface-container: oklch(15% 0.036 230 / 0.72);
+  --theme-surface-container-high: oklch(18% 0.042 230 / 0.8);
+  --theme-surface-container-highest: oklch(21% 0.046 230 / 0.86);
 
-  --theme-outline-variant: oklch(30% 0.055 225);
-  --theme-outline: oklch(70% 0.13 215);
-  --theme-accent-stage: oklch(74% 0.15 65);
+  --theme-outline-variant: oklch(36% 0.055 225);
+  --theme-outline: oklch(78% 0.12 215);
+  --theme-accent-stage: oklch(78% 0.15 65);
 }
 
 /* ============================================================================
@@ -151,28 +151,29 @@ body {
     color 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Assinatura de Marca Responsiva */
+/* Marca de Canto Discreta e Elegante */
 .brand-signature {
   font-family: var(--font-brand);
   font-weight: 700;
-  font-size: clamp(1.35rem, 4vw, 2.25rem);
-  letter-spacing: clamp(0.18em, 2.5vw, 0.32em);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: 0.28em;
   line-height: 1;
   text-transform: uppercase;
+  color: var(--color-on-surface);
   transition: opacity var(--duration-ui) var(--ease-ui);
 }
 
 .brand-signature:hover {
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
-/* Títulos Editoriais Fluídos (320px -> 4K sem quebrar palavras) */
+/* Títulos Editoriais Fluídos */
 .headline-serif {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.65rem, 5vw, 3.75rem);
-  letter-spacing: clamp(0.08em, 1.5vw, 0.16em);
-  line-height: 1.12;
+  font-size: clamp(1.65rem, 4.5vw, 3.25rem);
+  letter-spacing: clamp(0.08em, 1.2vw, 0.14em);
+  line-height: 1.15;
   text-transform: uppercase;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -186,7 +187,18 @@ body {
 .headline-serif-secondary {
   display: block;
   color: var(--color-on-surface-variant);
-  opacity: 0.85;
+  opacity: 0.9;
+}
+
+/* Links de Navegação com Alta Visibilidade */
+.nav-link {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1.2vw, 0.78rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.1rem;
+  transition: color var(--duration-ui) var(--ease-ui), border-color var(--duration-ui) var(--ease-ui);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
 /* Links Editoriais Minimalistas */
@@ -211,13 +223,13 @@ body {
 .editorial-link:hover,
 .editorial-link[aria-current="page"] {
   text-decoration-color: var(--color-outline);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* Cards Refatorados — Vidro Arquitetônico Suave, Borda Ultrafina de Precisão */
 .refined-card {
-  background: color-mix(in oklch, var(--color-surface-container) 78%, transparent);
-  border: 1px solid color-mix(in oklch, var(--color-outline-variant) 55%, transparent);
+  background: color-mix(in oklch, var(--color-surface-container) 82%, transparent);
+  border: 1px solid color-mix(in oklch, var(--color-outline-variant) 60%, transparent);
   backdrop-filter: blur(20px) saturate(125%);
   -webkit-backdrop-filter: blur(20px) saturate(125%);
   border-radius: 0.5rem;
@@ -230,28 +242,11 @@ body {
 
 .refined-card:hover {
   border-color: var(--color-outline);
-  background: color-mix(in oklch, var(--color-surface-container-high) 85%, transparent);
+  background: color-mix(in oklch, var(--color-surface-container-high) 88%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .refined-card:hover {
     transform: translateY(-2px);
-  }
-}
-
-/* Lista Suíça com Foco Contextual (Apenas em Dispositivos com Hover Real) */
-.swiss-focus-list .swiss-focus-row {
-  transition:
-    opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .swiss-focus-list:hover .swiss-focus-row:not(:hover) {
-    opacity: 0.25;
-  }
-
-  .swiss-focus-list .swiss-focus-row:hover {
-    opacity: 1;
   }
 }

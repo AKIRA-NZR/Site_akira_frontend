@@ -4,20 +4,20 @@ import { profile } from '../shared/config/profile';
 ---
 
 <SiteLayout title="AKIRA // CONTATO" stage="607758" currentPage="contato">
-  <!-- Canal de Contato Direto Responsivo -->
+  <!-- Canal de Contato Direto com Alta Visibilidade -->
   <section class="w-full max-w-xl space-y-6 sm:space-y-8 min-w-0">
     <div class="space-y-2.5 sm:space-y-3 min-w-0">
       <h1 class="headline-serif">
         <span class="headline-serif-primary">CONTATO.</span>
       </h1>
-      <p class="font-mono text-xs text-on-surface-variant tracking-wider break-words">
+      <p class="font-mono text-xs sm:text-sm text-on-surface/90 tracking-wider break-words font-medium">
         {profile.intro.opportunity}
       </p>
     </div>
 
-    <!-- E-mail Copiável em 1 Clique (Empilhado em Mobile, Lado a Lado em Telas Maiores) -->
+    <!-- E-mail Copiável em 1 Clique com Vidro Nítido e Alto Contraste -->
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 min-w-0">
-      <div class="px-4 sm:px-5 py-3 border border-outline-variant/60 bg-surface-container-lowest font-mono text-xs text-on-surface tracking-wider break-all text-center sm:text-left">
+      <div class="px-5 py-3.5 border border-outline-variant/80 bg-surface-container-low/90 backdrop-blur-md font-mono text-xs sm:text-sm text-on-surface tracking-wider break-all text-center sm:text-left font-semibold">
         AKIRA.ENG@PROTON.ME
       </div>
 
@@ -25,14 +25,14 @@ import { profile } from '../shared/config/profile';
         type="button"
         id="copyEmailBtn"
         data-email="akira.eng@proton.me"
-        class="px-6 py-3 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold tracking-widest cursor-pointer hover:opacity-90 transition-opacity shrink-0 text-center"
+        class="px-6 py-3.5 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold tracking-widest cursor-pointer hover:opacity-90 transition-opacity shrink-0 text-center"
       >
         <span id="copyEmailLabel">COPIAR</span>
       </button>
     </div>
 
-    <!-- Links Sociais Diretos (Alvos de Toque Confortáveis em Mobile) -->
-    <div class="pt-5 sm:pt-6 border-t border-outline-variant/40 flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-xs">
+    <!-- Links Sociais com Alto Contraste -->
+    <div class="pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-xs">
       {profile.socials.map((s) => (
         <a
           href={s.url}

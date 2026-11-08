@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import icon from 'astro-icon';
 
 function voidCacheHeadersPlugin() {
   const applyHeaders = (middlewares) => {
@@ -31,6 +32,7 @@ function voidCacheHeadersPlugin() {
 
 export default defineConfig({
   output: 'static',
+  integrations: [icon()],
   build: {
     inlineStylesheets: 'always',
   },
