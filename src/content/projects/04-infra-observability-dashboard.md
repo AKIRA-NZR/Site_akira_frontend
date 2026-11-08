@@ -1,19 +1,14 @@
 ---
-title: "TELEMETRY MESH CONSOLE"
+title: "CONVERSOR DE DOCUMENTOS"
 type: "fullstack"
-summary: "OBSERVABILIDADE E TRACING EM TEMPO REAL."
-featured: false
+summary: "MOTOR EM PYTHON (DOCX ENGINE STUDIO) PARA AUTOMAÇÃO, PREENCHIMENTO DINÂMICO, AUDITORIA E CONVERSÃO EM LOTE DE DOCUMENTOS DOCX E PDF COM INTERFACE DESKTOP."
+featured: true
 order: 4
 technologies:
-  - name: "ASTRO"
-    version: "5.4"
-  - name: "PROMETHEUS"
-    version: "2.53"
-  - name: "CLICKHOUSE"
-    version: "24.6"
-metrics:
-  throughput: "500K EV/S"
-  latency_p99: "8.5MS"
-  uptime: "99.95%"
-githubUrl: "https://github.com/AKIRA-NZR"
+  - name: "PYTHON"
+  - name: "DOCX ENGINE"
+  - name: "PDF AUTOMATION"
+  - name: "DESKTOP UI"
+githubUrl: "https://github.com/AKIRA-NZR/docx-engine-studio"
+cliCommand: "python main.py"
 ---

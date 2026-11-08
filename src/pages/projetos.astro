@@ -27,17 +27,30 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
                 <span class="text-on-surface-variant tracking-wider uppercase text-[10px] sm:text-[11px] break-words">
                   {data.type}
                 </span>
-                {data.githubUrl && (
-                  <a
-                    href={data.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="editorial-link text-[11px] shrink-0"
-                  >
-                    <span>GITHUB</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                )}
+                <div class="flex items-center gap-3 shrink-0">
+                  {data.liveUrl && (
+                    <a
+                      href={data.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="editorial-link text-[11px]"
+                    >
+                      <span>DEMO</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                  {data.githubUrl && (
+                    <a
+                      href={data.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="editorial-link text-[11px]"
+                    >
+                      <span>GITHUB</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
               </div>
 
               <!-- Título do Projeto Responsivo -->

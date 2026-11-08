@@ -1,21 +1,15 @@
 ---
-title: "FINANCIAL LEDGER ENGINE"
-type: "backend"
-summary: "MOTOR CONTÁBIL ACID COM IDEMPOTÊNCIA."
+title: "OPSFLOW FRONTEND"
+type: "frontend"
+summary: "CENTRAL DE CONTROLE B2B MULTI-TENANT PARA SERVICE DESK E GESTÃO DE SLA EM TEMPO REAL, CONSTRUÍDA COM ARQUITETURA MODULAR EM REACT 19 E TYPESCRIPT."
 featured: true
 order: 3
 technologies:
+  - name: "REACT 19"
   - name: "TYPESCRIPT"
-    version: "5.5"
-  - name: "NODE.JS"
-    version: "22.4"
-  - name: "POSTGRESQL"
-    version: "16.3"
-metrics:
-  throughput: "12K TX/S"
-  latency_p99: "4.2MS"
-  uptime: "99.999%"
-githubUrl: "https://github.com/VoidCube-Tech"
-cliCommand: "npm run worker -- --isolation=serializable"
-cliOutput: "[OK] 0 DRIFT | ACID SERIALIZABLE | 12,400 TX/S"
+  - name: "TAILWIND V4"
+  - name: "VITE"
+  - name: "VITEST"
+githubUrl: "https://github.com/AKIRA-NZR/PSL_opsflow_frontend"
+cliCommand: "npm run dev -- --host"
 ---

@@ -1,21 +1,16 @@
 ---
-title: "DISTRIBUTED EVENT BUS"
+title: "VOID BACKEND (MULTI-TENANT)"
 type: "backend"
-summary: "MENSAGERIA ASSÍNCRONA COM CONSENSO RAFT."
+summary: "PLATAFORMA MULTI-TENANT EM JAVA 21 E SPRING BOOT COM ISOLAMENTO DE DADOS, AUTENTICAÇÃO SESSÃO/CSRF, RBAC, ANALYTICS, AUDITORIA E CONTROLE DE ESTOQUE."
 featured: true
 order: 1
 technologies:
-  - name: "GO"
-    version: "1.23"
-  - name: "KAFKA"
-    version: "3.7"
-  - name: "REDIS"
-    version: "7.2"
-metrics:
-  throughput: "140K MSG/S"
-  latency_p99: "1.8MS"
-  uptime: "99.99%"
-githubUrl: "https://github.com/VoidCube-Tech"
-cliCommand: "go run cmd/node/main.go --shards=8 --raft"
-cliOutput: "[OK] 8 SHARDS ACTIVE | 140,240 MSG/S | P99: 1.84MS"
+  - name: "JAVA 21"
+  - name: "SPRING BOOT"
+  - name: "POSTGRESQL 16"
+  - name: "FLYWAY"
+  - name: "DOCKER"
+  - name: "GRADLE"
+githubUrl: "https://github.com/VoidCube-Tech/VOID-MainBackend"
+cliCommand: "./gradlew bootRun --args=\"--spring.profiles.active=dev\""
 ---

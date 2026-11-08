@@ -18,13 +18,13 @@ import { profile } from '../shared/config/profile';
     <!-- E-mail Copiável em 1 Clique com Vidro Nítido e Alto Contraste -->
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 min-w-0">
       <div class="px-5 py-3.5 border border-outline-variant/80 bg-surface-container-low/90 backdrop-blur-md font-mono text-xs sm:text-sm text-on-surface tracking-wider break-all text-center sm:text-left font-semibold">
-        AKIRA.ENG@PROTON.ME
+        DKAUA0955@GMAIL.COM
       </div>
 
       <button
         type="button"
         id="copyEmailBtn"
-        data-email="akira.eng@proton.me"
+        data-email="dkaua0955@gmail.com"
         class="px-6 py-3.5 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold tracking-widest cursor-pointer hover:opacity-90 transition-opacity shrink-0 text-center"
       >
         <span id="copyEmailLabel">COPIAR</span>
@@ -55,7 +55,7 @@ import { profile } from '../shared/config/profile';
     if (!btn || !label) return;
 
     btn.addEventListener('click', async () => {
-      const email = btn.getAttribute('data-email') || 'akira.eng@proton.me';
+      const email = btn.getAttribute('data-email') || 'dkaua0955@gmail.com';
       try {
         await navigator.clipboard.writeText(email);
         label.textContent = 'COPIADO ✓';
