@@ -1,19 +1,6 @@
-const CACHE_NAME = 'akira-portfolio-v2';
-
-const STATIC_ASSETS = [
-  './',
-  './sobre/',
-  './projetos/',
-  './contato/',
-  './favicon.svg',
-];
+const CACHE_NAME = 'akira-portfolio-v3';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch(() => {});
-    })
-  );
   self.skipWaiting();
 });
 
@@ -38,16 +25,16 @@ self.addEventListener('fetch', (event) => {
   // Não interceptar requisições não-GET
   if (event.request.method !== 'GET') return;
 
-  // 1. Assets estáticos pesados (Imagens, Vídeos, Fontes, Scripts) -> Cache-First
+  // 1. Assets estáticos pesados com hash (Imagens, Vídeos, Fontes, Bundles Vite) -> Cache-First
   if (
     url.pathname.includes('/images/front/') ||
     url.pathname.includes('/videos/') ||
     url.pathname.includes('/_astro/') ||
-    url.hostname.includes('fonts.gstatic.com') ||
     url.pathname.endsWith('.svg') ||
     url.pathname.endsWith('.avif') ||
     url.pathname.endsWith('.webp') ||
-    url.pathname.endsWith('.mp4')
+    url.pathname.endsWith('.mp4') ||
+    url.pathname.endsWith('.woff2')
   ) {
     event.respondWith(
       caches.match(event.request).then((cached) => {
@@ -64,28 +51,24 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. Documentos HTML -> Stale-While-Revalidate (resposta instantânea do cache + atualização em background)
+  // 2. Documentos HTML -> Network-First (sempre busca o conteúdo fresco do servidor; fallback para cache se offline)
   if (event.request.mode === 'navigate' || event.request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
-      caches.match(event.request).then((cached) => {
-        const fetchPromise = fetch(event.request)
-          .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              const clone = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-            }
-            return networkResponse;
-          })
-          .catch(() => cached);
-
-        return cached || fetchPromise;
-      })
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
     );
     return;
   }
 
   // Fallback padrão de rede
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
