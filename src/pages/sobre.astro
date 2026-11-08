@@ -5,38 +5,35 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
-  <div class="space-y-12 sm:space-y-16 min-w-0 max-w-6xl">
-    <!-- Cabeçalho com Espaçamento Amplo e Sem Quebra de Palavras -->
-    <header data-motion-item class="space-y-4 sm:space-y-5 min-w-0">
+  <div class="space-y-8 sm:space-y-10 min-w-0 max-w-5xl">
+    <!-- Cabeçalho com Texto de Apresentação -->
+    <header data-motion-item class="space-y-3.5 min-w-0">
       <h1 class="headline-serif">
         <span class="headline-serif-primary">{profile.about.title}</span>
       </h1>
 
-      <p class="font-mono text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-3xl text-pretty">
+      <p class="font-mono text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-2xl text-pretty">
         {profile.about.description}
       </p>
     </header>
 
-    <!-- Grade de Ferramentas Responsiva com Palavras Inteiras e Spotlight -->
-    <section data-motion-item class="space-y-5 sm:space-y-6 pt-8 sm:pt-10 border-t border-outline-variant/35 min-w-0">
-      <p class="font-mono text-[10px] sm:text-xs text-on-surface-variant tracking-[0.2em]">
+    <!-- Grade com os Ícones Oficiais das Ferramentas -->
+    <section data-motion-item class="space-y-3 pt-4 border-t border-outline-variant/40 min-w-0">
+      <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant tracking-[0.16em] sm:tracking-[0.2em]">
         FERRAMENTAS & AMBIENTE DE TRABALHO
       </p>
 
-      <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-3 pt-1">
         {profile.tools.map((tool) => (
-          <div
-            data-motion-item
-            class="refined-card p-3.5 sm:p-4 flex items-center gap-3 group min-w-0"
-          >
+          <div data-motion-item class="refined-card p-3 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 group min-w-0">
             <div class="text-on-surface-variant group-hover:text-on-surface transition-colors shrink-0">
-              <ToolIcon name={tool.icon} class="h-4 w-4 sm:h-5 sm:w-5" />
+              <ToolIcon name={tool.icon} class="h-4 w-4 sm:h-4.5 sm:w-4.5" />
             </div>
             <div class="min-w-0 flex-1">
-              <div class="font-mono text-[11px] sm:text-xs font-semibold text-on-surface tracking-wider whitespace-nowrap leading-tight">
+              <div class="font-mono text-[11px] sm:text-xs font-semibold text-on-surface tracking-wider leading-tight">
                 {tool.name}
               </div>
-              <div class="font-mono text-[9px] text-on-surface-variant tracking-wider whitespace-nowrap opacity-75 mt-1 leading-tight">
+              <div class="font-mono text-[9px] text-on-surface-variant tracking-wider opacity-75 mt-0.5 leading-tight">
                 {tool.category}
               </div>
             </div>
@@ -45,53 +42,48 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
       </div>
     </section>
 
-    <!-- Pilares de Foco com Moldura de Imagem Vazia (Reservada) -->
-    <section data-motion-item class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-8 sm:pt-10 border-t border-outline-variant/35 min-w-0">
-      <!-- Moldura de Preview Vazia (Reservada) -->
-      <div class="hidden lg:block lg:col-span-5 min-w-0">
+    <!-- Pilares de Foco (4/12 + 8/12 como estava, com quadro reservado vazio) -->
+    <section data-motion-item class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-4 border-t border-outline-variant/40 min-w-0">
+      <div class="hidden lg:block lg:col-span-4 min-w-0">
         <div
           id="swissPreviewContainer"
           aria-hidden="true"
           class="transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
         >
-          <div class="refined-card p-3">
-            <div class="relative aspect-[16/10] w-full border border-dashed border-outline-variant/40 bg-background/20 flex items-center justify-center">
-              <span class="font-mono text-[10px] text-on-surface-variant/40 tracking-[0.22em] whitespace-nowrap">
+          <div class="rounded-none border border-outline-variant bg-surface-container-lowest p-2">
+            <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background/40 border border-dashed border-outline-variant/40 flex items-center justify-center">
+              <span class="font-mono text-[10px] text-on-surface-variant/40 tracking-[0.2em]">
                 ESPAÇO RESERVADO
               </span>
             </div>
-            <div class="mt-3 flex items-center justify-between gap-2 font-mono text-[10px] text-on-surface-variant">
+            <div class="mt-2 flex items-center justify-between gap-2 font-mono text-[10px] text-on-surface-variant">
               <span id="swissPreviewCaption" class="min-w-0">{profile.corePrinciples[0].previewCaption}</span>
-              <span class="text-on-surface font-semibold shrink-0 whitespace-nowrap">ARQUITETURA</span>
+              <span class="text-on-surface font-semibold shrink-0">ARQUITETURA</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Lista dos 4 Pilares Responsiva e Sem Quebra de Palavras -->
-      <div class="lg:col-span-7 min-w-0">
+      <div class="lg:col-span-8 min-w-0">
         <div
           id="swissFocusList"
-          class="swiss-focus-list divide-y divide-outline-variant/40 border-y border-outline-variant/40"
+          class="swiss-focus-list divide-y divide-outline-variant/50 border-y border-outline-variant/50"
         >
           {profile.corePrinciples.map((item, idx) => (
             <article
               data-swiss-row={idx}
               data-caption={item.previewCaption}
               tabindex="0"
-              class="swiss-focus-row group py-5 sm:py-6 flex items-center justify-between gap-4 cursor-default focus-visible:outline-none min-w-0"
+              class="swiss-focus-row group py-4 sm:py-5 flex items-center justify-between gap-4 cursor-default focus-visible:outline-none min-w-0"
             >
-              <div class="space-y-1.5 min-w-0">
-                <h2 class="font-display text-sm sm:text-base lg:text-lg font-bold text-on-surface group-hover:text-accent-stage transition-colors tracking-[0.1em] sm:tracking-[0.15em]">
+              <div class="min-w-0">
+                <h2 class="font-display text-sm sm:text-base font-bold text-on-surface group-hover:text-accent-stage transition-colors tracking-[0.1em] sm:tracking-[0.14em]">
                   {item.title}
                 </h2>
-                <p class="font-mono text-[10px] sm:text-xs text-on-surface-variant tracking-wider">
+                <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant mt-0.5">
                   {item.subtitle}
                 </p>
               </div>
-              <span class="font-mono text-xs text-on-surface-variant/40 group-hover:text-accent-stage group-hover:translate-x-1 transition-all shrink-0" aria-hidden="true">
-                →
-              </span>
             </article>
           ))}
         </div>

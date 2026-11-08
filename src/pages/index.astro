@@ -4,13 +4,13 @@ import { profile } from '../shared/config/profile';
 ---
 
 <SiteLayout title="AKIRA" stage="video" currentPage="inicio">
-  <!-- Apresentação no Centro-Esquerdo com Largura Confortável (Sem Quebrar Palavras) -->
-  <section data-motion-item class="w-full max-w-xl lg:max-w-2xl space-y-4 sm:space-y-5 min-w-0">
+  <!-- Apresentação Pessoal & Boas-Vindas no Centro-Esquerdo -->
+  <section data-motion-item class="w-full max-w-xl space-y-4 sm:space-y-5 min-w-0">
     <h1 class="headline-serif">
       <span class="headline-serif-primary">{profile.intro.welcome}</span>
     </h1>
 
-    <p class="font-mono text-xs sm:text-sm text-on-surface-variant/95 leading-relaxed max-w-xl text-pretty">
+    <p class="font-mono text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-lg text-pretty">
       {profile.intro.bio}
     </p>
   </section>

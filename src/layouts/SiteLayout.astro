@@ -95,8 +95,8 @@ const fontStylesheetUrl =
     <!-- Átrio em Tela Cheia com Alta Visibilidade -->
     <CorporateBackdrop stage={stage} />
 
-    <!-- Topo Editorial Totalmente Responsivo (320px a 4K, Sem Quebra de Palavras) -->
-    <header class="relative z-10 w-full max-w-[1680px] mx-auto px-5 pt-5 sm:px-10 sm:pt-9 lg:px-14 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 shrink-0">
+    <!-- Topo Editorial de Canto a Canto (Equilíbrio e Escala Refinada) -->
+    <header class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-7 sm:px-12 sm:pt-10 lg:px-16 flex items-center justify-between gap-6 shrink-0">
       <!-- Marca Discreta no Canto Superior Esquerdo -->
       <a
         href={withBase('/')}
@@ -105,10 +105,10 @@ const fontStylesheetUrl =
         AKIRA
       </a>
 
-      <!-- Menu Minimalista no Canto Superior Direito Responsivo -->
+      <!-- Menu Minimalista no Canto Superior Direito com Alta Visibilidade -->
       <nav
         aria-label="PÁGINAS"
-        class="flex flex-wrap items-center gap-x-4 gap-y-2 min-[400px]:gap-x-5 sm:gap-x-8 lg:gap-x-11 font-display text-[10px] sm:text-xs"
+        class="flex items-center gap-4 sm:gap-8 lg:gap-10 font-display text-[10px] sm:text-xs"
       >
         {pages.map((p) => {
           const isActive = p.id === currentPage;
@@ -117,7 +117,7 @@ const fontStylesheetUrl =
               href={p.href}
               aria-current={isActive ? 'page' : undefined}
               class:list={[
-                'nav-link whitespace-nowrap tracking-[0.12em] sm:tracking-[0.22em] border-b',
+                'nav-link whitespace-nowrap tracking-[0.16em] sm:tracking-[0.24em] border-b',
                 isActive
                   ? 'text-on-surface border-outline font-bold'
                   : 'text-on-surface/80 border-transparent hover:text-on-surface hover:border-outline-variant',
@@ -130,34 +130,34 @@ const fontStylesheetUrl =
       </nav>
     </header>
 
-    <!-- Conteúdo Central: Início e Contato no Centro-Esquerdo; Sobre e Projetos no Topo -->
+    <!-- Conteúdo Central: Estabilidade Vertical Absoluta (Sem Saltos Entre Páginas) -->
     <main
       class:list={[
-        'relative z-10 w-full max-w-[1680px] mx-auto px-5 sm:px-10 lg:px-14 flex-grow flex flex-col min-w-0',
+        'relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex-grow flex flex-col min-w-0',
         currentPage === 'inicio' || currentPage === 'contato'
-          ? 'justify-center items-start py-10 sm:py-14'
-          : 'justify-start pt-8 sm:pt-14 lg:pt-16 pb-14 sm:pb-24',
+          ? 'justify-center items-start py-12'
+          : 'justify-start pt-8 sm:pt-12 lg:pt-14 pb-14',
       ]}
     >
       <slot />
     </main>
 
-    <!-- Rodapé Minimalista Totalmente Responsivo e Sem Quebra de Palavras -->
-    <footer class="relative z-10 w-full max-w-[1680px] mx-auto px-5 pb-6 sm:px-10 sm:pb-9 lg:px-14 border-t border-outline-variant/35 pt-5 shrink-0">
+    <!-- Rodapé Minimalista com Alta Visibilidade -->
+    <footer class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 sm:px-12 sm:pb-10 lg:px-16 border-t border-outline-variant/40 pt-5 shrink-0">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[10px] sm:text-[11px] text-on-surface-variant">
         <!-- Identificação Pura -->
-        <div class="flex items-center gap-3 shrink-0">
-          <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em] whitespace-nowrap">AKIRA</span>
+        <div class="flex items-center gap-3">
+          <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em]">AKIRA</span>
         </div>
 
         <!-- Links Sociais Diretos com Alta Visibilidade -->
-        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-7 tracking-widest text-on-surface font-semibold">
+        <div class="flex flex-wrap items-center gap-6 tracking-widest text-on-surface font-semibold">
           {profile.socials.map((s) => (
             <a
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="py-1 whitespace-nowrap hover:text-accent-stage transition-colors inline-flex items-center gap-1"
+              class="py-1 whitespace-nowrap hover:text-accent-stage transition-colors"
             >
               <span>{s.label}</span>
               <span class="opacity-80" aria-hidden="true">↗</span>
