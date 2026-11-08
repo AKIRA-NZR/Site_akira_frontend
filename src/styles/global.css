@@ -61,6 +61,7 @@ html[data-theme-stage="video"] {
   --theme-outline-variant: oklch(30% 0.01 260);
   --theme-outline: oklch(68% 0.015 260);
   --theme-accent-stage: oklch(94% 0.01 260);
+  --theme-sheen-beam: oklch(52% 0.045 250);
 }
 
 /* 2. PÁGINA SOBRE (/sobre) — Imagem 902085 (Breu Absoluto & Halftone Carmesim) */
@@ -82,6 +83,7 @@ html[data-theme-stage="902085"] {
   --theme-outline-variant: oklch(32% 0.048 22);
   --theme-outline: oklch(62% 0.16 24);
   --theme-accent-stage: oklch(65% 0.19 24);
+  --theme-sheen-beam: oklch(62% 0.21 24);
 }
 
 /* 3. PÁGINA PROJETOS (/projetos) — Imagem 1396090 (AKIRA: Prata Alabastro, Grafite & Vermelho Kaneda) */
@@ -103,6 +105,7 @@ html[data-theme-stage="1396090"] {
   --theme-outline-variant: oklch(72% 0.012 260);
   --theme-outline: oklch(50% 0.19 26);
   --theme-accent-stage: oklch(50% 0.19 26);
+  --theme-sheen-beam: oklch(55% 0.22 26);
 }
 
 /* 4. PÁGINA CONTATO (/contato) — Imagem 607758 (Moebius: Azul Ciano Estrutural & Canyon Âmbar) */
@@ -124,6 +127,7 @@ html[data-theme-stage="607758"] {
   --theme-outline-variant: oklch(40% 0.055 225);
   --theme-outline: oklch(82% 0.12 215);
   --theme-accent-stage: oklch(80% 0.15 65);
+  --theme-sheen-beam: oklch(78% 0.16 65);
 }
 
 /* ============================================================================
@@ -167,16 +171,7 @@ p {
   text-wrap: pretty;
 }
 
-@keyframes akira-sheen-intro {
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: 0% 0;
-  }
-}
-
-/* Marca AKIRA — Acabamento Metálico Editorial com Feixe de Luz Especular */
+/* Marca AKIRA — Acabamento Metálico Editorial com Feixe de Luz Especular (Ida e Volta no Hover) */
 .brand-signature {
   font-family: var(--font-brand);
   font-weight: 800;
@@ -190,23 +185,28 @@ p {
     110deg,
     var(--color-on-surface) 0%,
     var(--color-on-surface) 38%,
-    var(--color-accent-stage) 50%,
+    var(--theme-sheen-beam) 50%,
     var(--color-on-surface) 62%,
     var(--color-on-surface) 100%
   );
   background-size: 240% 100%;
-  background-position: 0% 0;
+  background-position: 100% 0;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.28));
-  animation: akira-sheen-intro 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
   transition:
-    background-position 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-position 750ms cubic-bezier(0.16, 1, 0.3, 1),
     letter-spacing 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.brand-signature:hover {
+/* Estado após entrada da página (feixe corre para 0%) */
+.brand-signature.is-sheen-ready {
+  background-position: 0% 0;
+}
+
+/* Quando passa o mouse, o feixe volta (corre de volta para 100%) */
+.brand-signature.is-sheen-ready:hover {
   background-position: 100% 0;
   letter-spacing: 0.32em;
 }

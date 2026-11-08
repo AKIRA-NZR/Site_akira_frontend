@@ -167,9 +167,19 @@ const fontStylesheetUrl =
       </div>
     </footer>
 
-    <!-- Motor Global de Interatividade (Motion One + Spotlight + Micro-Tilt) -->
+    <!-- Motor Global de Interatividade (Motion One + Spotlight + Feixe AKIRA) -->
     <script>
       import { animate, stagger } from 'motion';
+
+      // 0. Dispara o feixe de luz no título AKIRA ao entrar em qualquer página (incluindo a inicial)
+      const brandEl = document.querySelector<HTMLElement>('.brand-signature');
+      if (brandEl) {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            brandEl.classList.add('is-sheen-ready');
+          }, 80);
+        });
+      }
 
       // 1. Animação de entrada em cascata (Spring / Smooth Stagger)
       const motionItems = document.querySelectorAll<HTMLElement>('[data-motion-item]');
