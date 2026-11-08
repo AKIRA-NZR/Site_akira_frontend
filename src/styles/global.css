@@ -138,13 +138,17 @@ html {
   color: var(--color-on-background);
   text-transform: uppercase;
   overflow-x: clip;
-  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    scrollbar-gutter: stable;
+  }
 }
 
 body {
   min-height: 100vh;
-  min-height: 100dvh;
   overflow-x: clip;
   background-color: var(--color-background);
   color: var(--color-on-background);
@@ -152,8 +156,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.03em;
   transition:
-    background-color 420ms cubic-bezier(0.16, 1, 0.3, 1),
-    color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Integridade Tipográfica Global — Palavras Inteiras Sem Hifenização ou Quebra Artificial */
@@ -269,42 +273,41 @@ p {
   opacity: 0.95;
 }
 
-/* Cards Refatorados — Vidro Arquitetônico Bem Menos Opaco + Spotlight Interativo */
+/* Cards Refatorados — Alta Performance no Mobile + Vidro Arquitetônico no Desktop */
 .refined-card {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(
-      420px circle at var(--spot-x, -999px) var(--spot-y, -999px),
-      color-mix(in oklch, var(--color-accent-stage) 16%, transparent),
-      transparent 70%
-    ),
-    color-mix(in oklch, var(--color-surface-container) 26%, transparent);
+  background-color: color-mix(in oklch, var(--color-surface-container) 65%, transparent);
   border: 1px solid color-mix(in oklch, var(--color-outline-variant) 42%, transparent);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
   border-radius: 0.5rem;
   min-width: 0;
   transition:
     border-color var(--duration-ui) var(--ease-ui),
-    background-color var(--duration-ui) var(--ease-ui),
-    transform var(--duration-ui) var(--ease-ui),
-    box-shadow var(--duration-ui) var(--ease-ui);
+    background-color var(--duration-ui) var(--ease-ui);
 }
 
-.refined-card:hover {
-  border-color: var(--color-outline);
-  background:
-    radial-gradient(
-      460px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-      color-mix(in oklch, var(--color-accent-stage) 22%, transparent),
-      transparent 70%
-    ),
-    color-mix(in oklch, var(--color-surface-container-high) 36%, transparent);
-}
+@media (min-width: 768px) {
+  .refined-card {
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    background:
+      radial-gradient(
+        420px circle at var(--spot-x, -999px) var(--spot-y, -999px),
+        color-mix(in oklch, var(--color-accent-stage) 16%, transparent),
+        transparent 70%
+      ),
+      color-mix(in oklch, var(--color-surface-container) 26%, transparent);
+  }
 
-@media (hover: hover) and (pointer: fine) {
   .refined-card:hover {
+    border-color: var(--color-outline);
+    background:
+      radial-gradient(
+        460px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+        color-mix(in oklch, var(--color-accent-stage) 22%, transparent),
+        transparent 70%
+      ),
+      color-mix(in oklch, var(--color-surface-container-high) 36%, transparent);
     transform: translateY(-2px);
   }
 }

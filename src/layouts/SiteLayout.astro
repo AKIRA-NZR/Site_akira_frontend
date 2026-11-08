@@ -40,7 +40,7 @@ const pages = [
 ] as const;
 
 const fontStylesheetUrl =
-  'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Cinzel:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap';
 ---
 
 <!doctype html>
@@ -92,18 +92,10 @@ const fontStylesheetUrl =
       </>
     )}
 
-    <!-- Fontes da Referência (Cinzel + Bodoni Moda + Plus Jakarta Sans + JetBrains Mono) -->
+    <!-- Fontes da Referência (Carregamento Síncrono Seguro para Eliminar FOUT e Saltos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href={fontStylesheetUrl}
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href={fontStylesheetUrl} />
-    </noscript>
+    <link rel="stylesheet" href={fontStylesheetUrl} />
 
     <link
       rel="icon"
@@ -111,7 +103,7 @@ const fontStylesheetUrl =
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307080c'/><text x='50' y='68' font-family='serif' font-size='56' font-weight='700' fill='%23f0efe9' text-anchor='middle'>A</text></svg>"
     />
   </head>
-  <body class="min-h-dvh flex flex-col justify-between antialiased selection:bg-on-surface selection:text-background relative">
+  <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-on-surface selection:text-background relative">
     <!-- Átrio em Tela Cheia com Alta Visibilidade -->
     <CorporateBackdrop stage={stage} />
 
@@ -268,11 +260,9 @@ const fontStylesheetUrl =
       </div>
     </footer>
 
-    <!-- Motor Global de Interatividade (Motion One + Spotlight + Feixe AKIRA) -->
+    <!-- Motor Global de Interatividade Leve e Estável (Zero-Lag e Sem Saltos de Layout) -->
     <script>
-      import { animate, stagger } from 'motion';
-
-      // 0. Dispara o feixe de luz no título AKIRA ao entrar em qualquer página (incluindo a inicial)
+      // 0. Dispara o feixe de luz no título AKIRA ao entrar em qualquer página
       const brandEl = document.querySelector<HTMLElement>('.brand-signature');
       if (brandEl) {
         requestAnimationFrame(() => {
@@ -282,31 +272,19 @@ const fontStylesheetUrl =
         });
       }
 
-      // 1. Animação de entrada em cascata (Spring / Smooth Stagger)
-      const motionItems = document.querySelectorAll<HTMLElement>('[data-motion-item]');
-      if (motionItems.length > 0) {
-        animate(
-          motionItems,
-          { opacity: [0, 1], y: [18, 0] },
-          {
-            delay: stagger(0.06),
-            duration: 0.55,
-            easing: [0.16, 1, 0.3, 1],
-          }
-        );
-      }
-
-      // 2. Spotlight Interativo e Micro-Tilt em todos os .refined-card
-      const cards = document.querySelectorAll<HTMLElement>('.refined-card');
-      cards.forEach((card) => {
-        card.addEventListener('pointermove', (e: PointerEvent) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--spot-x', `${x}px`);
-          card.style.setProperty('--spot-y', `${y}px`);
+      // 1. Spotlight Óptico Condicional (Apenas em telas com ponteiro fino/mouse para evitar lag no mobile)
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const cards = document.querySelectorAll<HTMLElement>('.refined-card');
+        cards.forEach((card) => {
+          card.addEventListener('pointermove', (e: PointerEvent) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--spot-x', `${x}px`);
+            card.style.setProperty('--spot-y', `${y}px`);
+          });
         });
-      });
+      }
 
       // 3. Controle Acessível do Menu Mobile (Drawer Cyber-Editorial)
       const menuToggle = document.getElementById('mobileMenuToggle');
