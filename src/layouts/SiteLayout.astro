@@ -38,9 +38,6 @@ const pages = [
   { id: 'projetos', label: 'PROJETOS', href: withBase('/projetos') },
   { id: 'contato', label: 'CONTATO', href: withBase('/contato') },
 ] as const;
-
-const fontStylesheetUrl =
-  'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap';
 ---
 
 <!doctype html>
@@ -54,23 +51,15 @@ const fontStylesheetUrl =
 
     <title>{title}</title>
 
-    <!-- Preload Seletivo da Arte/Vídeo com Alta Prioridade -->
+    <!-- Preload Seletivo Exclusivo da Imagem de Fundo LCP (Zero Render-Blocking) -->
     {stage === 'video' ? (
-      <>
-        <link
-          rel="preload"
-          as="video"
-          href={withBase('/videos/1405430.mp4')}
-          type="video/mp4"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href={activeImage.avif}
-          type="image/avif"
-          fetchpriority="high"
-        />
-      </>
+      <link
+        rel="preload"
+        as="image"
+        href={activeImage.avif}
+        type="image/avif"
+        fetchpriority="high"
+      />
     ) : (
       <>
         <link
@@ -91,11 +80,6 @@ const fontStylesheetUrl =
         />
       </>
     )}
-
-    <!-- Fontes da Referência (Carregamento Síncrono Seguro para Eliminar FOUT e Saltos) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href={fontStylesheetUrl} />
 
     <link
       rel="icon"
