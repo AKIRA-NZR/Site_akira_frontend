@@ -31,7 +31,7 @@ const stageImageMap = {
 
 const activeImage = stageImageMap[stage];
 
-// Navegação Sem Qualquer Numeração
+// Navegação Limpa Sem Numerações
 const pages = [
   { id: 'inicio', label: 'INÍCIO', href: withBase('/') },
   { id: 'sobre', label: 'SOBRE', href: withBase('/sobre') },
@@ -49,7 +49,7 @@ const fontStylesheetUrl =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={stage === '1396090' ? '#d8d8de' : '#07080c'} />
-    <meta name="description" content="AKIRA // ENGENHARIA DE SOFTWARE & ARQUITETURA BACK-END" />
+    <meta name="description" content="AKIRA // DESENVOLVEDOR BACK-END" />
     <meta name="author" content={profile.handle} />
 
     <title>{title}</title>
@@ -131,23 +131,12 @@ const fontStylesheetUrl =
       <slot />
     </main>
 
-    <!-- Rodapé Arquitetônico Aprimorado -->
+    <!-- Rodapé Minimalista Refatorado (Sem Subtítulo Longo, Sem Status Badge) -->
     <footer class="relative z-10 mx-auto w-full max-w-6xl px-6 pb-10 sm:px-12 sm:pb-12 border-t border-outline-variant/40 pt-6">
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 font-mono text-[11px] text-on-surface-variant">
-        <!-- Identificação -->
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-on-surface-variant">
+        <!-- Identificação Pura -->
+        <div class="flex items-center gap-3">
           <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em]">AKIRA</span>
-          <span class="hidden sm:inline opacity-30">/</span>
-          <span class="tracking-wider">ARQUITETURA DE SOFTWARE & BACK-END</span>
-        </div>
-
-        <!-- Indicador de Status Ativo -->
-        <div class="flex items-center gap-2.5">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span class="tracking-widest text-[10px] text-on-surface">DISPONÍVEL PARA PROJETOS</span>
         </div>
 
         <!-- Links Sociais Diretos -->

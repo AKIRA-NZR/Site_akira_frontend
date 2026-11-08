@@ -12,12 +12,6 @@ export interface SocialLink {
   username: string;
 }
 
-export interface MetricHighlight {
-  value: string;
-  unit: string;
-  label: string;
-}
-
 export interface CorePrinciple {
   title: string;
   subtitle: string;
@@ -26,60 +20,65 @@ export interface CorePrinciple {
   previewCaption: string;
 }
 
+export interface DevTool {
+  name: string;
+  category: string;
+  icon: string;
+}
+
 export const profile = {
   handle: 'AKIRA',
-  title: 'ENGENHEIRO DE SOFTWARE & ARQUITETO BACK-END',
-  specialty: 'SISTEMAS DISTRIBUÍDOS & ALTA PERFORMANCE',
+  title: 'DESENVOLVEDOR BACK-END & ARQUITETURA DE SOFTWARE',
   intro: {
-    headline: 'ARQUITETURA DE SOFTWARE & ENGENHARIA BACK-END',
-    bio: 'DESENVOLVO SISTEMAS DISTRIBUÍDOS RESILIENTES, MICROSSERVIÇOS DE BAIXA LATÊNCIA E INFRAESTRUTURAS ESCALÁVEIS. FOCO EM CONCORRÊNCIA, CONTRATOS ESTRITOS E DISPONIBILIDADE CONTÍNUA SOB CARGA CRÍTICA.',
-    location: 'BRASIL // REMOTO GLOBAL',
-    availability: 'DISPONÍVEL PARA PROJETOS & CONSULTORIA',
+    welcome: 'OLÁ, SOU O AKIRA.',
+    bio: 'BEM-VINDO AO MEU ESPAÇO PESSOAL. SOU DESENVOLVEDOR BACK-END E ENTUSIASTA DE ARQUITETURA DE SOFTWARE. AQUI COMPARTILHO MEUS PROJETOS, ESTUDOS E FERRAMENTAS QUE UTILIZO NO DIA A DIA.',
+    opportunity: 'ABERTO A NOVAS OPORTUNIDADES.',
   },
   socials: [
     { label: 'GITHUB', url: 'https://github.com/AKIRA-NZR', username: 'AKIRA-NZR' },
-    { label: 'VOIDCUBE', url: 'https://github.com/VoidCube-Tech', username: 'VOIDCUBE-TECH' },
     { label: 'INSTAGRAM', url: 'https://instagram.com/akir4_nzr', username: 'AKIR4_NZR' },
     { label: 'EMAIL', url: 'mailto:akira.eng@proton.me', username: 'AKIRA.ENG@PROTON.ME' },
   ] satisfies SocialLink[],
+  tools: [
+    { name: 'JAVA', category: 'LINGUAGEM', icon: 'java' },
+    { name: 'SPRING BOOT', category: 'FRAMEWORK', icon: 'springboot' },
+    { name: 'POSTGRESQL', category: 'BANCO DE DADOS', icon: 'postgresql' },
+    { name: 'DOCKER', category: 'CONTAINERS', icon: 'docker' },
+    { name: 'GRADLE', category: 'BUILD TOOL', icon: 'gradle' },
+    { name: 'GIT', category: 'VERSIONAMENTO', icon: 'git' },
+    { name: 'ASTRO', category: 'FRONTEND', icon: 'astro' },
+    { name: 'NOTION', category: 'PRODUTIVIDADE', icon: 'notion' },
+    { name: 'OBSIDIAN', category: 'NOTAS & PKM', icon: 'obsidian' },
+    { name: 'SLACK', category: 'COMUNICAÇÃO', icon: 'slack' },
+  ] satisfies DevTool[],
   corePrinciples: [
     {
-      title: 'CONCORRÊNCIA & I/O',
-      subtitle: 'GO · RUST · TOKIO',
-      spec: 'ZERO LOCK CONTENTION',
+      title: 'ARQUITETURA DE BACK-END',
+      subtitle: 'JAVA · SPRING BOOT · REST',
+      spec: 'CLEAN ARCHITECTURE',
       previewImage: PHOTO_AKIRA_BIKE_SET,
-      previewCaption: 'CONCORRÊNCIA & SHARDING',
+      previewCaption: 'ESTRUTURAÇÃO DE MICROSSERVIÇOS',
     },
     {
-      title: 'CONSENSO & RESILIÊNCIA',
-      subtitle: 'RAFT · IDEMPOTÊNCIA',
-      spec: 'AT-LEAST-ONCE DELIVERY',
-      previewImage: PHOTO_CRIMSON_MOON_SET,
-      previewCaption: 'CONSENSO DISTRIBUÍDO',
-    },
-    {
-      title: 'MODELAGEM & DADOS',
-      subtitle: 'POSTGRESQL · REDIS',
-      spec: 'ACID SERIALIZABLE',
+      title: 'PERSISTÊNCIA & MODELAGEM',
+      subtitle: 'POSTGRESQL · TRANSAÇÕES ACID',
+      spec: 'CONSISTÊNCIA & ÍNDICES',
       previewImage: PHOTO_MOEBIUS_TRUSS_SET,
-      previewCaption: 'TOPOLOGIA DE PERSISTÊNCIA',
+      previewCaption: 'MODELAGEM DE DADOS RELACIONAL',
     },
     {
-      title: 'TELEMETRIA & TRACING',
-      subtitle: 'OTEL · PROMETHEUS',
-      spec: 'W3C TRACE CONTEXT',
+      title: 'CONTÊINERES & AUTOMAÇÃO',
+      subtitle: 'DOCKER · GRADLE · CI/CD',
+      spec: 'BUILD REPRODUTÍVEL',
+      previewImage: PHOTO_CRIMSON_MOON_SET,
+      previewCaption: 'IMPLANTAÇÃO & AMBIENTES',
+    },
+    {
+      title: 'ORGANIZAÇÃO & FLUXO',
+      subtitle: 'NOTION · OBSIDIAN · GIT',
+      spec: 'DOCUMENTAÇÃO COMO CÓDIGO',
       previewImage: PHOTO_CRIMSON_ONI_SET,
-      previewCaption: 'OBSERVABILIDADE DISTRIBUÍDA',
+      previewCaption: 'GESTÃO DE CONHECIMENTO',
     },
   ] satisfies CorePrinciple[],
-  stack: [
-    { name: 'GO', version: '1.23' },
-    { name: 'RUST', version: '1.80' },
-    { name: 'NODE / TS', version: '22.4' },
-    { name: 'POSTGRESQL', version: '16.3' },
-    { name: 'REDIS', version: '7.2' },
-    { name: 'KAFKA', version: '3.7' },
-    { name: 'DOCKER', version: '27.0' },
-    { name: 'KUBERNETES', version: '1.30' },
-  ],
 };

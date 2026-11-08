@@ -4,18 +4,14 @@ import { profile } from '../shared/config/profile';
 ---
 
 <SiteLayout title="AKIRA // CONTATO" stage="607758" currentPage="contato">
-  <!-- Canal de Contato Direto (Sem Numerações, Sem Cards Clunky) -->
+  <!-- Canal de Contato Direto -->
   <section class="max-w-xl space-y-8">
     <div class="space-y-3">
-      <p class="font-mono text-xs text-on-surface-variant tracking-[0.22em]">
-        COMUNICAÇÃO & REDES
-      </p>
       <h1 class="headline-serif text-3xl sm:text-5xl">
-        <span class="headline-serif-primary">CANAL</span>
-        <span class="headline-serif-secondary">DIRETO.</span>
+        <span class="headline-serif-primary">CONTATO.</span>
       </h1>
-      <p class="font-mono text-xs text-on-surface-variant leading-relaxed">
-        DISPONÍVEL PARA ARQUITETURA DE SISTEMAS, CONSULTORIA TÉCNICA E DESENVOLVIMENTO DE PROJETOS DE ALTO DESEMPENHO.
+      <p class="font-mono text-xs text-on-surface-variant tracking-wider">
+        {profile.intro.opportunity}
       </p>
     </div>
 
@@ -35,8 +31,8 @@ import { profile } from '../shared/config/profile';
       </button>
     </div>
 
-    <!-- Links Diretos Sociais -->
-    <div class="pt-6 border-t border-outline-variant/40 flex flex-wrap items-center gap-8 sm:gap-10">
+    <!-- Links Sociais Diretos (Sem VoidCube) -->
+    <div class="pt-6 border-t border-outline-variant/40 flex flex-wrap items-center gap-8 sm:gap-10 font-mono text-xs">
       {profile.socials.map((s) => (
         <a
           href={s.url}

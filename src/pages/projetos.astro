@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { withBase } from '../shared/routing/paths';
 
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -9,25 +8,14 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 
 <SiteLayout title="AKIRA // PROJETOS" stage="1396090" currentPage="projetos">
   <div class="space-y-10">
-    <!-- Cabeçalho da Seção em Serif da Referência -->
-    <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-      <div class="space-y-2">
-        <p class="font-mono text-xs text-on-surface-variant tracking-[0.22em]">
-          ENGENHARIA APLICADA
-        </p>
-        <h1 class="headline-serif text-3xl sm:text-5xl">
-          <span class="headline-serif-primary">PROJETOS</span>
-          <span class="headline-serif-secondary">EM PRODUÇÃO.</span>
-        </h1>
-      </div>
-
-      <a href={withBase('/contato')} class="editorial-link">
-        <span>CONTATO</span>
-        <span aria-hidden="true">→</span>
-      </a>
+    <!-- Cabeçalho Limpo Sem Kicker e Sem Link Redundante de Contato -->
+    <header>
+      <h1 class="headline-serif text-3xl sm:text-5xl">
+        <span class="headline-serif-primary">PROJETOS.</span>
+      </h1>
     </header>
 
-    <!-- Cards Refatorados com Alta Precisão e Vidro Arquitetônico (Sem Numerações) -->
+    <!-- Cards Refatorados (Sem Métricas de Desempenho, Terminal Refatorado, Tecnologias Limpas) -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
       {projects.map((project) => {
         const { data } = project;
@@ -36,7 +24,7 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
             <div class="space-y-4">
               <!-- Topo do Card -->
               <div class="flex items-center justify-between gap-3 font-mono text-xs">
-                <span class="text-on-surface-variant tracking-wider uppercase">{data.type}</span>
+                <span class="text-on-surface-variant tracking-wider uppercase text-[11px]">{data.type}</span>
                 {data.githubUrl && (
                   <a
                     href={data.githubUrl}
@@ -50,52 +38,35 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
                 )}
               </div>
 
-              <!-- Título em Serif da Referência -->
+              <!-- Título do Projeto -->
               <h2 class="font-display text-lg sm:text-2xl font-bold text-on-surface tracking-[0.14em]">
                 {data.title}
               </h2>
 
-              <!-- Resumo Conciso -->
+              <!-- Resumo -->
               <p class="font-mono text-xs text-on-surface-variant leading-relaxed">
                 {data.summary}
               </p>
 
-              <!-- Tecnologias em Chips Elegantes -->
-              <div class="flex flex-wrap gap-1.5 pt-1">
+              <!-- Tecnologias em Chips Refatorados -->
+              <div class="flex flex-wrap gap-2 pt-1">
                 {data.technologies.map((tech) => (
-                  <span class="px-2.5 py-0.5 text-[10px] font-mono border border-outline-variant/60 bg-surface-container-lowest text-on-surface tracking-wider">
-                    {tech.name} {tech.version}
+                  <span class="px-3 py-1 text-[11px] font-mono border border-outline-variant/60 bg-surface-container-lowest text-on-surface tracking-wider">
+                    {tech.name}
                   </span>
                 ))}
               </div>
             </div>
 
-            <!-- Métricas / CLI do Card -->
-            <div class="space-y-3 pt-4 border-t border-outline-variant/40 font-mono text-xs">
-              {data.metrics && (
-                <div class="grid grid-cols-3 gap-2 text-[11px]">
-                  <div>
-                    <span class="text-on-surface-variant block text-[9px] tracking-wider">VAZÃO</span>
-                    <span class="font-bold text-on-surface">{data.metrics.throughput}</span>
-                  </div>
-                  <div>
-                    <span class="text-on-surface-variant block text-[9px] tracking-wider">P99</span>
-                    <span class="font-bold text-on-surface">{data.metrics.latency_p99}</span>
-                  </div>
-                  <div>
-                    <span class="text-on-surface-variant block text-[9px] tracking-wider">SLA</span>
-                    <span class="font-bold text-on-surface">{data.metrics.uptime}</span>
-                  </div>
+            <!-- Terminal Refatorado e Elegante -->
+            {data.cliCommand && (
+              <div class="pt-3 border-t border-outline-variant/40">
+                <div class="flex items-center gap-2 px-3.5 py-2.5 bg-surface-container-lowest border border-outline-variant/60 font-mono text-xs text-on-surface">
+                  <span class="text-on-surface-variant opacity-50 select-none">❯</span>
+                  <code class="truncate">{data.cliCommand}</code>
                 </div>
-              )}
-
-              {data.cliCommand && (
-                <div class="px-3 py-2 bg-surface-container-lowest/80 border border-outline-variant/50 text-[11px] text-on-surface truncate">
-                  <span class="text-on-surface-variant mr-1.5 opacity-60">$</span>
-                  <code>{data.cliCommand}</code>
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </article>
         );
       })}
