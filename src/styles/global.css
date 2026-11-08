@@ -152,16 +152,31 @@ body {
     color 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Marca de Canto Discreta e Elegante com Blend Mode Difference */
+/* Integridade Tipográfica Global — Palavras Inteiras Sem Hifenização ou Quebra Artificial */
+h1, h2, h3, .headline-serif {
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+p {
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+/* Marca de Canto Discreta e Elegante */
 .brand-signature {
   font-family: var(--font-brand);
   font-weight: 700;
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  letter-spacing: 0.28em;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  letter-spacing: 0.26em;
   line-height: 1;
   text-transform: uppercase;
-  color: #f4f4f6;
-  mix-blend-mode: difference;
+  white-space: nowrap;
+  color: var(--color-on-surface);
   transition: opacity var(--duration-ui) var(--ease-ui);
 }
 
@@ -169,23 +184,20 @@ body {
   opacity: 0.75;
 }
 
-/* Títulos Editoriais Fluídos com Blend Mode Difference */
+/* Títulos Editoriais Fluídos */
 .headline-serif {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.65rem, 4.5vw, 3.25rem);
-  letter-spacing: clamp(0.08em, 1.2vw, 0.14em);
+  font-size: clamp(1.6rem, 4.5vw, 3.25rem);
+  letter-spacing: clamp(0.06em, 1.2vw, 0.14em);
   line-height: 1.15;
   text-transform: uppercase;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  color: #f4f4f6;
-  mix-blend-mode: difference;
+  color: var(--color-on-surface);
 }
 
 .headline-serif-primary {
   display: block;
-  color: #f4f4f6;
+  color: var(--color-on-surface);
 }
 
 .headline-serif-secondary {

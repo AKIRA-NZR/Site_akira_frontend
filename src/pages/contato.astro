@@ -10,7 +10,7 @@ import { profile } from '../shared/config/profile';
       <h1 class="headline-serif">
         <span class="headline-serif-primary">CONTATO.</span>
       </h1>
-      <p class="font-mono text-xs sm:text-sm text-on-surface/90 tracking-wider break-words font-medium">
+      <p class="font-mono text-xs sm:text-sm text-on-surface/90 tracking-wider font-medium text-pretty">
         {profile.intro.opportunity}
       </p>
     </div>
@@ -25,20 +25,20 @@ import { profile } from '../shared/config/profile';
         type="button"
         id="copyEmailBtn"
         data-email="dkaua0955@gmail.com"
-        class="px-6 py-3.5 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold tracking-widest cursor-pointer hover:opacity-90 transition-opacity shrink-0 text-center"
+        class="px-6 py-3.5 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold tracking-widest cursor-pointer hover:opacity-90 transition-opacity shrink-0 text-center whitespace-nowrap"
       >
         <span id="copyEmailLabel">COPIAR</span>
       </button>
     </div>
 
     <!-- Links Sociais com Alto Contraste -->
-    <div data-motion-item class="pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-xs">
+    <div data-motion-item class="pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-10 font-mono text-xs">
       {profile.socials.map((s) => (
         <a
           href={s.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="editorial-link py-1"
+          class="editorial-link py-1 whitespace-nowrap"
         >
           <span>{s.label}</span>
           <span aria-hidden="true">↗</span>
