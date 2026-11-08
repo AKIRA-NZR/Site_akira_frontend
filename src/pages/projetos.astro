@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import ToolIcon from '../shared/ui/ToolIcon.astro';
+import InteractiveTerminal from '../shared/ui/InteractiveTerminal.astro';
 
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -9,28 +10,73 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 
 <SiteLayout title="AKIRA // PROJETOS" stage="1396090" currentPage="projetos">
   <div class="space-y-8 sm:space-y-12 min-w-0">
-    <!-- Cabeçalho Limpo Responsivo -->
-    <header>
+    <!-- Cabeçalho com Título Blend-Mode Difference + Filtro Interativo (Motion) -->
+    <header data-motion-item class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 min-w-0">
       <h1 class="headline-serif">
         <span class="headline-serif-primary">PROJETOS.</span>
       </h1>
+
+      <!-- Filtro Interativo por Categoria -->
+      <div class="flex flex-wrap items-center gap-2 font-mono text-[10px] sm:text-[11px]" role="group" aria-label="FILTRAR PROJETOS">
+        <button
+          type="button"
+          data-project-filter="all"
+          class="px-3 py-1.5 border border-[#b91c1c] bg-[#b91c1c] text-white font-semibold tracking-widest cursor-pointer transition-colors"
+        >
+          TODOS
+        </button>
+        <button
+          type="button"
+          data-project-filter="backend"
+          class="px-3 py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors"
+        >
+          BACKEND
+        </button>
+        <button
+          type="button"
+          data-project-filter="frontend"
+          class="px-3 py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors"
+        >
+          FRONTEND
+        </button>
+        <button
+          type="button"
+          data-project-filter="fullstack"
+          class="px-3 py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors"
+        >
+          FULLSTACK
+        </button>
+      </div>
     </header>
 
-    <!-- Cards Menos Opacos (Mais Transparentes), Sem Caixa no Tipo e Sem Terminal -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 min-w-0">
+    <!-- Cards Menos Opacos (Mais Transparentes), Sem Bolinhas e Com Interatividade -->
+    <section id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 min-w-0">
       {projects.map((project) => {
         const { data } = project;
         return (
-          <article class="refined-card p-6 sm:p-8 lg:p-9 flex flex-col justify-between gap-6 min-w-0">
+          <article
+            data-motion-item
+            data-project-card
+            data-project-type={data.type}
+            class="refined-card p-6 sm:p-8 lg:p-9 flex flex-col justify-between gap-6 min-w-0"
+          >
             <div class="space-y-4 sm:space-y-5 min-w-0">
-              <!-- Topo do Card: Categoria Limpa (Sem Caixa/Card) + Links Diretos -->
+              <!-- Topo do Card: Categoria Limpa Sem Caixa e Sem Bolinha + Links Diretos -->
               <div class="flex items-center justify-between gap-4 font-mono text-xs min-w-0">
-                <span class="inline-flex items-center gap-2 text-[#991b1b] font-semibold tracking-[0.22em] uppercase text-[10px] sm:text-[11px] break-words">
-                  <span class="h-1.5 w-1.5 rounded-full bg-[#b91c1c] shrink-0" aria-hidden="true"></span>
-                  <span>{data.type}</span>
+                <span class="text-[#991b1b] font-bold tracking-[0.22em] uppercase text-[10px] sm:text-[11px] break-words">
+                  {data.type}
                 </span>
 
                 <div class="flex items-center gap-4 shrink-0">
+                  {data.cliCommand && (
+                    <button
+                      type="button"
+                      data-run-project-cmd={data.cliCommand}
+                      class="font-mono text-[10px] sm:text-[11px] font-bold text-[#991b1b] hover:text-[#b91c1c] tracking-widest cursor-pointer underline underline-offset-4 decoration-[#b91c1c]/50 hover:decoration-[#b91c1c]"
+                    >
+                      ❯ TERMINAL
+                    </button>
+                  )}
                   {data.liveUrl && (
                     <a
                       href={data.liveUrl}
@@ -82,5 +128,67 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
         );
       })}
     </section>
+
+    <!-- Console Interativo Real (Xterm.js) para Testar os Projetos -->
+    <section id="projectsTerminalSection" data-motion-item class="pt-4 min-w-0">
+      <InteractiveTerminal mode="projetos" />
+    </section>
   </div>
 </SiteLayout>
+
+<script>
+  import { animate } from 'motion';
+
+  // Filtro Interativo de Projetos com Animação Motion
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-project-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-project-filter') || 'all';
+
+      filterBtns.forEach((b) => {
+        const isCurrent = b === btn;
+        b.classList.toggle('bg-[#b91c1c]', isCurrent);
+        b.classList.toggle('text-white', isCurrent);
+        b.classList.toggle('border-[#b91c1c]', isCurrent);
+        b.classList.toggle('bg-transparent', !isCurrent);
+        b.classList.toggle('text-on-surface', !isCurrent);
+        b.classList.toggle('border-outline-variant/50', !isCurrent);
+      });
+
+      const visibleCards: HTMLElement[] = [];
+      cards.forEach((card) => {
+        const type = card.getAttribute('data-project-type');
+        const show = filter === 'all' || type === filter;
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCards.push(card);
+      });
+
+      if (visibleCards.length > 0) {
+        animate(
+          visibleCards,
+          { opacity: [0, 1], scale: [0.97, 1], y: [10, 0] },
+          { duration: 0.35, easing: [0.16, 1, 0.3, 1] }
+        );
+      }
+    });
+  });
+
+  // Botão "❯ TERMINAL" em cada card dispara o comando real no Xterm.js
+  const runBtns = document.querySelectorAll<HTMLButtonElement>('[data-run-project-cmd]');
+  const termSection = document.getElementById('projectsTerminalSection');
+
+  runBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cmd = btn.getAttribute('data-run-project-cmd');
+      if (!cmd) return;
+      termSection?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      window.dispatchEvent(
+        new CustomEvent('akira:terminal-exec', {
+          detail: { cmd },
+        })
+      );
+    });
+  });
+</script>

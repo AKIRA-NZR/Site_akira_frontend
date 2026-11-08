@@ -168,19 +168,19 @@ const activeSet = stageImageMap[stage];
       );
     }
 
-    /* Na tela inicial (video), foco restrito ao canto superior esquerdo para dar total destaque à imagem/vídeo */
+    /* Na tela inicial (video), foco restrito ao centro-esquerdo para dar total destaque à imagem/vídeo */
     #corporate-backdrop[data-atrium-stage="video"] .atrium-layer-soft-focus {
       mask-image: radial-gradient(
-        ellipse 32% 36% at 14% 26%,
-        rgba(0, 0, 0, 0.65) 0%,
-        rgba(0, 0, 0, 0.2) 55%,
-        transparent 80%
+        ellipse 30% 38% at 15% 50%,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.15) 55%,
+        transparent 78%
       );
       -webkit-mask-image: radial-gradient(
-        ellipse 32% 36% at 14% 26%,
-        rgba(0, 0, 0, 0.65) 0%,
-        rgba(0, 0, 0, 0.2) 55%,
-        transparent 80%
+        ellipse 30% 38% at 15% 50%,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.15) 55%,
+        transparent 78%
       );
     }
 
@@ -211,13 +211,13 @@ const activeSet = stageImageMap[stage];
       background:
         linear-gradient(
           180deg,
-          color-mix(in oklch, var(--color-background) 55%, transparent) 0%,
-          transparent 110px
+          color-mix(in oklch, var(--color-background) 45%, transparent) 0%,
+          transparent 100px
         ),
         radial-gradient(
-          ellipse 34% 40% at 14% 26%,
-          color-mix(in oklch, var(--color-background) 48%, transparent) 0%,
-          transparent 75%
+          ellipse 32% 40% at 15% 50%,
+          color-mix(in oklch, var(--color-background) 35%, transparent) 0%,
+          transparent 72%
         );
     }
   }

@@ -152,7 +152,7 @@ body {
     color 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Marca de Canto Discreta e Elegante */
+/* Marca de Canto Discreta e Elegante com Blend Mode Difference */
 .brand-signature {
   font-family: var(--font-brand);
   font-weight: 700;
@@ -160,7 +160,8 @@ body {
   letter-spacing: 0.28em;
   line-height: 1;
   text-transform: uppercase;
-  color: var(--color-on-surface);
+  color: #f4f4f6;
+  mix-blend-mode: difference;
   transition: opacity var(--duration-ui) var(--ease-ui);
 }
 
@@ -168,7 +169,7 @@ body {
   opacity: 0.75;
 }
 
-/* Títulos Editoriais Fluídos */
+/* Títulos Editoriais Fluídos com Blend Mode Difference */
 .headline-serif {
   font-family: var(--font-display);
   font-weight: 700;
@@ -178,11 +179,13 @@ body {
   text-transform: uppercase;
   overflow-wrap: break-word;
   word-break: break-word;
+  color: #f4f4f6;
+  mix-blend-mode: difference;
 }
 
 .headline-serif-primary {
   display: block;
-  color: var(--color-on-surface);
+  color: #f4f4f6;
 }
 
 .headline-serif-secondary {
@@ -227,9 +230,17 @@ body {
   opacity: 0.95;
 }
 
-/* Cards Refatorados — Vidro Arquitetônico Bem Menos Opaco (Mais Transparente), Borda Ultrafina */
+/* Cards Refatorados — Vidro Arquitetônico Bem Menos Opaco + Spotlight Interativo */
 .refined-card {
-  background: color-mix(in oklch, var(--color-surface-container) 26%, transparent);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      420px circle at var(--spot-x, -999px) var(--spot-y, -999px),
+      color-mix(in oklch, var(--color-accent-stage) 16%, transparent),
+      transparent 70%
+    ),
+    color-mix(in oklch, var(--color-surface-container) 26%, transparent);
   border: 1px solid color-mix(in oklch, var(--color-outline-variant) 42%, transparent);
   backdrop-filter: blur(8px) saturate(120%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
@@ -238,12 +249,19 @@ body {
   transition:
     border-color var(--duration-ui) var(--ease-ui),
     background-color var(--duration-ui) var(--ease-ui),
-    transform var(--duration-ui) var(--ease-ui);
+    transform var(--duration-ui) var(--ease-ui),
+    box-shadow var(--duration-ui) var(--ease-ui);
 }
 
 .refined-card:hover {
   border-color: var(--color-outline);
-  background: color-mix(in oklch, var(--color-surface-container-high) 38%, transparent);
+  background:
+    radial-gradient(
+      460px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      color-mix(in oklch, var(--color-accent-stage) 22%, transparent),
+      transparent 70%
+    ),
+    color-mix(in oklch, var(--color-surface-container-high) 36%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {

@@ -2,12 +2,13 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { profile } from '../shared/config/profile';
 import ToolIcon from '../shared/ui/ToolIcon.astro';
+import InteractiveTerminal from '../shared/ui/InteractiveTerminal.astro';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
   <div class="space-y-12 sm:space-y-16 min-w-0 max-w-6xl">
-    <!-- Cabeçalho com Espaçamento Amplo e Leitura Confortável -->
-    <header class="space-y-4 sm:space-y-5 min-w-0">
+    <!-- Cabeçalho com Espaçamento Amplo e Blend-Mode Difference no Título -->
+    <header data-motion-item class="space-y-4 sm:space-y-5 min-w-0">
       <h1 class="headline-serif">
         <span class="headline-serif-primary">{profile.about.title}</span>
       </h1>
@@ -17,15 +18,18 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
       </p>
     </header>
 
-    <!-- Grade de Ferramentas com Mais Respiro -->
-    <section class="space-y-5 sm:space-y-6 pt-8 sm:pt-10 border-t border-outline-variant/35 min-w-0">
+    <!-- Grade de Ferramentas com Interatividade Motion & Spotlight -->
+    <section data-motion-item class="space-y-5 sm:space-y-6 pt-8 sm:pt-10 border-t border-outline-variant/35 min-w-0">
       <p class="font-mono text-[10px] sm:text-xs text-on-surface-variant tracking-[0.2em]">
         FERRAMENTAS & AMBIENTE DE TRABALHO
       </p>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
         {profile.tools.map((tool) => (
-          <div class="refined-card p-3.5 sm:p-4 flex items-center gap-3 group min-w-0">
+          <div
+            data-motion-item
+            class="refined-card p-3.5 sm:p-4 flex items-center gap-3 group min-w-0"
+          >
             <div class="text-on-surface-variant group-hover:text-on-surface transition-colors shrink-0">
               <ToolIcon name={tool.icon} class="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
@@ -42,32 +46,15 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
       </div>
     </section>
 
-    <!-- Pilares de Foco com Espaço de Imagem Vazio por Enquanto e Melhor Espaçamento -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-8 sm:pt-10 border-t border-outline-variant/35 min-w-0">
-      <!-- Moldura de Preview Vazia (Reservada) -->
-      <div class="hidden lg:block lg:col-span-5 min-w-0">
-        <div
-          id="swissPreviewContainer"
-          aria-hidden="true"
-          class="transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        >
-          <div class="refined-card p-3">
-            <!-- Espaço da Imagem Vazio por Enquanto -->
-            <div class="relative aspect-[16/10] w-full border border-dashed border-outline-variant/40 bg-background/20 flex items-center justify-center">
-              <span class="font-mono text-[10px] text-on-surface-variant/40 tracking-[0.22em]">
-                ESPAÇO RESERVADO
-              </span>
-            </div>
-            <div class="mt-3 flex items-center justify-between gap-2 font-mono text-[10px] text-on-surface-variant">
-              <span id="swissPreviewCaption" class="min-w-0 break-words">{profile.corePrinciples[0].previewCaption}</span>
-              <span class="text-on-surface font-semibold shrink-0">ARQUITETURA</span>
-            </div>
-          </div>
-        </div>
+    <!-- Pilares de Foco Integrados ao Terminal Real Xterm.js -->
+    <section data-motion-item class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-8 sm:pt-10 border-t border-outline-variant/35 min-w-0">
+      <!-- Terminal Interativo Real (Xterm.js) -->
+      <div class="lg:col-span-6 min-w-0">
+        <InteractiveTerminal mode="sobre" />
       </div>
 
-      <!-- Lista dos 4 Pilares com Mais Respiro Vertical -->
-      <div class="lg:col-span-7 min-w-0">
+      <!-- Lista dos 4 Pilares (Passar o mouse ou clicar executa comando real no Terminal) -->
+      <div class="lg:col-span-6 min-w-0">
         <div
           id="swissFocusList"
           class="swiss-focus-list divide-y divide-outline-variant/40 border-y border-outline-variant/40"
@@ -75,9 +62,8 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
           {profile.corePrinciples.map((item, idx) => (
             <article
               data-swiss-row={idx}
-              data-caption={item.previewCaption}
               tabindex="0"
-              class="swiss-focus-row group py-5 sm:py-6 flex items-center justify-between gap-4 cursor-default focus-visible:outline-none min-w-0"
+              class="swiss-focus-row group py-5 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus-visible:outline-none min-w-0"
             >
               <div class="space-y-1.5 min-w-0">
                 <h2 class="font-display text-sm sm:text-base lg:text-lg font-bold text-on-surface group-hover:text-accent-stage transition-colors tracking-[0.12em] sm:tracking-[0.16em] break-words">
@@ -88,7 +74,7 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
                 </p>
               </div>
               <span class="font-mono text-xs text-on-surface-variant/40 group-hover:text-accent-stage group-hover:translate-x-1 transition-all shrink-0" aria-hidden="true">
-                →
+                ❯
               </span>
             </article>
           ))}
@@ -101,18 +87,27 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
 <script is:inline>
   (() => {
     const list = document.getElementById('swissFocusList');
-    const captionEl = document.getElementById('swissPreviewCaption');
     if (!list) return;
 
     const rows = list.querySelectorAll('[data-swiss-row]');
+    let lastTriggered = -1;
 
     rows.forEach((row) => {
-      const caption = row.getAttribute('data-caption');
-      const updateCaption = () => {
-        if (captionEl && caption) captionEl.textContent = caption;
+      const idx = Number(row.getAttribute('data-swiss-row'));
+      const triggerPillar = () => {
+        if (lastTriggered === idx) return;
+        lastTriggered = idx;
+        window.dispatchEvent(
+          new CustomEvent('akira:terminal-exec', {
+            detail: { cmd: `pillar ${idx}` },
+          })
+        );
       };
-      row.addEventListener('mouseenter', updateCaption);
-      row.addEventListener('focus', updateCaption);
+      row.addEventListener('mouseenter', triggerPillar);
+      row.addEventListener('click', () => {
+        lastTriggered = -1;
+        triggerPillar();
+      });
     });
   })();
 </script>

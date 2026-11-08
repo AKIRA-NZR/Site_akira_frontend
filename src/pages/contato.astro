@@ -4,9 +4,9 @@ import { profile } from '../shared/config/profile';
 ---
 
 <SiteLayout title="AKIRA // CONTATO" stage="607758" currentPage="contato">
-  <!-- Canal de Contato Direto com Alta Visibilidade -->
+  <!-- Canal de Contato Direto com Alta Visibilidade e Interatividade Motion -->
   <section class="w-full max-w-xl space-y-6 sm:space-y-8 min-w-0">
-    <div class="space-y-2.5 sm:space-y-3 min-w-0">
+    <div data-motion-item class="space-y-2.5 sm:space-y-3 min-w-0">
       <h1 class="headline-serif">
         <span class="headline-serif-primary">CONTATO.</span>
       </h1>
@@ -15,9 +15,9 @@ import { profile } from '../shared/config/profile';
       </p>
     </div>
 
-    <!-- E-mail Copiável em 1 Clique com Vidro Nítido e Alto Contraste -->
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 min-w-0">
-      <div class="px-5 py-3.5 border border-outline-variant/80 bg-surface-container-low/90 backdrop-blur-md font-mono text-xs sm:text-sm text-on-surface tracking-wider break-all text-center sm:text-left font-semibold">
+    <!-- E-mail Copiável em 1 Clique com Vidro Menos Opaco e Spotlight -->
+    <div data-motion-item class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 min-w-0">
+      <div class="refined-card px-5 py-3.5 font-mono text-xs sm:text-sm text-on-surface tracking-wider break-all text-center sm:text-left font-semibold">
         DKAUA0955@GMAIL.COM
       </div>
 
@@ -32,7 +32,7 @@ import { profile } from '../shared/config/profile';
     </div>
 
     <!-- Links Sociais com Alto Contraste -->
-    <div class="pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-xs">
+    <div data-motion-item class="pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-xs">
       {profile.socials.map((s) => (
         <a
           href={s.url}

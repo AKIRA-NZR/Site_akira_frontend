@@ -4,13 +4,13 @@ import { profile } from '../shared/config/profile';
 ---
 
 <SiteLayout title="AKIRA" stage="video" currentPage="inicio">
-  <!-- Apresentação Compacta no Canto Superior Esquerdo (Máximo Destaque para a Arte Central) -->
-  <section class="w-full max-w-sm sm:max-w-md space-y-3 sm:space-y-4 min-w-0">
-    <h1 class="font-display text-xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-[0.12em] leading-tight">
-      {profile.intro.welcome}
+  <!-- Apresentação no Centro-Esquerdo com Blend-Mode Difference no Título -->
+  <section class="w-full max-w-sm sm:max-w-md space-y-3.5 sm:space-y-4 min-w-0">
+    <h1 class="headline-serif">
+      <span class="headline-serif-primary">{profile.intro.welcome}</span>
     </h1>
 
-    <p class="font-mono text-[11px] sm:text-xs text-on-surface-variant/90 leading-relaxed break-words">
+    <p class="font-mono text-[11px] sm:text-xs text-on-surface-variant/95 leading-relaxed break-words">
       {profile.intro.bio}
     </p>
   </section>
