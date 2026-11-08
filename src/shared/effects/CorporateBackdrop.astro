@@ -49,8 +49,8 @@ const activeSet = stageImageMap[stage];
         disablepictureinpicture
         disableremoteplayback
         poster={activeSet.avif}
-        class="atrium-media-sharp absolute inset-0 h-full w-full object-cover object-center"
-        style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
+        class="atrium-media-sharp atrium-video-stage absolute inset-0 h-full w-full object-cover"
+
       >
         <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
       </video>
@@ -112,6 +112,28 @@ const activeSet = stageImageMap[stage];
   .atrium-media-soft {
     filter: blur(7px) saturate(1.02) contrast(1.04);
     transform: none;
+  }
+
+  /* Mobile (Desloca o androide para a base, liberando a metade superior para o texto) */
+  @media (max-width: 767px) {
+    .atrium-video-stage {
+      transform: translateY(12%) scale(1.12);
+      transform-origin: center bottom;
+    }
+  }
+
+  /* Tablet (Enquadra o androide no lado direito, liberando o lado esquerdo) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .atrium-video-stage {
+      object-position: 25% 50%;
+    }
+  }
+
+  /* Desktop amplo */
+  @media (min-width: 1025px) {
+    .atrium-video-stage {
+      object-position: 50% 50%;
+    }
   }
 
   /* Mobile */
