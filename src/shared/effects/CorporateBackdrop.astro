@@ -114,11 +114,10 @@ const activeSet = stageImageMap[stage];
     transform: none;
   }
 
-  /* Mobile (Desloca o androide para a base, liberando a metade superior para o texto) */
+  /* Mobile (Escala natural centralizada) */
   @media (max-width: 767px) {
     .atrium-video-stage {
-      transform: translateY(12%) scale(1.12);
-      transform-origin: center bottom;
+      object-position: 50% 50%;
     }
   }
 
@@ -155,12 +154,18 @@ const activeSet = stageImageMap[stage];
 
     .atrium-vignette {
       background:
+        radial-gradient(
+          ellipse 85% 65% at 50% 50%,
+          color-mix(in oklch, var(--color-background) 72%, transparent) 0%,
+          color-mix(in oklch, var(--color-background) 38%, transparent) 55%,
+          transparent 90%
+        ),
         linear-gradient(
           180deg,
-          color-mix(in oklch, var(--color-background) 72%, transparent) 0%,
-          color-mix(in oklch, var(--color-background) 48%, transparent) 25%,
-          color-mix(in oklch, var(--color-background) 40%, transparent) 60%,
-          color-mix(in oklch, var(--color-background) 72%, transparent) 100%
+          color-mix(in oklch, var(--color-background) 65%, transparent) 0%,
+          transparent 100px,
+          transparent calc(100% - 100px),
+          color-mix(in oklch, var(--color-background) 70%, transparent) 100%
         );
     }
   }
