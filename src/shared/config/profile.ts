@@ -41,7 +41,7 @@ export const profile = {
   },
   socials: [
     { label: 'GITHUB', url: 'https://github.com/AKIRA-NZR', username: 'AKIRA-NZR' },
-    { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/deyvid-alves-774a94246/', username: 'DEYVID-ALVES' },
+    { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/deyvid-alves-774a94246/', username: 'AKIRA' },
     { label: 'INSTAGRAM', url: 'https://instagram.com/akir4_nzr', username: 'AKIR4_NZR' },
     { label: 'EMAIL', url: 'mailto:dkaua0955@gmail.com', username: 'DKAUA0955@GMAIL.COM' },
   ] satisfies SocialLink[],
