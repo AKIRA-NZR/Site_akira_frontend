@@ -130,8 +130,15 @@ const fontStylesheetUrl =
       </nav>
     </header>
 
-    <!-- Conteúdo Central Balanceado -->
-    <main class="relative z-10 w-full max-w-7xl mx-auto px-6 py-10 sm:px-12 sm:py-14 lg:px-16 flex-grow flex flex-col justify-center min-w-0">
+    <!-- Conteúdo Central: na Home fica posicionado mais ao topo/esquerda liberando o centro da arte -->
+    <main
+      class:list={[
+        'relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex-grow flex flex-col min-w-0',
+        currentPage === 'inicio'
+          ? 'justify-start pt-8 sm:pt-12 lg:pt-16 pb-12'
+          : 'justify-center py-10 sm:py-14 lg:py-16',
+      ]}
+    >
       <slot />
     </main>
 

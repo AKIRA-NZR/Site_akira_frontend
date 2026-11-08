@@ -15,7 +15,6 @@ export interface SocialLink {
 export interface CorePrinciple {
   title: string;
   subtitle: string;
-  spec: string;
   previewImage: ResponsiveImageSet;
   previewCaption: string;
 }
@@ -33,6 +32,10 @@ export const profile = {
     welcome: 'OLÁ, SOU O AKIRA.',
     bio: 'BEM-VINDO AO MEU ESPAÇO PESSOAL. SOU DESENVOLVEDOR BACK-END E ENTUSIASTA DE ARQUITETURA DE SOFTWARE. AQUI COMPARTILHO MEUS PROJETOS, ESTUDOS E FERRAMENTAS QUE UTILIZO NO DIA A DIA.',
     opportunity: 'ABERTO A NOVAS OPORTUNIDADES.',
+  },
+  about: {
+    title: 'SOBRE.',
+    description: 'DESENVOLVEDOR BACK-END FOCADO NA CONSTRUÇÃO DE SERVIÇOS EFICIENTES, APIS BEM ESTRUTURADAS E INTEGRAÇÕES CONFIÁVEIS. DEDICADO AO APRENDIZADO CONTÍNUO DE ENGENHARIA DE SOFTWARE, ARQUITETURA LIMPA E BOAS PRÁTICAS.',
   },
   socials: [
     { label: 'GITHUB', url: 'https://github.com/AKIRA-NZR', username: 'AKIRA-NZR' },
@@ -55,28 +58,24 @@ export const profile = {
     {
       title: 'ARQUITETURA DE BACK-END',
       subtitle: 'JAVA · SPRING BOOT · REST',
-      spec: 'CLEAN ARCHITECTURE',
       previewImage: PHOTO_AKIRA_BIKE_SET,
       previewCaption: 'ESTRUTURAÇÃO DE MICROSSERVIÇOS',
     },
     {
       title: 'PERSISTÊNCIA & MODELAGEM',
       subtitle: 'POSTGRESQL · TRANSAÇÕES ACID',
-      spec: 'CONSISTÊNCIA & ÍNDICES',
       previewImage: PHOTO_MOEBIUS_TRUSS_SET,
       previewCaption: 'MODELAGEM DE DADOS RELACIONAL',
     },
     {
       title: 'CONTÊINERES & AUTOMAÇÃO',
       subtitle: 'DOCKER · GRADLE · CI/CD',
-      spec: 'BUILD REPRODUTÍVEL',
       previewImage: PHOTO_CRIMSON_MOON_SET,
       previewCaption: 'IMPLANTAÇÃO & AMBIENTES',
     },
     {
       title: 'ORGANIZAÇÃO & FLUXO',
       subtitle: 'NOTION · OBSIDIAN · GIT',
-      spec: 'DOCUMENTAÇÃO COMO CÓDIGO',
       previewImage: PHOTO_CRIMSON_ONI_SET,
       previewCaption: 'GESTÃO DE CONHECIMENTO',
     },

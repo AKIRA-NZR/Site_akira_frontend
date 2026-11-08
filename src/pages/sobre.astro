@@ -1,33 +1,34 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { profile } from '../shared/config/profile';
+import ResponsivePicture from '../shared/ui/ResponsivePicture.astro';
 import ToolIcon from '../shared/ui/ToolIcon.astro';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
-  <div class="space-y-8 sm:space-y-10 min-w-0 max-w-4xl">
-    <!-- Cabeçalho com Apresentação Pessoal Direta -->
-    <header class="space-y-4 min-w-0">
+  <div class="space-y-8 sm:space-y-10 min-w-0 max-w-5xl">
+    <!-- Cabeçalho com Texto Exclusivo de Apresentação Técnica -->
+    <header class="space-y-3.5 min-w-0">
       <h1 class="headline-serif">
-        <span class="headline-serif-primary">SOBRE.</span>
+        <span class="headline-serif-primary">{profile.about.title}</span>
       </h1>
 
       <p class="font-mono text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-2xl break-words">
-        {profile.intro.bio}
+        {profile.about.description}
       </p>
     </header>
 
-    <!-- Grade Refatorada com os Ícones Oficiais das 10 Ferramentas (astro-icon) -->
-    <section class="space-y-4 pt-4 border-t border-outline-variant/40 min-w-0">
+    <!-- Grade com os Ícones Oficiais das Ferramentas (astro-icon) -->
+    <section class="space-y-3 pt-4 border-t border-outline-variant/40 min-w-0">
       <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant tracking-[0.16em] sm:tracking-[0.2em]">
         FERRAMENTAS & AMBIENTE DE TRABALHO
       </p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-3.5 pt-1">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-3 pt-1">
         {profile.tools.map((tool) => (
-          <div class="refined-card p-3 sm:p-3.5 flex items-center gap-3 group min-w-0">
+          <div class="refined-card p-3 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 group min-w-0">
             <div class="text-on-surface-variant group-hover:text-on-surface transition-colors shrink-0">
-              <ToolIcon name={tool.icon} class="h-4.5 w-4.5 sm:h-5 sm:w-5" />
+              <ToolIcon name={tool.icon} class="h-4 w-4 sm:h-4.5 sm:w-4.5" />
             </div>
             <div class="min-w-0 flex-1">
               <div class="font-mono text-[11px] sm:text-xs font-semibold text-on-surface tracking-wider break-words leading-tight">
@@ -41,5 +42,105 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
         ))}
       </div>
     </section>
+
+    <!-- Pilares de Foco de Volta (Sem os Cards Pequenos de Texto / Sem Badges de Spec) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-4 border-t border-outline-variant/40 min-w-0">
+      <div class="hidden lg:block lg:col-span-4 min-w-0">
+        <div
+          id="swissPreviewContainer"
+          aria-hidden="true"
+          class="pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        >
+          <div class="rounded-none border border-outline-variant bg-surface-container-lowest p-2">
+            <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background">
+              {profile.corePrinciples.map((item, idx) => (
+                <div
+                  data-swiss-preview-slide={idx}
+                  class:list={[
+                    'absolute inset-0 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+                    idx === 0 ? 'opacity-100' : 'opacity-0',
+                  ]}
+                >
+                  <ResponsivePicture
+                    image={item.previewImage}
+                    alt={item.title}
+                    loading="lazy"
+                    width={640}
+                    height={400}
+                    class="h-full w-full object-cover object-center"
+                  />
+                </div>
+              ))}
+            </div>
+            <div class="mt-2 flex items-center justify-between gap-2 font-mono text-[10px] text-on-surface-variant">
+              <span id="swissPreviewCaption" class="min-w-0 break-words">{profile.corePrinciples[0].previewCaption}</span>
+              <span class="text-on-surface font-semibold shrink-0">ARQUITETURA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8 min-w-0">
+        <div
+          id="swissFocusList"
+          class="swiss-focus-list divide-y divide-outline-variant/50 border-y border-outline-variant/50"
+        >
+          {profile.corePrinciples.map((item, idx) => (
+            <article
+              data-swiss-row={idx}
+              data-caption={item.previewCaption}
+              tabindex="0"
+              class="swiss-focus-row group py-4 sm:py-5 flex items-center justify-between gap-4 cursor-default focus-visible:outline-none min-w-0"
+            >
+              <div class="min-w-0">
+                <h2 class="font-display text-sm sm:text-base font-bold text-on-surface tracking-[0.1em] sm:tracking-[0.14em] break-words">
+                  {item.title}
+                </h2>
+                <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant mt-0.5 break-words">
+                  {item.subtitle}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   </div>
 </SiteLayout>
+
+<script is:inline>
+  (() => {
+    const list = document.getElementById('swissFocusList');
+    const previewContainer = document.getElementById('swissPreviewContainer');
+    const captionEl = document.getElementById('swissPreviewCaption');
+    if (!list || !previewContainer) return;
+
+    const rows = list.querySelectorAll('[data-swiss-row]');
+    const slides = previewContainer.querySelectorAll('[data-swiss-preview-slide]');
+
+    const activateSlide = (idx, caption) => {
+      previewContainer.classList.remove('opacity-0', 'translate-y-2');
+      previewContainer.classList.add('opacity-100', 'translate-y-0');
+      slides.forEach((slide) => {
+        const isCurrent = slide.getAttribute('data-swiss-preview-slide') === String(idx);
+        slide.classList.toggle('opacity-100', isCurrent);
+        slide.classList.toggle('opacity-0', !isCurrent);
+      });
+      if (captionEl && caption) captionEl.textContent = caption;
+    };
+
+    const deactivatePreview = () => {
+      previewContainer.classList.add('opacity-0', 'translate-y-2');
+      previewContainer.classList.remove('opacity-100', 'translate-y-0');
+    };
+
+    rows.forEach((row) => {
+      const idx = row.getAttribute('data-swiss-row');
+      const caption = row.getAttribute('data-caption');
+      row.addEventListener('mouseenter', () => activateSlide(idx, caption));
+      row.addEventListener('focus', () => activateSlide(idx, caption));
+    });
+
+    list.addEventListener('mouseleave', deactivatePreview);
+  })();
+</script>
