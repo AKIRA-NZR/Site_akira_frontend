@@ -15,7 +15,7 @@ metrics:
   throughput: "140K MSG/S"
   latency_p99: "1.8MS"
   uptime: "99.99%"
-githubUrl: "https://github.com"
+githubUrl: "https://github.com/VoidCube-Tech"
 cliCommand: "go run cmd/node/main.go --shards=8 --raft"
 cliOutput: "[OK] 8 SHARDS ACTIVE | 140,240 MSG/S | P99: 1.84MS"
 ---

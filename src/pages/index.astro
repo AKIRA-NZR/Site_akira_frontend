@@ -4,47 +4,47 @@ import { profile } from '../shared/config/profile';
 import { withBase } from '../shared/routing/paths';
 ---
 
-<SiteLayout title="AKIRA" stage="video" currentPage="inicio">
-  <!-- Conteúdo Direto sobre o Átrio de Vídeo em Tela Cheia (Sem Card) -->
-  <section class="max-w-xl space-y-8">
-    <div class="space-y-4">
-      <p class="font-mono text-xs text-on-surface-variant tracking-widest">
-        01 // {profile.specialty}
+<SiteLayout title="AKIRA // ENGENHARIA & ARQUITETURA" stage="video" currentPage="inicio">
+  <!-- Apresentação Pessoal Direta e Limpa (Sem Numerações, Sem Cards) -->
+  <section class="max-w-2xl space-y-8">
+    <div class="space-y-3">
+      <p class="font-mono text-xs text-on-surface-variant tracking-[0.22em]">
+        ENGENHARIA DE SOFTWARE & ARQUITETURA
       </p>
 
-      <h1 class="headline-bicolor text-4xl sm:text-6xl lg:text-7xl">
-        <span class="headline-bicolor-primary">ARQUITETURA</span>
-        <span class="headline-bicolor-secondary">BAIXA LATÊNCIA.</span>
+      <h1 class="headline-serif text-3xl sm:text-5xl lg:text-6xl">
+        <span class="headline-serif-primary">AKIRA</span>
+        <span class="headline-serif-secondary text-2xl sm:text-3xl lg:text-4xl mt-1 block">
+          ARQUITETURA BACK-END & SISTEMAS DISTRIBUÍDOS.
+        </span>
       </h1>
-
-      <p class="font-mono text-xs text-on-surface-variant max-w-sm">
-        {profile.summary}
-      </p>
     </div>
 
-    <div class="flex flex-wrap items-center gap-8 pt-2">
+    <p class="font-mono text-xs sm:text-sm text-on-surface-variant leading-relaxed max-w-xl">
+      {profile.intro.bio}
+    </p>
+
+    <!-- Links de Acesso Direto às Seções -->
+    <div class="flex flex-wrap items-center gap-8 sm:gap-12 pt-2">
       <a href={withBase('/sobre')} class="editorial-link">
-        <span>02 SOBRE</span>
+        <span>SOBRE</span>
         <span aria-hidden="true">→</span>
       </a>
       <a href={withBase('/projetos')} class="editorial-link">
-        <span>03 PROJETOS</span>
+        <span>PROJETOS</span>
         <span aria-hidden="true">→</span>
       </a>
       <a href={withBase('/contato')} class="editorial-link">
-        <span>04 CONTATO</span>
+        <span>CONTATO</span>
         <span aria-hidden="true">→</span>
       </a>
     </div>
 
-    <!-- Métricas Ultracompactas Diretamente sobre o Átrio -->
-    <div class="pt-8 border-t border-outline-variant grid grid-cols-3 gap-6 max-w-md font-mono">
-      {profile.metrics.map((m) => (
-        <div>
-          <div class="text-lg sm:text-2xl font-bold text-on-surface">{m.value}</div>
-          <div class="text-[10px] text-on-surface-variant mt-0.5">{m.label} // {m.unit}</div>
-        </div>
-      ))}
+    <!-- Indicador de Localização & Atuação -->
+    <div class="pt-8 border-t border-outline-variant/40 flex flex-wrap items-center gap-6 font-mono text-[11px] text-on-surface-variant">
+      <span>{profile.intro.location}</span>
+      <span class="opacity-30">/</span>
+      <span class="text-on-surface font-semibold">{profile.intro.availability}</span>
     </div>
   </section>
 </SiteLayout>

@@ -6,27 +6,31 @@ import { withBase } from '../shared/routing/paths';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
-  <!-- Conteúdo Direto sobre o Átrio 902085 em Tela Cheia (Sem Card de Banner) -->
-  <div class="space-y-10">
-    <header class="max-w-xl space-y-4">
-      <p class="font-mono text-xs text-on-surface-variant tracking-widest">
-        02 // ENGENHARIA
+  <div class="space-y-12">
+    <!-- Cabeçalho da Seção em Serif da Referência -->
+    <header class="max-w-2xl space-y-4">
+      <p class="font-mono text-xs text-on-surface-variant tracking-[0.22em]">
+        ENGENHARIA & FILOSOFIA
       </p>
-      <h1 class="headline-bicolor text-4xl sm:text-6xl">
-        <span class="headline-bicolor-primary">PILARES</span>
-        <span class="headline-bicolor-secondary">& NÚCLEO.</span>
+      <h1 class="headline-serif text-3xl sm:text-5xl">
+        <span class="headline-serif-primary">PILARES</span>
+        <span class="headline-serif-secondary">& FUNDAMENTOS.</span>
       </h1>
 
-      <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+      <p class="font-mono text-xs text-on-surface-variant leading-relaxed max-w-lg">
+        {profile.intro.headline} COM FOCO EM CONCORRÊNCIA SEGURA, CONSENSO ROBUSTO E TOLERÂNCIA A PARTIÇÕES.
+      </p>
+
+      <div class="flex flex-wrap gap-2 pt-2 font-mono text-[11px]">
         {profile.stack.map((tech) => (
-          <span class="px-2.5 py-1 border border-outline-variant bg-surface-container-lowest text-on-surface">
+          <span class="px-3 py-1 border border-outline-variant/60 bg-surface-container-lowest text-on-surface">
             {tech.name} <span class="text-on-surface-variant">{tech.version}</span>
           </span>
         ))}
       </div>
     </header>
 
-    <!-- Grid 4/12 (Preview Flutuante rounded-none) + 8/12 (Lista Suíça divide-y com opacity: 0.25) -->
+    <!-- Grid 4/12 (Preview Flutuante) + 8/12 (Lista Suíça divide-y Sem Numerações) -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <div class="lg:col-span-4 min-w-0">
         <div
@@ -34,7 +38,7 @@ import { withBase } from '../shared/routing/paths';
           aria-hidden="true"
           class="hidden lg:block pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
         >
-          <div class="rounded-none border border-outline bg-surface-container-lowest p-2">
+          <div class="rounded-none border border-outline-variant bg-surface-container-lowest p-2">
             <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background">
               {profile.corePrinciples.map((item, idx) => (
                 <div
@@ -57,7 +61,7 @@ import { withBase } from '../shared/routing/paths';
             </div>
             <div class="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span id="swissPreviewCaption">{profile.corePrinciples[0].previewCaption}</span>
-              <span class="text-on-surface">RAW</span>
+              <span class="text-on-surface font-semibold">ARQUITETURA</span>
             </div>
           </div>
         </div>
@@ -66,39 +70,34 @@ import { withBase } from '../shared/routing/paths';
       <div class="lg:col-span-8 min-w-0">
         <div
           id="swissFocusList"
-          class="swiss-focus-list divide-y divide-outline-variant border-y border-outline-variant"
+          class="swiss-focus-list divide-y divide-outline-variant/50 border-y border-outline-variant/50"
         >
           {profile.corePrinciples.map((item, idx) => (
             <article
               data-swiss-row={idx}
               data-caption={item.previewCaption}
               tabindex="0"
-              class="swiss-focus-row group py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-default focus-visible:outline-none"
+              class="swiss-focus-row group py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-default focus-visible:outline-none"
             >
-              <div class="flex items-baseline gap-4 min-w-0">
-                <span class="font-mono text-xs text-on-surface-variant group-hover:text-on-surface">
-                  {item.index}
-                </span>
-                <div>
-                  <h2 class="text-base sm:text-lg font-bold text-on-surface tracking-tight">
-                    {item.title}
-                  </h2>
-                  <p class="font-mono text-[11px] text-on-surface-variant mt-0.5">
-                    {item.subtitle}
-                  </p>
-                </div>
+              <div>
+                <h2 class="font-display text-base sm:text-lg font-bold text-on-surface tracking-[0.14em]">
+                  {item.title}
+                </h2>
+                <p class="font-mono text-[11px] text-on-surface-variant mt-1">
+                  {item.subtitle}
+                </p>
               </div>
 
-              <code class="font-mono text-[11px] text-on-surface border border-outline-variant group-hover:border-outline bg-surface-container-lowest px-3 py-1 rounded-none shrink-0">
+              <code class="font-mono text-[11px] text-on-surface border border-outline-variant/60 group-hover:border-outline bg-surface-container-lowest px-3 py-1 rounded-none shrink-0 tracking-wider">
                 {item.spec}
               </code>
             </article>
           ))}
         </div>
 
-        <div class="mt-6 flex justify-end">
+        <div class="mt-8 flex justify-end">
           <a href={withBase('/projetos')} class="editorial-link">
-            <span>03 PROJETOS</span>
+            <span>PROJETOS</span>
             <span aria-hidden="true">→</span>
           </a>
         </div>

@@ -19,7 +19,6 @@ export interface MetricHighlight {
 }
 
 export interface CorePrinciple {
-  index: string;
   title: string;
   subtitle: string;
   spec: string;
@@ -29,51 +28,48 @@ export interface CorePrinciple {
 
 export const profile = {
   handle: 'AKIRA',
-  title: 'ARQUITETURA & BACK-END',
-  specialty: 'SISTEMAS DISTRIBUÍDOS',
-  summary: 'APIS RESILIENTES, CONCORRÊNCIA E BAIXA LATÊNCIA.',
-  metrics: [
-    { value: '99.99%', unit: 'SLA', label: 'UPTIME' },
-    { value: '< 12MS', unit: 'P99', label: 'LATÊNCIA' },
-    { value: '140K', unit: 'MSG/S', label: 'VAZÃO' },
-  ] satisfies MetricHighlight[],
+  title: 'ENGENHEIRO DE SOFTWARE & ARQUITETO BACK-END',
+  specialty: 'SISTEMAS DISTRIBUÍDOS & ALTA PERFORMANCE',
+  intro: {
+    headline: 'ARQUITETURA DE SOFTWARE & ENGENHARIA BACK-END',
+    bio: 'DESENVOLVO SISTEMAS DISTRIBUÍDOS RESILIENTES, MICROSSERVIÇOS DE BAIXA LATÊNCIA E INFRAESTRUTURAS ESCALÁVEIS. FOCO EM CONCORRÊNCIA, CONTRATOS ESTRITOS E DISPONIBILIDADE CONTÍNUA SOB CARGA CRÍTICA.',
+    location: 'BRASIL // REMOTO GLOBAL',
+    availability: 'DISPONÍVEL PARA PROJETOS & CONSULTORIA',
+  },
   socials: [
-    { label: 'GITHUB', url: 'https://github.com', username: '@AKIRA' },
-    { label: 'LINKEDIN', url: 'https://linkedin.com', username: 'IN/AKIRA' },
+    { label: 'GITHUB', url: 'https://github.com/AKIRA-NZR', username: 'AKIRA-NZR' },
+    { label: 'VOIDCUBE', url: 'https://github.com/VoidCube-Tech', username: 'VOIDCUBE-TECH' },
+    { label: 'INSTAGRAM', url: 'https://instagram.com/akir4_nzr', username: 'AKIR4_NZR' },
     { label: 'EMAIL', url: 'mailto:akira.eng@proton.me', username: 'AKIRA.ENG@PROTON.ME' },
   ] satisfies SocialLink[],
   corePrinciples: [
     {
-      index: '01',
       title: 'CONCORRÊNCIA & I/O',
       subtitle: 'GO · RUST · TOKIO',
       spec: 'ZERO LOCK CONTENTION',
       previewImage: PHOTO_AKIRA_BIKE_SET,
-      previewCaption: 'FIG 01 // CONCORRÊNCIA',
+      previewCaption: 'CONCORRÊNCIA & SHARDING',
     },
     {
-      index: '02',
-      title: 'CONSENSO & TOLERÂNCIA',
+      title: 'CONSENSO & RESILIÊNCIA',
       subtitle: 'RAFT · IDEMPOTÊNCIA',
       spec: 'AT-LEAST-ONCE DELIVERY',
       previewImage: PHOTO_CRIMSON_MOON_SET,
-      previewCaption: 'FIG 02 // CONSENSO',
+      previewCaption: 'CONSENSO DISTRIBUÍDO',
     },
     {
-      index: '03',
       title: 'MODELAGEM & DADOS',
       subtitle: 'POSTGRESQL · REDIS',
       spec: 'ACID SERIALIZABLE',
       previewImage: PHOTO_MOEBIUS_TRUSS_SET,
-      previewCaption: 'FIG 03 // TOPOLOGIA',
+      previewCaption: 'TOPOLOGIA DE PERSISTÊNCIA',
     },
     {
-      index: '04',
       title: 'TELEMETRIA & TRACING',
       subtitle: 'OTEL · PROMETHEUS',
       spec: 'W3C TRACE CONTEXT',
       previewImage: PHOTO_CRIMSON_ONI_SET,
-      previewCaption: 'FIG 04 // TELEMETRIA',
+      previewCaption: 'OBSERVABILIDADE DISTRIBUÍDA',
     },
   ] satisfies CorePrinciple[],
   stack: [

@@ -15,5 +15,5 @@ metrics:
   throughput: "500K EV/S"
   latency_p99: "8.5MS"
   uptime: "99.95%"
-githubUrl: "https://github.com"
+githubUrl: "https://github.com/AKIRA-NZR"
 ---

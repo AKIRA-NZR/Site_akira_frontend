@@ -31,15 +31,16 @@ const stageImageMap = {
 
 const activeImage = stageImageMap[stage];
 
+// Navegação Sem Qualquer Numeração
 const pages = [
-  { id: 'inicio', code: '01', label: 'INÍCIO', href: withBase('/') },
-  { id: 'sobre', code: '02', label: 'SOBRE', href: withBase('/sobre') },
-  { id: 'projetos', code: '03', label: 'PROJETOS', href: withBase('/projetos') },
-  { id: 'contato', code: '04', label: 'CONTATO', href: withBase('/contato') },
+  { id: 'inicio', label: 'INÍCIO', href: withBase('/') },
+  { id: 'sobre', label: 'SOBRE', href: withBase('/sobre') },
+  { id: 'projetos', label: 'PROJETOS', href: withBase('/projetos') },
+  { id: 'contato', label: 'CONTATO', href: withBase('/contato') },
 ] as const;
 
 const fontStylesheetUrl =
-  'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&family=Syne:wght@700;800&display=swap';
+  'https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Cinzel:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
 ---
 
 <!doctype html>
@@ -48,12 +49,12 @@ const fontStylesheetUrl =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={stage === '1396090' ? '#d8d8de' : '#07080c'} />
-    <meta name="description" content="AKIRA // ARQUITETURA & BACK-END" />
+    <meta name="description" content="AKIRA // ENGENHARIA DE SOFTWARE & ARQUITETURA BACK-END" />
     <meta name="author" content={profile.handle} />
 
     <title>{title}</title>
 
-    <!-- Preload Seletivo da Arte da Página Atual em AVIF -->
+    <!-- Preload Seletivo da Arte em AVIF -->
     <link
       rel="preload"
       as="image"
@@ -71,7 +72,7 @@ const fontStylesheetUrl =
       fetchpriority="high"
     />
 
-    <!-- Fontes Designer (Syne 800 + JetBrains Mono + Plus Jakarta Sans) -->
+    <!-- Fontes da Referência (Cinzel + Bodoni Moda + Plus Jakarta Sans + JetBrains Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -87,24 +88,24 @@ const fontStylesheetUrl =
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307080c'/><text x='50' y='68' font-family='sans-serif' font-size='56' font-weight='800' fill='%23f0efe9' text-anchor='middle'>A</text></svg>"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307080c'/><text x='50' y='68' font-family='serif' font-size='56' font-weight='700' fill='%23f0efe9' text-anchor='middle'>A</text></svg>"
     />
   </head>
   <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-on-surface selection:text-background relative">
-    <!-- Átrio Desfocado em Tela Cheia (3 Camadas Ópticas: Bokeh 22px + Moldura Periférica 3.5px + Scrim Vignette) -->
+    <!-- Átrio em Tela Cheia com Alta Visibilidade -->
     <CorporateBackdrop stage={stage} />
 
-    <!-- Topo Editorial Sem Navbar (Assinatura Designer AKIRA + Índice de Páginas) -->
-    <div class="relative z-10 mx-auto w-full max-w-6xl px-5 pt-8 sm:px-10 sm:pt-12 flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
+    <!-- Topo Editorial Inspirado na Referência (Marca Tipográfica Espaçada + Navegação Sem Numeração) -->
+    <header class="relative z-10 mx-auto w-full max-w-6xl px-6 pt-10 sm:px-12 sm:pt-14 flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
       <a
         href={withBase('/')}
-        class="brand-signature text-3xl sm:text-5xl text-on-surface tracking-tighter"
+        class="brand-signature text-2xl sm:text-4xl text-on-surface"
       >
         AKIRA
       </a>
 
-      <!-- Índice Minimalista entre as 4 Páginas (Sem Navbar Box, Sem Contato Direto) -->
-      <nav aria-label="PÁGINAS" class="flex flex-wrap items-center gap-6 sm:gap-8 font-mono text-xs">
+      <!-- Menu Minimalista Sem Numeração -->
+      <nav aria-label="PÁGINAS" class="flex flex-wrap items-center gap-6 sm:gap-10 font-display text-[11px] sm:text-xs">
         {pages.map((p) => {
           const isActive = p.id === currentPage;
           return (
@@ -112,29 +113,58 @@ const fontStylesheetUrl =
               href={p.href}
               aria-current={isActive ? 'page' : undefined}
               class:list={[
-                'transition-colors duration-200 pb-1 border-b',
+                'tracking-[0.24em] transition-all duration-200 pb-1 border-b',
                 isActive
-                  ? 'text-on-surface border-outline font-semibold'
+                  ? 'text-on-surface border-outline font-bold'
                   : 'text-on-surface-variant border-transparent hover:text-on-surface hover:border-outline-variant',
               ]}
             >
-              <span class="opacity-60 mr-1">{p.code}</span>
-              <span>{p.label}</span>
+              {p.label}
             </a>
           );
         })}
       </nav>
-    </div>
+    </header>
 
-    <!-- Conteúdo da Página Diretamente sobre o Átrio em Tela Cheia -->
-    <main class="relative z-10 mx-auto w-full max-w-6xl px-5 py-10 sm:px-10 sm:py-14 flex-grow flex flex-col justify-center">
+    <!-- Conteúdo Central -->
+    <main class="relative z-10 mx-auto w-full max-w-6xl px-6 py-10 sm:px-12 sm:py-16 flex-grow flex flex-col justify-center">
       <slot />
     </main>
 
-    <!-- Rodapé Ultramínimo Padronizado em Maiúsculo -->
-    <footer class="relative z-10 mx-auto w-full max-w-6xl px-5 pb-8 sm:px-10 sm:pb-10 flex items-center justify-between gap-4 border-t border-outline-variant pt-5 font-mono text-[11px] text-on-surface-variant">
-      <span>AKIRA // ARQUITETURA DE SISTEMAS</span>
-      <span>ATRIUM // {stage.toUpperCase()}</span>
+    <!-- Rodapé Arquitetônico Aprimorado -->
+    <footer class="relative z-10 mx-auto w-full max-w-6xl px-6 pb-10 sm:px-12 sm:pb-12 border-t border-outline-variant/40 pt-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 font-mono text-[11px] text-on-surface-variant">
+        <!-- Identificação -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em]">AKIRA</span>
+          <span class="hidden sm:inline opacity-30">/</span>
+          <span class="tracking-wider">ARQUITETURA DE SOFTWARE & BACK-END</span>
+        </div>
+
+        <!-- Indicador de Status Ativo -->
+        <div class="flex items-center gap-2.5">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="tracking-widest text-[10px] text-on-surface">DISPONÍVEL PARA PROJETOS</span>
+        </div>
+
+        <!-- Links Sociais Diretos -->
+        <div class="flex items-center gap-6 tracking-widest text-[11px]">
+          {profile.socials.map((s) => (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-on-surface transition-colors"
+            >
+              <span>{s.label}</span>
+              <span class="opacity-60" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
     </footer>
   </body>
 </html>

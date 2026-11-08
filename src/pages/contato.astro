@@ -4,21 +4,24 @@ import { profile } from '../shared/config/profile';
 ---
 
 <SiteLayout title="AKIRA // CONTATO" stage="607758" currentPage="contato">
-  <!-- Conteúdo Direto sobre o Átrio 607758 (Moebius) em Tela Cheia (Sem Card) -->
-  <section class="max-w-lg space-y-8">
+  <!-- Canal de Contato Direto (Sem Numerações, Sem Cards Clunky) -->
+  <section class="max-w-xl space-y-8">
     <div class="space-y-3">
-      <p class="font-mono text-xs text-on-surface-variant tracking-widest">
-        04 // CONEXÃO
+      <p class="font-mono text-xs text-on-surface-variant tracking-[0.22em]">
+        COMUNICAÇÃO & REDES
       </p>
-      <h1 class="headline-bicolor text-4xl sm:text-6xl">
-        <span class="headline-bicolor-primary">CANAL</span>
-        <span class="headline-bicolor-secondary">DIRETO.</span>
+      <h1 class="headline-serif text-3xl sm:text-5xl">
+        <span class="headline-serif-primary">CANAL</span>
+        <span class="headline-serif-secondary">DIRETO.</span>
       </h1>
+      <p class="font-mono text-xs text-on-surface-variant leading-relaxed">
+        DISPONÍVEL PARA ARQUITETURA DE SISTEMAS, CONSULTORIA TÉCNICA E DESENVOLVIMENTO DE PROJETOS DE ALTO DESEMPENHO.
+      </p>
     </div>
 
     <!-- E-mail Copiável em 1 Clique -->
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
-      <div class="px-4 py-2.5 border border-outline-variant bg-surface-container-lowest font-mono text-xs text-on-surface break-all">
+      <div class="px-5 py-3 border border-outline-variant/60 bg-surface-container-lowest font-mono text-xs text-on-surface tracking-wider break-all">
         AKIRA.ENG@PROTON.ME
       </div>
 
@@ -26,14 +29,14 @@ import { profile } from '../shared/config/profile';
         type="button"
         id="copyEmailBtn"
         data-email="akira.eng@proton.me"
-        class="px-5 py-2.5 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold cursor-pointer hover:opacity-90 transition-opacity shrink-0"
+        class="px-6 py-3 border border-on-surface bg-on-surface text-background font-mono text-xs font-bold tracking-widest cursor-pointer hover:opacity-90 transition-opacity shrink-0"
       >
         <span id="copyEmailLabel">COPIAR</span>
       </button>
     </div>
 
-    <!-- Links Diretos -->
-    <div class="pt-6 border-t border-outline-variant flex flex-wrap items-center gap-8">
+    <!-- Links Diretos Sociais -->
+    <div class="pt-6 border-t border-outline-variant/40 flex flex-wrap items-center gap-8 sm:gap-10">
       {profile.socials.map((s) => (
         <a
           href={s.url}
