@@ -17,6 +17,8 @@ export interface CorePrinciple {
   subtitle: string;
   previewImage: ResponsiveImageSet;
   previewCaption: string;
+  codeFileName: string;
+  codeLines: string[];
 }
 
 export interface DevTool {
@@ -61,24 +63,66 @@ export const profile = {
       subtitle: 'JAVA · SPRING BOOT · REST',
       previewImage: PHOTO_AKIRA_BIKE_SET,
       previewCaption: 'ESTRUTURAÇÃO DE MICROSSERVIÇOS',
+      codeFileName: 'TENANTCONTEXTFILTER.JAVA',
+      codeLines: [
+        '@COMPONENT',
+        'PUBLIC CLASS TENANTFILTER EXTENDS ONCEPERREQUESTFILTER {',
+        '  @OVERRIDE',
+        '  PROTECTED VOID DOFILTERINTERNAL(HTTPREQUEST REQ, ...) {',
+        '    STRING TENANTID = REQ.GETHEADER("X-TENANT-ID");',
+        '    TENANTCONTEXT.SETCURRENTTENANT(TENANTID);',
+        '    CHAIN.DOFILTER(REQ, RES);',
+        '  }',
+        '}',
+      ],
     },
     {
       title: 'PERSISTÊNCIA & MODELAGEM',
       subtitle: 'POSTGRESQL · TRANSAÇÕES ACID',
       previewImage: PHOTO_MOEBIUS_TRUSS_SET,
       previewCaption: 'MODELAGEM DE DADOS RELACIONAL',
+      codeFileName: 'V1__INIT_MULTI_TENANT.SQL',
+      codeLines: [
+        'CREATE TABLE TENANT_PRODUCTS (',
+        '  ID UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),',
+        '  TENANT_ID UUID NOT NULL REFERENCES TENANTS(ID),',
+        '  SKU VARCHAR(64) NOT NULL,',
+        '  STOCK_QTY INT NOT NULL CHECK (STOCK_QTY >= 0),',
+        '  UNIQUE (TENANT_ID, SKU)',
+        ');',
+        'CREATE INDEX IDX_TENANT_SKU ON TENANT_PRODUCTS(TENANT_ID);',
+      ],
     },
     {
       title: 'CONTÊINERES & AUTOMAÇÃO',
       subtitle: 'DOCKER · GRADLE · CI/CD',
       previewImage: PHOTO_CRIMSON_MOON_SET,
       previewCaption: 'IMPLANTAÇÃO & AMBIENTES',
+      codeFileName: 'COMPOSE.YAML',
+      codeLines: [
+        'SERVICES:',
+        '  POSTGRES:',
+        '    IMAGE: POSTGRES:16-ALPINE',
+        '    PORTS: ["5433:5432"]',
+        '    ENVIRONMENT:',
+        '      POSTGRES_DB: VOIDCUBE_DEV',
+        '    HEALTHCHECK:',
+        '      TEST: ["CMD-SHELL", "PG_ISREADY -U POSTGRES"]',
+      ],
     },
     {
       title: 'ORGANIZAÇÃO & FLUXO',
       subtitle: 'NOTION · OBSIDIAN · GIT',
       previewImage: PHOTO_CRIMSON_ONI_SET,
       previewCaption: 'GESTÃO DE CONHECIMENTO',
+      codeFileName: 'WORKFLOW.SH',
+      codeLines: [
+        '❯ GIT CHECKOUT -B FEAT/MULTI-TENANT-ISOLATION',
+        '❯ ./GRADLEW CLEAN TEST --INFO',
+        '  BUILD SUCCESSFUL IN 4S (28 ACTIONABLE TASKS)',
+        '❯ GIT COMMIT -M "FEAT(CORE): ISOLATE TENANT CONTEXT"',
+        '❯ GIT PUSH ORIGIN FEAT/MULTI-TENANT-ISOLATION',
+      ],
     },
   ] satisfies CorePrinciple[],
 };

@@ -6,10 +6,15 @@ featured: true
 order: 3
 technologies:
   - name: "REACT 19"
+    icon: "react"
   - name: "TYPESCRIPT"
+    icon: "typescript"
   - name: "TAILWIND V4"
+    icon: "tailwindcss"
   - name: "VITE"
+    icon: "vite"
   - name: "VITEST"
+    icon: "vitest"
 githubUrl: "https://github.com/AKIRA-NZR/PSL_opsflow_frontend"
 cliCommand: "npm run dev -- --host"
 ---

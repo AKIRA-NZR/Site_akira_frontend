@@ -6,11 +6,17 @@ featured: true
 order: 1
 technologies:
   - name: "JAVA 21"
+    icon: "java"
   - name: "SPRING BOOT"
+    icon: "springboot"
   - name: "POSTGRESQL 16"
+    icon: "postgresql"
   - name: "FLYWAY"
+    icon: "flyway"
   - name: "DOCKER"
+    icon: "docker"
   - name: "GRADLE"
+    icon: "gradle"
 githubUrl: "https://github.com/VoidCube-Tech/VOID-MainBackend"
 cliCommand: "./gradlew bootRun --args=\"--spring.profiles.active=dev\""
 ---

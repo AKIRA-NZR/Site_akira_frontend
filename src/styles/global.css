@@ -227,12 +227,12 @@ body {
   opacity: 0.95;
 }
 
-/* Cards Refatorados — Vidro Arquitetônico Suave, Borda Ultrafina de Precisão */
+/* Cards Refatorados — Vidro Arquitetônico Mais Transparente, Borda Ultrafina de Precisão */
 .refined-card {
-  background: color-mix(in oklch, var(--color-surface-container) 82%, transparent);
-  border: 1px solid color-mix(in oklch, var(--color-outline-variant) 60%, transparent);
-  backdrop-filter: blur(20px) saturate(125%);
-  -webkit-backdrop-filter: blur(20px) saturate(125%);
+  background: color-mix(in oklch, var(--color-surface-container) 56%, transparent);
+  border: 1px solid color-mix(in oklch, var(--color-outline-variant) 50%, transparent);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
   border-radius: 0.5rem;
   min-width: 0;
   transition:
@@ -243,7 +243,7 @@ body {
 
 .refined-card:hover {
   border-color: var(--color-outline);
-  background: color-mix(in oklch, var(--color-surface-container-high) 88%, transparent);
+  background: color-mix(in oklch, var(--color-surface-container-high) 66%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {

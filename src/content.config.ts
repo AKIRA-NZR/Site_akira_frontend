@@ -13,6 +13,7 @@ const projects = defineCollection({
       z.object({
         name: z.string(),
         version: z.string().optional(),
+        icon: z.string().optional(),
       })
     ),
     metrics: z

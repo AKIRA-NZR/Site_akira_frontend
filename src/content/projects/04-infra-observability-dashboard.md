@@ -6,9 +6,13 @@ featured: true
 order: 4
 technologies:
   - name: "PYTHON"
+    icon: "python"
   - name: "DOCX ENGINE"
+    icon: "word"
   - name: "PDF AUTOMATION"
-  - name: "DESKTOP UI"
+    icon: "pdf"
+  - name: "GIT"
+    icon: "git"
 githubUrl: "https://github.com/AKIRA-NZR/docx-engine-studio"
 cliCommand: "python main.py"
 ---
