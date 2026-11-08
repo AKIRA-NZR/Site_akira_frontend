@@ -43,8 +43,14 @@ const activeSet = stageImageMap[stage];
         muted
         loop
         playsinline
+        webkit-playsinline="true"
+        x5-playsinline="true"
+        preload="auto"
+        disablepictureinpicture
+        disableremoteplayback
         poster={activeSet.avif}
-        class="atrium-media-sharp h-full w-full object-cover object-center"
+        class="atrium-media-sharp absolute inset-0 h-full w-full object-cover object-center"
+        style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
       >
         <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
       </video>
@@ -66,20 +72,9 @@ const activeSet = stageImageMap[stage];
     )}
   </div>
 
-  <!-- Camada 2: Difusão Óptica Seletiva Responsiva (Apenas Desktop >= 768px para estabilidade absoluta no mobile) -->
+  <!-- Camada 2: Difusão Óptica Seletiva Responsiva (Apenas Desktop >= 768px para estabilidade absoluta no mobile; desativada em vídeo para evitar dessincronia) -->
   <div class="atrium-layer-soft-focus hidden md:block absolute inset-0 h-full w-full">
-    {stage === 'video' ? (
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        poster={activeSet.avif}
-        class="atrium-media-soft h-full w-full object-cover object-center"
-      >
-        <source src={VIDEO_FEATURED_STAGE} type="video/mp4" />
-      </video>
-    ) : (
+    {stage === 'video' ? null : (
       <picture class="block w-full h-full absolute inset-0">
         <source srcset={activeSet.avif} type="image/avif" />
         <source srcset={activeSet.webp} type="image/webp" />

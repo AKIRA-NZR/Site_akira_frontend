@@ -79,10 +79,10 @@ const RAW_ENTRIES: readonly FrontImageAsset[] = [
     "avifPath": "/images/front/1401469.avif",
     "mobileWebpPath": "/images/front/1401469-mobile.webp",
     "mobileAvifPath": "/images/front/1401469-mobile.avif",
-    "bytes": 29650,
-    "webpBytes": 24020,
-    "avifBytes": 17164,
-    "mobileAvifBytes": 6993
+    "bytes": 55488,
+    "webpBytes": 37054,
+    "avifBytes": 37460,
+    "mobileAvifBytes": 16159
   },
   {
     "id": "491593",
