@@ -113,17 +113,17 @@ html[data-theme-stage="607758"] {
   --theme-surface: oklch(14% 0.032 230);
   --theme-on-surface: oklch(98% 0.008 85);
   --theme-surface-variant: oklch(18% 0.038 230);
-  --theme-on-surface-variant: oklch(82% 0.032 220);
+  --theme-on-surface-variant: oklch(84% 0.032 220);
 
-  --theme-surface-container-lowest: oklch(10% 0.026 230 / 0.8);
-  --theme-surface-container-low: oklch(13% 0.032 230 / 0.76);
-  --theme-surface-container: oklch(15% 0.036 230 / 0.72);
-  --theme-surface-container-high: oklch(18% 0.042 230 / 0.8);
-  --theme-surface-container-highest: oklch(21% 0.046 230 / 0.86);
+  --theme-surface-container-lowest: oklch(10% 0.026 230 / 0.84);
+  --theme-surface-container-low: oklch(13% 0.032 230 / 0.8);
+  --theme-surface-container: oklch(15% 0.036 230 / 0.76);
+  --theme-surface-container-high: oklch(18% 0.042 230 / 0.84);
+  --theme-surface-container-highest: oklch(21% 0.046 230 / 0.9);
 
-  --theme-outline-variant: oklch(36% 0.055 225);
-  --theme-outline: oklch(78% 0.12 215);
-  --theme-accent-stage: oklch(78% 0.15 65);
+  --theme-outline-variant: oklch(40% 0.055 225);
+  --theme-outline: oklch(82% 0.12 215);
+  --theme-accent-stage: oklch(80% 0.15 65);
 }
 
 /* ============================================================================
@@ -134,6 +134,7 @@ html {
   color: var(--color-on-background);
   text-transform: uppercase;
   overflow-x: clip;
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
 }
 

@@ -96,7 +96,7 @@ const fontStylesheetUrl =
     <CorporateBackdrop stage={stage} />
 
     <!-- Topo Editorial de Canto a Canto (Equilíbrio e Escala Refinada) -->
-    <header class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-7 sm:px-12 sm:pt-10 lg:px-16 flex items-center justify-between gap-6">
+    <header class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-7 sm:px-12 sm:pt-10 lg:px-16 flex items-center justify-between gap-6 shrink-0">
       <!-- Marca Discreta no Canto Superior Esquerdo -->
       <a
         href={withBase('/')}
@@ -130,37 +130,37 @@ const fontStylesheetUrl =
       </nav>
     </header>
 
-    <!-- Conteúdo Central: na Home fica posicionado mais ao topo/esquerda liberando o centro da arte -->
+    <!-- Conteúdo Central: Estabilidade Vertical Absoluta (Sem Saltos Entre Páginas) -->
     <main
       class:list={[
         'relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex-grow flex flex-col min-w-0',
         currentPage === 'inicio'
-          ? 'justify-start pt-8 sm:pt-12 lg:pt-16 pb-12'
-          : 'justify-center py-10 sm:py-14 lg:py-16',
+          ? 'justify-center items-start py-12'
+          : 'justify-start pt-8 sm:pt-12 lg:pt-14 pb-14',
       ]}
     >
       <slot />
     </main>
 
-    <!-- Rodapé Minimalista Alinhado de Canto a Canto -->
-    <footer class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 sm:px-12 sm:pb-10 lg:px-16 border-t border-outline-variant/40 pt-5">
+    <!-- Rodapé Minimalista com Alta Visibilidade -->
+    <footer class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 sm:px-12 sm:pb-10 lg:px-16 border-t border-outline-variant/40 pt-5 shrink-0">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[10px] sm:text-[11px] text-on-surface-variant">
         <!-- Identificação Pura -->
         <div class="flex items-center gap-3">
           <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em]">AKIRA</span>
         </div>
 
-        <!-- Links Sociais Diretos -->
-        <div class="flex flex-wrap items-center gap-6 tracking-widest">
+        <!-- Links Sociais Diretos com Alta Visibilidade -->
+        <div class="flex flex-wrap items-center gap-6 tracking-widest text-on-surface font-semibold">
           {profile.socials.map((s) => (
             <a
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="py-1 hover:text-on-surface transition-colors"
+              class="py-1 hover:text-accent-stage transition-colors"
             >
               <span>{s.label}</span>
-              <span class="opacity-60" aria-hidden="true">↗</span>
+              <span class="opacity-80" aria-hidden="true">↗</span>
             </a>
           ))}
         </div>
