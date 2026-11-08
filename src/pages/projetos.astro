@@ -7,30 +7,32 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 ---
 
 <SiteLayout title="AKIRA // PROJETOS" stage="1396090" currentPage="projetos">
-  <div class="space-y-10">
-    <!-- Cabeçalho Limpo Sem Kicker e Sem Link Redundante de Contato -->
+  <div class="space-y-6 sm:space-y-10 min-w-0">
+    <!-- Cabeçalho Limpo Responsivo -->
     <header>
-      <h1 class="headline-serif text-3xl sm:text-5xl">
+      <h1 class="headline-serif">
         <span class="headline-serif-primary">PROJETOS.</span>
       </h1>
     </header>
 
-    <!-- Cards Refatorados (Sem Métricas de Desempenho, Terminal Refatorado, Tecnologias Limpas) -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+    <!-- Cards Refatorados e Totalmente Responsivos (1 col mobile -> 2 cols desktop, zero overflow) -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 min-w-0">
       {projects.map((project) => {
         const { data } = project;
         return (
-          <article class="refined-card p-6 sm:p-8 flex flex-col justify-between gap-6">
-            <div class="space-y-4">
+          <article class="refined-card p-5 sm:p-7 lg:p-8 flex flex-col justify-between gap-5 sm:gap-6 min-w-0">
+            <div class="space-y-3.5 sm:space-y-4 min-w-0">
               <!-- Topo do Card -->
-              <div class="flex items-center justify-between gap-3 font-mono text-xs">
-                <span class="text-on-surface-variant tracking-wider uppercase text-[11px]">{data.type}</span>
+              <div class="flex items-center justify-between gap-3 font-mono text-xs min-w-0">
+                <span class="text-on-surface-variant tracking-wider uppercase text-[10px] sm:text-[11px] break-words">
+                  {data.type}
+                </span>
                 {data.githubUrl && (
                   <a
                     href={data.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="editorial-link text-[11px]"
+                    class="editorial-link text-[11px] shrink-0"
                   >
                     <span>GITHUB</span>
                     <span aria-hidden="true">↗</span>
@@ -38,32 +40,32 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
                 )}
               </div>
 
-              <!-- Título do Projeto -->
-              <h2 class="font-display text-lg sm:text-2xl font-bold text-on-surface tracking-[0.14em]">
+              <!-- Título do Projeto Responsivo -->
+              <h2 class="font-display text-base sm:text-xl lg:text-2xl font-bold text-on-surface tracking-[0.1em] sm:tracking-[0.14em] break-words">
                 {data.title}
               </h2>
 
               <!-- Resumo -->
-              <p class="font-mono text-xs text-on-surface-variant leading-relaxed">
+              <p class="font-mono text-xs text-on-surface-variant leading-relaxed break-words">
                 {data.summary}
               </p>
 
-              <!-- Tecnologias em Chips Refatorados -->
-              <div class="flex flex-wrap gap-2 pt-1">
+              <!-- Tecnologias em Chips Responsivos -->
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                 {data.technologies.map((tech) => (
-                  <span class="px-3 py-1 text-[11px] font-mono border border-outline-variant/60 bg-surface-container-lowest text-on-surface tracking-wider">
+                  <span class="px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-mono border border-outline-variant/60 bg-surface-container-lowest text-on-surface tracking-wider">
                     {tech.name}
                   </span>
                 ))}
               </div>
             </div>
 
-            <!-- Terminal Refatorado e Elegante -->
+            <!-- Terminal Refatorado Sem Corte de Texto (Quebra Fluida em Mobile) -->
             {data.cliCommand && (
-              <div class="pt-3 border-t border-outline-variant/40">
-                <div class="flex items-center gap-2 px-3.5 py-2.5 bg-surface-container-lowest border border-outline-variant/60 font-mono text-xs text-on-surface">
-                  <span class="text-on-surface-variant opacity-50 select-none">❯</span>
-                  <code class="truncate">{data.cliCommand}</code>
+              <div class="pt-3 border-t border-outline-variant/40 min-w-0">
+                <div class="flex items-start gap-2 px-3 sm:px-3.5 py-2.5 bg-surface-container-lowest border border-outline-variant/60 font-mono text-[11px] sm:text-xs text-on-surface min-w-0">
+                  <span class="text-on-surface-variant opacity-50 select-none shrink-0">❯</span>
+                  <code class="break-all sm:break-words min-w-0 leading-relaxed">{data.cliCommand}</code>
                 </div>
               </div>
             )}

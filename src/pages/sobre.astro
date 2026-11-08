@@ -6,29 +6,29 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
 ---
 
 <SiteLayout title="AKIRA // SOBRE" stage="902085" currentPage="sobre">
-  <div class="space-y-12">
-    <!-- Cabeçalho Limpo -->
-    <header class="space-y-6">
-      <h1 class="headline-serif text-3xl sm:text-5xl">
+  <div class="space-y-8 sm:space-y-12 min-w-0">
+    <!-- Cabeçalho Limpo e Grade Responsiva de Ferramentas (1 col <360px, 2 cols mobile, 3 cols tablet, 5 cols desktop) -->
+    <header class="space-y-5 sm:space-y-6 min-w-0">
+      <h1 class="headline-serif">
         <span class="headline-serif-primary">SOBRE.</span>
       </h1>
 
-      <!-- Grade Refatorada com os Ícones das Ferramentas Reais -->
-      <div class="space-y-3">
-        <p class="font-mono text-[11px] text-on-surface-variant tracking-[0.2em]">
+      <div class="space-y-3 min-w-0">
+        <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant tracking-[0.16em] sm:tracking-[0.2em]">
           FERRAMENTAS & AMBIENTE DE TRABALHO
         </p>
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-1">
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-3 pt-1">
           {profile.tools.map((tool) => (
-            <div class="refined-card p-3.5 flex items-center gap-3 group">
+            <div class="refined-card p-3 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 group min-w-0">
               <div class="text-on-surface-variant group-hover:text-on-surface transition-colors shrink-0">
-                <ToolIcon name={tool.icon} class="h-4 w-4" />
+                <ToolIcon name={tool.icon} class="h-4 w-4 sm:h-4.5 sm:w-4.5" />
               </div>
-              <div class="min-w-0">
-                <div class="font-mono text-xs font-semibold text-on-surface tracking-wider truncate">
+              <div class="min-w-0 flex-1">
+                <div class="font-mono text-[11px] sm:text-xs font-semibold text-on-surface tracking-wider break-words leading-tight">
                   {tool.name}
                 </div>
-                <div class="font-mono text-[9px] text-on-surface-variant tracking-wider truncate opacity-70">
+                <div class="font-mono text-[9px] text-on-surface-variant tracking-wider break-words opacity-75 mt-0.5 leading-tight">
                   {tool.category}
                 </div>
               </div>
@@ -38,13 +38,13 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
       </div>
     </header>
 
-    <!-- Grid 4/12 (Preview Flutuante) + 8/12 (Lista Suíça divide-y Sem Numerações) -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4 border-t border-outline-variant/40">
-      <div class="lg:col-span-4 min-w-0">
+    <!-- Grid Responsivo: 1 Coluna no Mobile/Tablet, 4/12 + 8/12 no Desktop -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-4 border-t border-outline-variant/40 min-w-0">
+      <div class="hidden lg:block lg:col-span-4 min-w-0">
         <div
           id="swissPreviewContainer"
           aria-hidden="true"
-          class="hidden lg:block pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          class="pointer-events-none opacity-0 translate-y-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
         >
           <div class="rounded-none border border-outline-variant bg-surface-container-lowest p-2">
             <div class="relative aspect-[16/10] w-full overflow-hidden rounded-none bg-background">
@@ -67,9 +67,9 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
                 </div>
               ))}
             </div>
-            <div class="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
-              <span id="swissPreviewCaption">{profile.corePrinciples[0].previewCaption}</span>
-              <span class="text-on-surface font-semibold">ARQUITETURA</span>
+            <div class="mt-2 flex items-center justify-between gap-2 font-mono text-[10px] text-on-surface-variant">
+              <span id="swissPreviewCaption" class="min-w-0 break-words">{profile.corePrinciples[0].previewCaption}</span>
+              <span class="text-on-surface font-semibold shrink-0">ARQUITETURA</span>
             </div>
           </div>
         </div>
@@ -85,18 +85,18 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
               data-swiss-row={idx}
               data-caption={item.previewCaption}
               tabindex="0"
-              class="swiss-focus-row group py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-default focus-visible:outline-none"
+              class="swiss-focus-row group py-4 sm:py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 cursor-default focus-visible:outline-none min-w-0"
             >
-              <div>
-                <h2 class="font-display text-base sm:text-lg font-bold text-on-surface tracking-[0.14em]">
+              <div class="min-w-0">
+                <h2 class="font-display text-sm sm:text-lg font-bold text-on-surface tracking-[0.1em] sm:tracking-[0.14em] break-words">
                   {item.title}
                 </h2>
-                <p class="font-mono text-[11px] text-on-surface-variant mt-1">
+                <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant mt-1 break-words">
                   {item.subtitle}
                 </p>
               </div>
 
-              <code class="font-mono text-[11px] text-on-surface border border-outline-variant/60 group-hover:border-outline bg-surface-container-lowest px-3 py-1 rounded-none shrink-0 tracking-wider">
+              <code class="self-start sm:self-auto font-mono text-[10px] sm:text-[11px] text-on-surface border border-outline-variant/60 group-hover:border-outline bg-surface-container-lowest px-2.5 sm:px-3 py-1 rounded-none shrink-0 tracking-wider break-words">
                 {item.spec}
               </code>
             </article>

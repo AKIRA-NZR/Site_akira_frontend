@@ -91,21 +91,24 @@ const fontStylesheetUrl =
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307080c'/><text x='50' y='68' font-family='serif' font-size='56' font-weight='700' fill='%23f0efe9' text-anchor='middle'>A</text></svg>"
     />
   </head>
-  <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-on-surface selection:text-background relative">
+  <body class="min-h-dvh flex flex-col justify-between antialiased selection:bg-on-surface selection:text-background relative">
     <!-- Átrio em Tela Cheia com Alta Visibilidade -->
     <CorporateBackdrop stage={stage} />
 
-    <!-- Topo Editorial Inspirado na Referência (Marca Tipográfica Espaçada + Navegação Sem Numeração) -->
-    <header class="relative z-10 mx-auto w-full max-w-6xl px-6 pt-10 sm:px-12 sm:pt-14 flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
+    <!-- Topo Responsivo (320px -> 4K) -->
+    <header class="relative z-10 mx-auto w-full max-w-6xl px-4 pt-6 sm:px-8 sm:pt-10 lg:px-12 lg:pt-14 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 sm:gap-6">
       <a
         href={withBase('/')}
-        class="brand-signature text-2xl sm:text-4xl text-on-surface"
+        class="brand-signature text-on-surface self-start"
       >
         AKIRA
       </a>
 
-      <!-- Menu Minimalista Sem Numeração -->
-      <nav aria-label="PÁGINAS" class="flex flex-wrap items-center gap-6 sm:gap-10 font-display text-[11px] sm:text-xs">
+      <!-- Menu Minimalista Responsivo Sem Numeração -->
+      <nav
+        aria-label="PÁGINAS"
+        class="w-full sm:w-auto flex flex-wrap items-center justify-between sm:justify-end gap-x-4 gap-y-2 sm:gap-8 md:gap-10 font-display text-[10px] sm:text-xs border-b sm:border-b-0 border-outline-variant/30 pb-2.5 sm:pb-0"
+      >
         {pages.map((p) => {
           const isActive = p.id === currentPage;
           return (
@@ -113,7 +116,7 @@ const fontStylesheetUrl =
               href={p.href}
               aria-current={isActive ? 'page' : undefined}
               class:list={[
-                'tracking-[0.24em] transition-all duration-200 pb-1 border-b',
+                'tracking-[0.14em] sm:tracking-[0.24em] transition-all duration-200 py-1 border-b',
                 isActive
                   ? 'text-on-surface border-outline font-bold'
                   : 'text-on-surface-variant border-transparent hover:text-on-surface hover:border-outline-variant',
@@ -126,27 +129,27 @@ const fontStylesheetUrl =
       </nav>
     </header>
 
-    <!-- Conteúdo Central -->
-    <main class="relative z-10 mx-auto w-full max-w-6xl px-6 py-10 sm:px-12 sm:py-16 flex-grow flex flex-col justify-center">
+    <!-- Conteúdo Central Responsivo -->
+    <main class="relative z-10 mx-auto w-full max-w-6xl px-4 py-8 sm:px-8 sm:py-12 lg:px-12 lg:py-16 flex-grow flex flex-col justify-center min-w-0">
       <slot />
     </main>
 
-    <!-- Rodapé Minimalista Refatorado (Sem Subtítulo Longo, Sem Status Badge) -->
-    <footer class="relative z-10 mx-auto w-full max-w-6xl px-6 pb-10 sm:px-12 sm:pb-12 border-t border-outline-variant/40 pt-6">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-on-surface-variant">
+    <!-- Rodapé Minimalista Responsivo -->
+    <footer class="relative z-10 mx-auto w-full max-w-6xl px-4 pb-6 sm:px-8 sm:pb-10 lg:px-12 lg:pb-12 border-t border-outline-variant/40 pt-5">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 font-mono text-[10px] sm:text-[11px] text-on-surface-variant">
         <!-- Identificação Pura -->
         <div class="flex items-center gap-3">
           <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em]">AKIRA</span>
         </div>
 
         <!-- Links Sociais Diretos -->
-        <div class="flex items-center gap-6 tracking-widest text-[11px]">
+        <div class="flex flex-wrap items-center gap-5 sm:gap-6 tracking-widest">
           {profile.socials.map((s) => (
             <a
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:text-on-surface transition-colors"
+              class="py-1 hover:text-on-surface transition-colors"
             >
               <span>{s.label}</span>
               <span class="opacity-60" aria-hidden="true">↗</span>

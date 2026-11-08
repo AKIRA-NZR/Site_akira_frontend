@@ -1,18 +1,13 @@
 ---
 /**
- * CorporateBackdrop V2 — Átrio em Tela Cheia com Alta Visibilidade e Foco Seletivo
+ * CorporateBackdrop V2 — Átrio Responsivo em Tela Cheia (Mobile, Tablet, Desktop & 4K)
  *
- * Preenche TODO o background da página (fixed inset-0), mantendo a arte/vídeo
- * perfeitamente visível e nítida na maior parte da tela, com desfoque suave
- * apenas na zona de leitura à esquerda:
+ * Preenche TODO o background da página (fixed inset-0), adaptando a máscara de foco
+ * e a vinheta de contraste tanto em telas verticais (smartphones) quanto horizontais (desktop):
  * - Início (/): Vídeo 1405430.mp4
  * - Sobre (/sobre): Imagem 902085
  * - Projetos (/projetos): Imagem 1396090
  * - Contato (/contato): Imagem 607758
- *
- * Camada 1: Arte Base Nítida em Tela Cheia (blur(0px) — 100% visível na metade direita e periferia)
- * Camada 2: Lente Óptica de Difusão Suave (blur(8px) com máscara radial/direcional restrita à zona do texto)
- * Camada 3: Scrim de Leitura Leve (.atrium-vignette — protege apenas o contraste da tipografia sem esconder o fundo)
  */
 import {
   PHOTO_CHROME_SURFER_SET,
@@ -44,7 +39,7 @@ const activeSet = stageImageMap[stage];
   class="pointer-events-none fixed inset-0 z-0 select-none overflow-hidden"
   aria-hidden="true"
 >
-  <!-- Camada 1: Arte/Vídeo Nítido em Tela Cheia (Totalmente visível no plano de fundo) -->
+  <!-- Camada 1: Arte/Vídeo Nítido em Tela Cheia -->
   <div class="atrium-layer-sharp absolute inset-0 h-full w-full">
     {stage === 'video' ? (
       <video
@@ -77,7 +72,7 @@ const activeSet = stageImageMap[stage];
     )}
   </div>
 
-  <!-- Camada 2: Difusão Óptica Seletiva (Desfoque suave restrito apenas à zona de leitura) -->
+  <!-- Camada 2: Difusão Óptica Seletiva Responsiva -->
   <div class="atrium-layer-soft-focus absolute inset-0 h-full w-full">
     {stage === 'video' ? (
       <video
@@ -110,7 +105,7 @@ const activeSet = stageImageMap[stage];
     )}
   </div>
 
-  <!-- Camada 3: Scrim Direcional Leve (.atrium-vignette — mantém o fundo claro/visível) -->
+  <!-- Camada 3: Scrim Direcional Responsivo (.atrium-vignette) -->
   <div class="atrium-vignette absolute inset-0"></div>
 </div>
 
@@ -121,26 +116,9 @@ const activeSet = stageImageMap[stage];
     mix-blend-mode: normal;
   }
 
-  /* Camada 1: Nítida e viva em toda a tela */
   .atrium-media-sharp {
     filter: blur(0px) saturate(1.04) contrast(1.04);
     transform: scale(1);
-  }
-
-  /* Camada 2: Desfoque suave (7px) aplicado apenas onde há concentração de texto */
-  .atrium-layer-soft-focus {
-    mask-image: radial-gradient(
-      ellipse 46% 52% at 24% 50%,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.35) 55%,
-      transparent 85%
-    );
-    -webkit-mask-image: radial-gradient(
-      ellipse 46% 52% at 24% 50%,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.35) 55%,
-      transparent 85%
-    );
   }
 
   .atrium-media-soft {
@@ -148,21 +126,66 @@ const activeSet = stageImageMap[stage];
     transform: scale(1.01);
   }
 
-  /* Camada 3: Vinheta leve apenas atrás da coluna de leitura, deixando a arte livre no restante da tela */
-  .atrium-vignette {
-    background:
-      radial-gradient(
-        ellipse 48% 55% at 24% 50%,
-        color-mix(in oklch, var(--color-background) 62%, transparent) 0%,
-        color-mix(in oklch, var(--color-background) 28%, transparent) 58%,
-        transparent 90%
-      ),
-      linear-gradient(
-        90deg,
-        color-mix(in oklch, var(--color-background) 58%, transparent) 0%,
-        color-mix(in oklch, var(--color-background) 22%, transparent) 42%,
-        transparent 75%
+  /* Mobile & Telas Pequenas: Foco suave vertical para leitura em retrato mantendo a arte visível */
+  @media (max-width: 767px) {
+    .atrium-layer-soft-focus {
+      mask-image: radial-gradient(
+        ellipse 85% 55% at 50% 42%,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.3) 62%,
+        transparent 92%
       );
+      -webkit-mask-image: radial-gradient(
+        ellipse 85% 55% at 50% 42%,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.3) 62%,
+        transparent 92%
+      );
+    }
+
+    .atrium-vignette {
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in oklch, var(--color-background) 64%, transparent) 0%,
+          color-mix(in oklch, var(--color-background) 42%, transparent) 48%,
+          color-mix(in oklch, var(--color-background) 68%, transparent) 100%
+        );
+    }
+  }
+
+  /* Tablet & Desktop: Lente lateral esquerda deixando a direita e periferia 100% livres */
+  @media (min-width: 768px) {
+    .atrium-layer-soft-focus {
+      mask-image: radial-gradient(
+        ellipse 46% 52% at 24% 50%,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.35) 55%,
+        transparent 85%
+      );
+      -webkit-mask-image: radial-gradient(
+        ellipse 46% 52% at 24% 50%,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.35) 55%,
+        transparent 85%
+      );
+    }
+
+    .atrium-vignette {
+      background:
+        radial-gradient(
+          ellipse 48% 55% at 24% 50%,
+          color-mix(in oklch, var(--color-background) 62%, transparent) 0%,
+          color-mix(in oklch, var(--color-background) 28%, transparent) 58%,
+          transparent 90%
+        ),
+        linear-gradient(
+          90deg,
+          color-mix(in oklch, var(--color-background) 58%, transparent) 0%,
+          color-mix(in oklch, var(--color-background) 22%, transparent) 42%,
+          transparent 75%
+        );
+    }
   }
 
   @media (forced-colors: active) {
