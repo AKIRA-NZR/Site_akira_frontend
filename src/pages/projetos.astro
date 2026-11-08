@@ -16,32 +16,32 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
       </h1>
 
       <!-- Filtro Interativo por Categoria (Sem Quebra de Palavras) -->
-      <div class="flex flex-wrap items-center gap-2 font-mono text-[10px] sm:text-[11px]" role="group" aria-label="FILTRAR PROJETOS">
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px]" role="group" aria-label="FILTRAR PROJETOS">
         <button
           type="button"
           data-project-filter="all"
-          class="px-3 py-1.5 border border-[#b91c1c] bg-[#b91c1c] text-white font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
+          class="px-2.5 sm:px-3 py-1 sm:py-1.5 border border-[#b91c1c] bg-[#b91c1c] text-white font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
         >
           TODOS
         </button>
         <button
           type="button"
           data-project-filter="backend"
-          class="px-3 py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
+          class="px-2.5 sm:px-3 py-1 sm:py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
         >
           BACKEND
         </button>
         <button
           type="button"
           data-project-filter="frontend"
-          class="px-3 py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
+          class="px-2.5 sm:px-3 py-1 sm:py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
         >
           FRONTEND
         </button>
         <button
           type="button"
           data-project-filter="fullstack"
-          class="px-3 py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
+          class="px-2.5 sm:px-3 py-1 sm:py-1.5 border border-outline-variant/50 bg-transparent text-on-surface hover:border-[#b91c1c] font-semibold tracking-widest cursor-pointer transition-colors whitespace-nowrap"
         >
           FULLSTACK
         </button>
@@ -49,7 +49,7 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
     </header>
 
     <!-- Cards Menos Opacos, Sem Bolinhas, Sem Terminal e Com Palavras Inteiras -->
-    <section id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 min-w-0">
+    <section id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-10 min-w-0">
       {projects.map((project) => {
         const { data } = project;
         return (
@@ -57,9 +57,9 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
             data-motion-item
             data-project-card
             data-project-type={data.type}
-            class="refined-card p-6 sm:p-8 lg:p-9 flex flex-col justify-between gap-6 min-w-0"
+            class="refined-card p-5 sm:p-8 lg:p-9 flex flex-col justify-between gap-5 sm:gap-6 min-w-0"
           >
-            <div class="space-y-4 sm:space-y-5 min-w-0">
+            <div class="space-y-3.5 sm:space-y-5 min-w-0">
               <!-- Topo do Card: Categoria Limpa Sem Caixa e Sem Bolinha + Links Diretos -->
               <div class="flex flex-wrap items-center justify-between gap-3 font-mono text-xs min-w-0">
                 <span class="text-[#991b1b] font-bold tracking-[0.22em] uppercase text-[10px] sm:text-[11px] whitespace-nowrap">
@@ -93,7 +93,7 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
               </div>
 
               <!-- Título do Projeto -->
-              <h2 class="font-display text-lg sm:text-xl lg:text-2xl font-bold text-on-surface tracking-[0.08em] sm:tracking-[0.12em]">
+              <h2 class="font-display text-base sm:text-xl lg:text-2xl font-bold text-on-surface tracking-[0.06em] sm:tracking-[0.12em]">
                 {data.title}
               </h2>
 
@@ -104,11 +104,11 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
             </div>
 
             <!-- Tecnologias com Ícones Oficiais e Destaque em Vermelho Akira -->
-            <div class="pt-4 border-t border-outline-variant/35 flex flex-wrap gap-2">
+            <div class="pt-3.5 sm:pt-4 border-t border-outline-variant/35 flex flex-wrap gap-1.5 sm:gap-2">
               {data.technologies.map((tech) => (
-                <span class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-mono font-semibold border border-[#b91c1c]/40 bg-[#b91c1c]/10 text-[#7f1d1d] hover:bg-[#b91c1c] hover:text-white transition-colors tracking-wider rounded-sm whitespace-nowrap">
+                <span class="inline-flex items-center gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-mono font-semibold border border-[#b91c1c]/40 bg-[#b91c1c]/10 text-[#7f1d1d] hover:bg-[#b91c1c] hover:text-white transition-colors tracking-wider rounded-sm whitespace-nowrap">
                   {tech.icon && (
-                    <ToolIcon name={tech.icon} class="h-3.5 w-3.5 shrink-0" />
+                    <ToolIcon name={tech.icon} class="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
                   )}
                   <span>{tech.name}</span>
                 </span>

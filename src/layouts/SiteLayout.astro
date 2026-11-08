@@ -96,7 +96,7 @@ const fontStylesheetUrl =
     <CorporateBackdrop stage={stage} />
 
     <!-- Topo Editorial de Canto a Canto (Equilíbrio e Escala Refinada) -->
-    <header class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-7 sm:px-12 sm:pt-10 lg:px-16 flex items-center justify-between gap-6 shrink-0">
+    <header class="relative z-30 w-full max-w-7xl mx-auto px-4 pt-5 sm:px-12 sm:pt-10 lg:px-16 flex items-center justify-between gap-4 sm:gap-6 shrink-0">
       <!-- Marca Discreta no Canto Superior Esquerdo -->
       <a
         href={withBase('/')}
@@ -105,10 +105,10 @@ const fontStylesheetUrl =
         AKIRA
       </a>
 
-      <!-- Menu Minimalista no Canto Superior Direito com Alta Visibilidade -->
+      <!-- Menu Minimalista Desktop (Telas Médias e Grandes >= sm) -->
       <nav
-        aria-label="PÁGINAS"
-        class="flex items-center gap-4 sm:gap-8 lg:gap-10 font-display text-[10px] sm:text-xs"
+        aria-label="PÁGINAS PRINCIPAIS"
+        class="hidden sm:flex items-center gap-6 md:gap-8 lg:gap-10 font-display text-[11px] sm:text-xs"
       >
         {pages.map((p) => {
           const isActive = p.id === currentPage;
@@ -128,36 +128,121 @@ const fontStylesheetUrl =
           );
         })}
       </nav>
+
+      <!-- Botão Menu Mobile Editorial (Telas Pequenas < sm) -->
+      <button
+        type="button"
+        id="mobileMenuToggle"
+        aria-expanded="false"
+        aria-controls="mobileMenuDrawer"
+        aria-label="ABRIR MENU"
+        class="sm:hidden flex items-center gap-2 px-3 py-1.5 border border-outline-variant/60 bg-surface/50 backdrop-blur-md font-mono text-[10px] font-semibold tracking-[0.2em] text-on-surface hover:border-outline transition-colors cursor-pointer"
+      >
+        <span>MENU</span>
+        <span class="text-xs" aria-hidden="true">☰</span>
+      </button>
     </header>
+
+    <!-- Overlay e Drawer do Menu Mobile (Cyber-Editorial Glass) -->
+    <div
+      id="mobileMenuDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="MENU DE NAVEGAÇÃO"
+      class="fixed inset-0 z-50 sm:hidden flex flex-col justify-between p-6 bg-background/95 backdrop-blur-2xl transition-all duration-300 opacity-0 pointer-events-none -translate-y-2"
+    >
+      <!-- Topo do Menu Mobile -->
+      <div class="flex items-center justify-between border-b border-outline-variant/40 pb-5">
+        <a href={withBase('/')} class="brand-signature text-base font-extrabold tracking-[0.24em]">
+          AKIRA
+        </a>
+        <button
+          type="button"
+          id="mobileMenuClose"
+          aria-label="FECHAR MENU"
+          class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant/60 bg-surface/40 font-mono text-[10px] font-semibold tracking-[0.2em] text-on-surface hover:border-outline transition-colors cursor-pointer"
+        >
+          <span>FECHAR</span>
+          <span class="text-xs" aria-hidden="true">✕</span>
+        </button>
+      </div>
+
+      <!-- Links Principais com Tipografia Editorial Ampla e Alta Visibilidade -->
+      <nav class="flex flex-col gap-5 py-6 my-auto" aria-label="NAVEGAÇÃO MOBILE">
+        {pages.map((p) => {
+          const isActive = p.id === currentPage;
+          return (
+            <a
+              href={p.href}
+              aria-current={isActive ? 'page' : undefined}
+              class:list={[
+                'mobile-nav-link font-display text-2xl font-bold tracking-[0.16em] transition-all py-2 border-b flex items-center justify-between',
+                isActive
+                  ? 'text-accent-stage border-outline pl-2 font-black'
+                  : 'text-on-surface/85 border-outline-variant/20 hover:text-on-surface hover:pl-2',
+              ]}
+            >
+              <span>{p.label}</span>
+              {isActive && (
+                <span class="font-mono text-[10px] text-accent-stage tracking-widest font-semibold">● ATIVO</span>
+              )}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Rodapé do Menu Mobile: Redes Sociais e Contato Direto -->
+      <div class="pt-5 border-t border-outline-variant/40 space-y-3.5">
+        <span class="font-mono text-[9px] text-on-surface-variant tracking-[0.2em] block">
+          CONECTAR // REDES SOCIAIS
+        </span>
+        <div class="grid grid-cols-2 gap-3 font-mono text-[11px] text-on-surface font-semibold tracking-wider">
+          {profile.socials.map((s) => (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="py-1.5 flex items-center justify-between border-b border-outline-variant/20 hover:text-accent-stage transition-colors"
+            >
+              <span>{s.label}</span>
+              <span class="opacity-70" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
 
     <!-- Conteúdo Central: Estabilidade Vertical Absoluta (Sem Saltos Entre Páginas) -->
     <main
       class:list={[
-        'relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex-grow flex flex-col min-w-0',
+        'relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-12 lg:px-16 flex-grow flex flex-col min-w-0',
         currentPage === 'inicio' || currentPage === 'contato'
-          ? 'justify-center items-start py-12'
-          : 'justify-start pt-8 sm:pt-12 lg:pt-14 pb-14',
+          ? 'justify-center items-start py-8 sm:py-12'
+          : 'justify-start pt-6 sm:pt-12 lg:pt-14 pb-12 sm:pb-14',
       ]}
     >
       <slot />
     </main>
 
     <!-- Rodapé Minimalista com Alta Visibilidade -->
-    <footer class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 sm:px-12 sm:pb-10 lg:px-16 border-t border-outline-variant/40 pt-5 shrink-0">
+    <footer class="relative z-10 w-full max-w-7xl mx-auto px-4 pb-6 sm:px-12 sm:pb-10 lg:px-16 border-t border-outline-variant/40 pt-4 sm:pt-5 shrink-0">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[10px] sm:text-[11px] text-on-surface-variant">
-        <!-- Identificação Pura -->
-        <div class="flex items-center gap-3">
+        <!-- Identificação Pura + Cargo -->
+        <div class="flex items-center justify-between w-full sm:w-auto gap-4">
           <span class="font-display text-xs font-bold text-on-surface tracking-[0.2em]">AKIRA</span>
+          <span class="sm:hidden font-mono text-[9px] text-on-surface-variant tracking-[0.16em]">
+            BACK-END & ARQUITETURA
+          </span>
         </div>
 
-        <!-- Links Sociais Diretos com Alta Visibilidade -->
-        <div class="flex flex-wrap items-center gap-6 tracking-widest text-on-surface font-semibold">
+        <!-- Links Sociais Diretos: Grid 2x2 Simétrico no Mobile e Linha Flex no Desktop -->
+        <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-6 gap-y-2.5 sm:gap-6 tracking-widest text-on-surface font-semibold w-full sm:w-auto">
           {profile.socials.map((s) => (
             <a
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="py-1 whitespace-nowrap hover:text-accent-stage transition-colors"
+              class="py-1 whitespace-nowrap hover:text-accent-stage transition-colors flex items-center gap-1.5"
             >
               <span>{s.label}</span>
               <span class="opacity-80" aria-hidden="true">↗</span>
@@ -206,6 +291,51 @@ const fontStylesheetUrl =
           card.style.setProperty('--spot-y', `${y}px`);
         });
       });
+
+      // 3. Controle Acessível do Menu Mobile (Drawer Cyber-Editorial)
+      const menuToggle = document.getElementById('mobileMenuToggle');
+      const menuClose = document.getElementById('mobileMenuClose');
+      const menuDrawer = document.getElementById('mobileMenuDrawer');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function openMobileMenu() {
+        if (!menuDrawer || !menuToggle) return;
+        menuDrawer.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+        menuDrawer.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      function closeMobileMenu() {
+        if (!menuDrawer || !menuToggle) return;
+        menuDrawer.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        menuDrawer.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      if (menuToggle && menuClose && menuDrawer) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            closeMobileMenu();
+          } else {
+            openMobileMenu();
+          }
+        });
+
+        menuClose.addEventListener('click', closeMobileMenu);
+
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener('click', closeMobileMenu);
+        });
+
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+            closeMobileMenu();
+          }
+        });
+      }
     </script>
   </body>
 </html>

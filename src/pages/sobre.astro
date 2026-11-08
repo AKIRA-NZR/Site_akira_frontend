@@ -23,17 +23,17 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
         FERRAMENTAS & AMBIENTE DE TRABALHO
       </p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-3 pt-1">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 pt-1">
         {profile.tools.map((tool) => (
-          <div data-motion-item class="refined-card p-3 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 group min-w-0">
+          <div data-motion-item class="refined-card p-2.5 sm:p-3.5 flex items-center gap-2 sm:gap-3 group min-w-0">
             <div class="text-on-surface-variant group-hover:text-on-surface transition-colors shrink-0">
               <ToolIcon name={tool.icon} class="h-4 w-4 sm:h-4.5 sm:w-4.5" />
             </div>
             <div class="min-w-0 flex-1">
-              <div class="font-mono text-[11px] sm:text-xs font-semibold text-on-surface tracking-wider leading-tight">
+              <div class="font-mono text-[10px] sm:text-xs font-semibold text-on-surface tracking-wider leading-tight truncate">
                 {tool.name}
               </div>
-              <div class="font-mono text-[9px] text-on-surface-variant tracking-wider opacity-75 mt-0.5 leading-tight">
+              <div class="font-mono text-[8.5px] sm:text-[9px] text-on-surface-variant tracking-wider opacity-75 mt-0.5 leading-tight truncate">
                 {tool.category}
               </div>
             </div>
@@ -74,13 +74,13 @@ import ToolIcon from '../shared/ui/ToolIcon.astro';
               data-swiss-row={idx}
               data-caption={item.previewCaption}
               tabindex="0"
-              class="swiss-focus-row group py-4 sm:py-5 flex items-center justify-between gap-4 cursor-default focus-visible:outline-none min-w-0"
+              class="swiss-focus-row group py-3.5 sm:py-5 flex items-center justify-between gap-3 cursor-default focus-visible:outline-none min-w-0"
             >
               <div class="min-w-0">
-                <h2 class="font-display text-sm sm:text-base font-bold text-on-surface group-hover:text-accent-stage transition-colors tracking-[0.1em] sm:tracking-[0.14em]">
+                <h2 class="font-display text-xs sm:text-base font-bold text-on-surface group-hover:text-accent-stage transition-colors tracking-[0.08em] sm:tracking-[0.14em]">
                   {item.title}
                 </h2>
-                <p class="font-mono text-[10px] sm:text-[11px] text-on-surface-variant mt-0.5">
+                <p class="font-mono text-[9px] sm:text-[11px] text-on-surface-variant mt-0.5">
                   {item.subtitle}
                 </p>
               </div>
