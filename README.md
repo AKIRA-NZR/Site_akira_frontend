@@ -46,3 +46,16 @@ npm run build
 # 4. Visualizar build de produção localmente
 npm run preview
 ```
+
+---
+
+## 🎨 Direitos Autorais & Aviso Legal / Disclaimer
+
+> [!NOTE]
+> **Uso Sem Fins Lucrativos / Non-Commercial Use:**
+> Todas as artes visuais, ilustrações, animações e vídeos utilizados neste portfólio são de uso estritamente demonstrativo, pessoal e **sem quaisquer fins lucrativos**.
+> 
+> Essas obras **não são de minha autoria**. Todos os direitos autorais, créditos e propriedade intelectual pertencem exclusivamente aos seus respectivos artistas e criadores originais. Caso você seja o autor de alguma das obras e deseje atribuição nominal ou remoção, por favor entre em contato.
+> 
+> *All visual artworks, illustrations, animations, and video assets featured in this portfolio are used strictly for personal, non-commercial, and showcase purposes. They are not authored by me; all rights, copyrights, and intellectual property remain with their respective original creators and artists.*
+
